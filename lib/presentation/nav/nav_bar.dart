@@ -38,11 +38,10 @@ class _NavBarState extends State<NavBar> {
             left: 0,
             right: 0,
             bottom: Platform.isAndroid ? 10 : 0,
-            child: SizedBox(
-              height: 100,
-              child: BottomAppBar(
-                color: Colors.white.withOpacity(0),
-                elevation: 0,
+            child: Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: SizedBox(
+                height: 50,
                 child: ClipRRect(
                   borderRadius: BorderRadius.circular(10),
                   child: Container(
