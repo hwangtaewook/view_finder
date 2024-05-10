@@ -3,6 +3,7 @@ import 'dart:ui';
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:view_finder/presentation/account/account_screen.dart';
 import 'package:view_finder/presentation/board/board_screen.dart';
 import 'package:view_finder/presentation/home/home_screen.dart';
@@ -40,7 +41,7 @@ class _NavBarState extends State<NavBar> {
             right: 0,
             bottom: Platform.isAndroid ? 10 : 0,
             child: Padding(
-              padding: const EdgeInsets.all(8.0),
+              padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
               child: SizedBox(
                 height: 50,
                 child: ClipRRect(
