@@ -17,12 +17,12 @@ class NavItem extends StatelessWidget {
     return Expanded(
       child: InkWell(
         onTap: onTap,
+        highlightColor: Colors.transparent, // 하이라이트 효과 제거
+        splashColor: Colors.transparent,
         child: Icon(
           icon,
           color: selected ? Colors.white : Colors.white.withOpacity(0.4),
-        ),
-        highlightColor: Colors.transparent, // 하이라이트 효과 제거
-        splashColor: Colors.transparent, // 스플래시 효과 제거
+        ), // 스플래시 효과 제거
       ),
     );
   }

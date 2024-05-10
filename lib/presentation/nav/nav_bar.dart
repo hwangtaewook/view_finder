@@ -10,7 +10,6 @@ import 'package:view_finder/presentation/home/home_screen.dart';
 import 'package:view_finder/presentation/photo/photo_screen.dart';
 
 import 'component/nav_item.dart';
-
 class NavBar extends StatefulWidget {
   const NavBar({
     super.key,
@@ -49,7 +48,7 @@ class _NavBarState extends State<NavBar> {
                   child: BackdropFilter(
                     filter: ImageFilter.blur(sigmaX: 20, sigmaY: 20),
                     child: Container(
-                      color: Color(0xff323232).withOpacity(0.8),
+                      color: const Color(0xff323232).withOpacity(0.8),
                       child: Row(
                         children: [
                           NavItem(

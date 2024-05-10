@@ -1,7 +1,4 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/rendering.dart';
-import 'package:flutter/widgets.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:view_finder/presentation/home/component/image_card.dart';
 
@@ -48,7 +45,7 @@ class HomeScreen extends StatelessWidget {
                 children: [
                   Column(
                     children: [
-                      Text('공지사항 게시판'),
+                      const Text('공지사항 게시판'),
                       SizedBox(
                         height: 0.01.sh,
                       ),
@@ -58,7 +55,7 @@ class HomeScreen extends StatelessWidget {
                           height: 0.3.sh,
                           width: 1.sw,
                           color: Colors.grey[200],
-                          child: Column(
+                          child: const Column(
                             children: [
                               Text('게시글'),
                               Text('게시글'),
@@ -76,7 +73,7 @@ class HomeScreen extends StatelessWidget {
                   ),
                   Column(
                     children: [
-                      Text('출사 게시판'),
+                      const Text('출사 게시판'),
                       SizedBox(
                         height: 0.01.sh,
                       ),
@@ -86,7 +83,7 @@ class HomeScreen extends StatelessWidget {
                           height: 0.3.sh,
                           width: 1.sw,
                           color: Colors.grey[200],
-                          child: Column(
+                          child: const Column(
                             children: [
                               Text('게시글'),
                               Text('게시글'),
@@ -111,19 +108,19 @@ class HomeScreen extends StatelessWidget {
               padding: const EdgeInsets.symmetric(horizontal: 16),
               child: Column(
                 children: [
-                  Text('최신 사진'),
+                  const Text('최신 사진'),
                   SizedBox(
                     height: 0.01.sh,
                   ),
-                  ImageCard(
+                  const ImageCard(
                       image: 'assets/123.jpg',
                       userImage: 'assets/123.jpg',
                       userName: '1번'),
-                  ImageCard(
+                  const ImageCard(
                       image: 'assets/back2.jpg',
                       userImage: 'assets/back2.jpg',
                       userName: '2번'),
-                  ImageCard(
+                  const ImageCard(
                       image: 'assets/background.jpg',
                       userImage: 'assets/background.jpg',
                       userName: '3번'),

@@ -15,7 +15,7 @@ class ImageCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
+    return SizedBox(
       width: 1.sw,
       child: Column(
         children: [
@@ -44,9 +44,9 @@ class ImageCard extends StatelessWidget {
                       userName,
                       style: TextStyle(fontSize: 18.sp),
                     ),
-                    Spacer(),
-                    Icon(Icons.star_outline),
-                    Icon(Icons.comment_outlined),
+                    const Spacer(),
+                    const Icon(Icons.star_outline),
+                    const Icon(Icons.comment_outlined),
                   ],
                 ),
               ),
