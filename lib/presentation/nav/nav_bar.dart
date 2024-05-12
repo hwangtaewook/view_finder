@@ -10,6 +10,7 @@ import 'package:view_finder/presentation/home/home_screen.dart';
 import 'package:view_finder/presentation/photo/photo_screen.dart';
 
 import 'component/nav_item.dart';
+
 class NavBar extends StatefulWidget {
   const NavBar({
     super.key,
@@ -40,7 +41,8 @@ class _NavBarState extends State<NavBar> {
             right: 0,
             bottom: Platform.isAndroid ? 10 : 0,
             child: Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+              padding:
+                  EdgeInsets.symmetric(horizontal: 0.04.sw, vertical: 0.02.sw),
               child: SizedBox(
                 height: 50,
                 child: ClipRRect(
@@ -49,6 +51,7 @@ class _NavBarState extends State<NavBar> {
                     filter: ImageFilter.blur(sigmaX: 20, sigmaY: 20),
                     child: Container(
                       color: const Color(0xff323232).withOpacity(0.8),
+                      // color: Colors.white.withOpacity(0.5),
                       child: Row(
                         children: [
                           NavItem(

@@ -48,14 +48,12 @@ class PhotoScreen extends StatelessWidget {
             scrolledUnderElevation: 0,
           ),
           SliverPadding(
-            padding: const EdgeInsets.all(16),
+            padding: EdgeInsets.all(0.04.sw),
             sliver: SliverMasonryGrid.count(
               crossAxisCount: 2,
               mainAxisSpacing: 10,
               crossAxisSpacing: 10,
               itemBuilder: (BuildContext context, int index) {
-                final int firstItemIndex = index * 2;
-                final int secondItemIndex = firstItemIndex + 1;
                 final List<String> catPics = [
                   'assets/1.jpg',
                   'assets/2.jpg',

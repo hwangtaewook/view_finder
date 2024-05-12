@@ -15,14 +15,12 @@ class NavItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Expanded(
-      child: InkWell(
+      child: GestureDetector(
         onTap: onTap,
-        highlightColor: Colors.transparent, // 하이라이트 효과 제거
-        splashColor: Colors.transparent,
         child: Icon(
           icon,
           color: selected ? Colors.white : Colors.white.withOpacity(0.4),
-        ), // 스플래시 효과 제거
+        ),
       ),
     );
   }
