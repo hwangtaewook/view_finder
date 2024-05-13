@@ -4,30 +4,30 @@ import 'dart:ui';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:view_finder/presentation/account/account_screen.dart';
-import 'package:view_finder/presentation/board/board_screen.dart';
-import 'package:view_finder/presentation/home/home_screen.dart';
-import 'package:view_finder/presentation/photo/photo_screen.dart';
+import 'package:view_finder/presentation/account/account_page.dart';
+import 'package:view_finder/presentation/board/board_page.dart';
+import 'package:view_finder/presentation/home/home_page.dart';
+import 'package:view_finder/presentation/photo/photo_page.dart';
 
 import 'component/nav_item.dart';
 
-class NavBar extends StatefulWidget {
-  const NavBar({
+class NavBarScreen extends StatefulWidget {
+  const NavBarScreen({
     super.key,
   });
 
   @override
-  State<NavBar> createState() => _NavBarState();
+  State<NavBarScreen> createState() => _NavBarScreenState();
 }
 
-class _NavBarState extends State<NavBar> {
+class _NavBarScreenState extends State<NavBarScreen> {
   int _currentIndex = 0;
 
   final _pages = [
-    const HomeScreen(),
-    const PhotoScreen(),
-    const BoardScreen(),
-    const AccountScreen(),
+    const HomePage(),
+    const PhotoPage(),
+    const BoardPage(),
+    const AccountPage(),
   ];
 
   @override
@@ -50,8 +50,8 @@ class _NavBarState extends State<NavBar> {
                   child: BackdropFilter(
                     filter: ImageFilter.blur(sigmaX: 20, sigmaY: 20),
                     child: Container(
-                      color: const Color(0xff323232).withOpacity(0.8),
-                      // color: Colors.white.withOpacity(0.5),
+                      // color: const Color(0xff323232).withOpacity(0.8),
+                      color: Color(0xffD3D3D3).withOpacity(0.8),
                       child: Row(
                         children: [
                           NavItem(
