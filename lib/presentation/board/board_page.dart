@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-class BoardScreen extends StatelessWidget {
-  const BoardScreen({super.key});
+class BoardPage extends StatelessWidget {
+  const BoardPage({super.key});
 
   @override
   Widget build(BuildContext context) {
