@@ -19,7 +19,7 @@ class NavItem extends StatelessWidget {
         onTap: onTap,
         child: Icon(
           icon,
-          color: selected ? Colors.white : Colors.white.withOpacity(0.4),
+          color: selected ? Colors.black : Colors.black.withOpacity(0.4),
         ),
       ),
     );
