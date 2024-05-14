@@ -31,29 +31,25 @@ class AccountPage extends StatelessWidget {
                         width: 1.sw,
                         fit: BoxFit.cover,
                       ),
-                      Column(
-                        children: [
-                          Align(
-                            alignment: Alignment.centerRight,
-                            child: IconButton(
-                              iconSize: 0.04.sh,
-                              onPressed: () {},
-                              icon: const Icon(
-                                Icons.edit,
-                                // size: 0.04.sh,
-                              ),
-                            ),
+                      Align(
+                        alignment: Alignment.centerRight,
+                        child: IconButton(
+                          iconSize: 0.03.sh,
+                          onPressed: () {},
+                          icon: const Icon(
+                            Icons.edit,
+                            // size: 0.04.sh,
                           ),
-                          SizedBox(
-                            height: 0.03.sh,
-                          ),
-                          Text(
-                            viewModel.getEmail(),
-                          ),
-                          Text(
-                            viewModel.getNickName(),
-                          ),
-                        ],
+                        ),
+                      ),
+                      SizedBox(
+                        height: 0.03.sh,
+                      ),
+                      Text(
+                        viewModel.getEmail(),
+                      ),
+                      Text(
+                        viewModel.getNickName(),
                       ),
                     ],
                   ),

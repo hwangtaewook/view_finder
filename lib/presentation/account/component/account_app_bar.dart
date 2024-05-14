@@ -15,27 +15,20 @@ class AccountAppBar extends StatelessWidget {
   Widget build(BuildContext context) {
     return SliverAppBar(
       toolbarHeight: 0.055.sh,
-      title: Stack(
-        alignment: Alignment.center,
-        children: [
-          Center(
-            child: Text(
-              userName,
-              style: TextStyle(fontSize: 18.sp),
-              textAlign: TextAlign.center,
-            ),
-          ),
-          Align(
-            alignment: Alignment.centerRight,
-            child: IconButton(
-              onPressed: () {
-                viewModel.logout();
-              },
-              icon: const Icon(Icons.exit_to_app),
-            ),
-          ),
-        ],
+      centerTitle: true,
+      title: Text(
+        userName,
+        style: TextStyle(fontSize: 18.sp),
+        textAlign: TextAlign.center,
       ),
+      actions: [
+        IconButton(
+          onPressed: () {
+            viewModel.logout();
+          },
+          icon: const Icon(Icons.exit_to_app),
+        ),
+      ],
       pinned: true,
       scrolledUnderElevation: 0,
     );
