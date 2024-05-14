@@ -9,6 +9,7 @@ import 'package:view_finder/presentation/board/board_page.dart';
 import 'package:view_finder/presentation/home/home_page.dart';
 import 'package:view_finder/presentation/photo/photo_page.dart';
 
+import '../upload_screen/upload_screen.dart';
 import 'component/nav_item.dart';
 
 class NavBarScreen extends StatefulWidget {
@@ -69,6 +70,19 @@ class _NavBarScreenState extends State<NavBarScreen> {
                             },
                             icon: Icons.camera,
                             selected: _currentIndex == 1,
+                          ),
+                          NavItem(
+                            onTap: () {
+                              setState(() {});
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (context) => (const UploadScreen()),
+                                ),
+                              );
+                            },
+                            icon: Icons.add_box_outlined,
+                            selected: false,
                           ),
                           NavItem(
                             onTap: () {
