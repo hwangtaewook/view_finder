@@ -13,8 +13,17 @@ class UploadScreen extends StatefulWidget {
 
 class _UploadScreenState extends State<UploadScreen> {
   final viewModel = UploadViewModel();
+  final _titleTextEditingController = TextEditingController();
+  final _detailTextEditingController = TextEditingController();
 
   File? _image;
+
+  @override
+  void dispose() {
+    _titleTextEditingController.dispose();
+    _detailTextEditingController.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -23,6 +32,7 @@ class _UploadScreenState extends State<UploadScreen> {
         slivers: [
           SliverAppBar(
             centerTitle: true,
+            // navpush로 생긴 back 버튼에 밀림 없이 센터로 정렬
             toolbarHeight: 0.055.sh,
             title: Text(
               'Upload',
@@ -31,6 +41,24 @@ class _UploadScreenState extends State<UploadScreen> {
             ),
             pinned: true,
             scrolledUnderElevation: 0,
+            actions: [
+              IconButton(
+                onPressed: () {
+                  if (_image != null &&
+                      _titleTextEditingController.text.isNotEmpty &&
+                      _detailTextEditingController.text.isNotEmpty) {
+                    viewModel.uploadPost(
+                      _titleTextEditingController.text,
+                      _detailTextEditingController.text,
+                      _image!,
+                    );
+                  }
+                },
+                icon: const Icon(
+                  Icons.send,
+                ),
+              ),
+            ],
           ),
           if (_image == null)
             SliverToBoxAdapter(
@@ -49,7 +77,7 @@ class _UploadScreenState extends State<UploadScreen> {
                 _image = await viewModel.getImage();
                 setState(() {});
               },
-              child: Text('이미지 선택'),
+              child: const Text('이미지 선택'),
             ),
           ),
           SliverToBoxAdapter(
@@ -58,12 +86,30 @@ class _UploadScreenState extends State<UploadScreen> {
               child: Column(
                 children: [
                   TextField(
+                    controller: _titleTextEditingController,
+                    onTapOutside: (event) =>
+                        FocusManager.instance.primaryFocus?.unfocus(),
                     decoration: InputDecoration(
                         border: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(10),
                         ),
                         filled: true,
                         hintText: '제목을 입력하세요',
+                        fillColor: Colors.white70),
+                  ),
+                  SizedBox(
+                    height: 0.1.sh,
+                  ),
+                  TextField(
+                    controller: _detailTextEditingController,
+                    onTapOutside: (event) =>
+                        FocusManager.instance.primaryFocus?.unfocus(),
+                    decoration: InputDecoration(
+                        border: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(10),
+                        ),
+                        filled: true,
+                        hintText: '내용을 입력하세요',
                         fillColor: Colors.white70),
                   ),
                 ],
