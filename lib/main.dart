@@ -1,6 +1,12 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:provider/provider.dart';
+import 'package:view_finder/data/data_source/post_data_source.dart';
+import 'package:view_finder/data/repository/post_repository_impl.dart';
+import 'package:view_finder/domain/repository/post_repository.dart';
+import 'package:view_finder/presentation/home/home_view_model.dart';
 import 'firebase_options.dart';
 import 'presentation/auth/auth_gate.dart';
 
@@ -20,12 +26,21 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     ScreenUtil.init(context);
-    return MaterialApp(
-      theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
-        useMaterial3: true,
+    return ChangeNotifierProvider(
+      create: (context) => HomeViewModel(
+        postRepository: PostRepositoryImpl(
+          postDataSource: PostDataSource(
+            firebaseFirestore: FirebaseFirestore.instance,
+          ),
+        ),
       ),
-      home: const AuthGate(),
+      child: MaterialApp(
+        theme: ThemeData(
+          colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
+          useMaterial3: true,
+        ),
+        home: const AuthGate(),
+      ),
     );
   }
 }
