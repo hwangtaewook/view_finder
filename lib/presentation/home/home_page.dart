@@ -1,14 +1,33 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:provider/provider.dart';
 import 'package:view_finder/presentation/home/component/image_card.dart';
+import 'package:view_finder/presentation/home/home_view_model.dart';
 
 import '../../core/custom_app_bar.dart';
 
-class HomePage extends StatelessWidget {
+class HomePage extends StatefulWidget {
+  final String _uid = 'post';
   const HomePage({super.key});
 
   @override
+  State<HomePage> createState() => _HomePageState();
+}
+
+class _HomePageState extends State<HomePage> {
+  @override
+  void initState() {
+    super.initState();
+    Future.microtask(() {
+      context.read<HomeViewModel>().setPost(widget._uid);
+    });
+  }
+
+  @override
   Widget build(BuildContext context) {
+    final viewModel = context.watch<HomeViewModel>();
+
     return SafeArea(
       child: Scaffold(
         body: CustomScrollView(
@@ -87,30 +106,14 @@ class HomePage extends StatelessWidget {
                 ),
               ),
             ),
-            SliverToBoxAdapter(
-              child: Padding(
-                padding: EdgeInsets.symmetric(horizontal: 0.04.sw),
-                child: Column(
-                  children: [
-                    const Text('최신 사진'),
-                    SizedBox(
-                      height: 0.01.sh,
-                    ),
-                    const ImageCard(
-                        image: 'assets/123.jpg',
-                        userImage: 'assets/123.jpg',
-                        userName: '1번'),
-                    const ImageCard(
-                        image: 'assets/back2.jpg',
-                        userImage: 'assets/back2.jpg',
-                        userName: '2번'),
-                    const ImageCard(
-                        image: 'assets/background.jpg',
-                        userImage: 'assets/background.jpg',
-                        userName: '3번'),
-                  ],
-                ),
-              ),
+            SliverList(
+              delegate: SliverChildBuilderDelegate((context, index) {
+                return ImageCard(
+                  image: viewModel.post[index].imageUrl,
+                  userImage: viewModel.post[index].imageUrl,
+                  userName: viewModel.post[index].title,
+                );
+              }, childCount: viewModel.post.length),
             ),
             SliverToBoxAdapter(
               child: SizedBox(
