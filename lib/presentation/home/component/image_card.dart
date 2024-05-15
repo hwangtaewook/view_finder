@@ -23,14 +23,14 @@ class ImageCard extends StatelessWidget {
             children: [
               ClipRRect(
                 borderRadius: BorderRadius.circular(10),
-                child: Image.asset(image),
+                child: Image.network(image),
               ),
               Padding(
                 padding: const EdgeInsets.all(8.0),
                 child: Row(
                   children: [
                     ClipOval(
-                      child: Image.asset(
+                      child: Image.network(
                         height: 0.08.sw,
                         width: 0.08.sw,
                         userImage,
