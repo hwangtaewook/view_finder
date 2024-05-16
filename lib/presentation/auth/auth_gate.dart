@@ -19,7 +19,7 @@ class AuthGate extends StatelessWidget {
               EmailAuthProvider(),
             ],
             headerBuilder: (context, constraints, _) {
-              return Text('asd');
+              return const Text('asd');
             },
           );
         }

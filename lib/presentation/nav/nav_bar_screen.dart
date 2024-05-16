@@ -1,7 +1,6 @@
 import 'dart:io';
 import 'dart:ui';
 
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:view_finder/presentation/account/account_page.dart';
@@ -52,7 +51,7 @@ class _NavBarScreenState extends State<NavBarScreen> {
                     filter: ImageFilter.blur(sigmaX: 20, sigmaY: 20),
                     child: Container(
                       // color: const Color(0xff323232).withOpacity(0.8),
-                      color: Color(0xffD3D3D3).withOpacity(0.8),
+                      color: const Color(0xffD3D3D3).withOpacity(0.8),
                       child: Row(
                         children: [
                           NavItem(
