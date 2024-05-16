@@ -18,6 +18,8 @@ class _UploadScreenState extends State<UploadScreen> {
 
   File? _image;
 
+  bool isLoading = false;
+
   @override
   void dispose() {
     _titleTextEditingController.dispose();
@@ -42,20 +44,35 @@ class _UploadScreenState extends State<UploadScreen> {
             pinned: true,
             scrolledUnderElevation: 0,
             actions: [
-              IconButton(
-                onPressed: () {
-                  if (_image != null &&
-                      _titleTextEditingController.text.isNotEmpty &&
-                      _detailTextEditingController.text.isNotEmpty) {
-                    viewModel.uploadPost(
-                      _titleTextEditingController.text,
-                      _detailTextEditingController.text,
-                      _image!,
-                    );
-                  }
-                },
-                icon: const Icon(
-                  Icons.send,
+              Padding(
+                padding: EdgeInsets.symmetric(horizontal: 0.01.sh),
+                child: GestureDetector(
+                  onTap: () async {
+                    if (_image != null &&
+                        _titleTextEditingController.text.isNotEmpty &&
+                        _detailTextEditingController.text.isNotEmpty) {
+                      setState(() {
+                        isLoading = true;
+                      });
+
+                      await viewModel.uploadPost(
+                        _titleTextEditingController.text,
+                        _detailTextEditingController.text,
+                        _image!,
+                      );
+
+                      setState(() {
+                        isLoading = false;
+                      });
+
+                      if (context.mounted) {
+                        Navigator.pop(context);
+                      }
+                    }
+                  },
+                  child: const Icon(
+                    Icons.send,
+                  ),
                 ),
               ),
             ],
@@ -69,7 +86,9 @@ class _UploadScreenState extends State<UploadScreen> {
             ),
           if (_image != null)
             SliverToBoxAdapter(
-              child: Image.file(_image!),
+              child: isLoading
+                  ? const CircularProgressIndicator()
+                  : Image.file(_image!),
             ),
           SliverToBoxAdapter(
             child: ElevatedButton(
