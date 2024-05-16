@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:view_finder/presentation/account/account_view_model.dart';
+import '../account_view_model.dart';
 
 class AccountAppBar extends StatelessWidget {
   final String userName;

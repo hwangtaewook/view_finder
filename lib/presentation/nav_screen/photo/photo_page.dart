@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
-
-import '../../core/custom_app_bar.dart';
+import '../../../core/custom_app_bar.dart';
 
 class PhotoPage extends StatelessWidget {
   const PhotoPage({super.key});
@@ -14,7 +13,8 @@ class PhotoPage extends StatelessWidget {
         body: CustomScrollView(
           slivers: [
             const CustomAppBar(
-              userImageURL: 'assets/back2.jpg',
+              userImageURL:
+                  'https://cdn.pixabay.com/photo/2014/11/30/14/11/cat-551554_1280.jpg',
               screenName: 'Photo',
             ),
             SliverPadding(

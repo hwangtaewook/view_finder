@@ -5,7 +5,7 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:provider/provider.dart';
 import 'package:view_finder/data/data_source/post_data_source.dart';
 import 'package:view_finder/data/repository/post_repository_impl.dart';
-import 'package:view_finder/presentation/home/home_view_model.dart';
+import 'package:view_finder/presentation/nav_screen/home/home_view_model.dart';
 import 'firebase_options.dart';
 import 'presentation/auth/auth_gate.dart';
 

@@ -31,7 +31,7 @@ class _UploadScreenState extends State<UploadScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: isLoading
-          ? Center(child: const CircularProgressIndicator())
+          ? const Center(child: CircularProgressIndicator())
           : CustomScrollView(
               slivers: [
                 SliverAppBar(
