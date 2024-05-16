@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:provider/provider.dart';
-import 'package:view_finder/presentation/home/component/image_card.dart';
-import 'package:view_finder/presentation/home/home_view_model.dart';
-
-import '../../core/custom_app_bar.dart';
+import 'package:view_finder/presentation/detail_post_screen/detail_post_screen.dart';
+import '../../../core/custom_app_bar.dart';
+import 'component/image_card.dart';
+import 'home_view_model.dart';
 
 class HomePage extends StatefulWidget {
   final String _uid = 'post';
@@ -31,8 +31,8 @@ class _HomePageState extends State<HomePage> {
       child: Scaffold(
         body: CustomScrollView(
           slivers: [
-            const CustomAppBar(
-              userImageURL: 'assets/back2.jpg',
+            CustomAppBar(
+              userImageURL: viewModel.post[0].imageUrl,
               screenName: 'Home',
             ),
             SliverToBoxAdapter(
@@ -107,10 +107,24 @@ class _HomePageState extends State<HomePage> {
             ),
             SliverList(
               delegate: SliverChildBuilderDelegate((context, index) {
-                return ImageCard(
-                  image: viewModel.post[index].imageUrl,
-                  userImage: viewModel.post[index].imageUrl,
-                  userName: viewModel.post[index].title,
+                return GestureDetector(
+                  onTap: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => DetailPostScreen(
+                          image: viewModel.post[index].imageUrl,
+                          userImage: viewModel.post[index].imageUrl,
+                          userName: viewModel.post[index].title,
+                        ),
+                      ),
+                    );
+                  },
+                  child: ImageCard(
+                    image: viewModel.post[index].imageUrl,
+                    userImage: viewModel.post[index].imageUrl,
+                    userName: viewModel.post[index].title,
+                  ),
                 );
               }, childCount: viewModel.post.length),
             ),
