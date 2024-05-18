@@ -3,8 +3,8 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:provider/provider.dart';
 import 'package:view_finder/presentation/detail_post_screen/detail_post_screen.dart';
 import '../../../core/custom_app_bar.dart';
-import 'component/image_card.dart';
-import 'home_view_model.dart';
+import '../nav_screen/home/component/image_card.dart';
+import '../nav_screen/home/home_view_model.dart';
 
 class HomePage extends StatefulWidget {
   final String _uid = 'post';

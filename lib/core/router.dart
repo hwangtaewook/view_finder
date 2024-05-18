@@ -1,5 +1,6 @@
 import 'package:firebase_ui_auth/firebase_ui_auth.dart';
 import 'package:go_router/go_router.dart';
+import 'package:view_finder/presentation/auth/auth_gate.dart';
 import 'package:view_finder/presentation/nav_screen/nav_bar_screen.dart';
 
 final router = GoRouter(
@@ -8,11 +9,7 @@ final router = GoRouter(
     GoRoute(
       path: '/sign_in',
       builder: (context, state) {
-        return SignInScreen(
-          providers: [
-            EmailAuthProvider(),
-          ],
-        );
+        return const AuthGate();
       },
       routes: [
         GoRoute(
