@@ -1,6 +1,8 @@
 import 'package:firebase_auth/firebase_auth.dart' hide EmailAuthProvider;
 import 'package:firebase_ui_auth/firebase_ui_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
+
 import '../nav_screen/nav_bar_screen.dart';
 
 class AuthGate extends StatelessWidget {
@@ -17,9 +19,6 @@ class AuthGate extends StatelessWidget {
             providers: [
               EmailAuthProvider(),
             ],
-            headerBuilder: (context, constraints, _) {
-              return const Text('asd');
-            },
           );
         }
         return const NavBarScreen();
