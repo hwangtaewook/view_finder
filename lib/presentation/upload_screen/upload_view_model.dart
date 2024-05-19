@@ -19,7 +19,7 @@ class UploadViewModel {
     return File(image.path);
   }
 
-  Future<void> uploadPost(String title, String detail, File imageFile) async {
+  Future<void> uploadPost(String title, String content, File imageFile) async {
     // 이미지 업로드
     final storageRef = FirebaseStorage.instance.ref();
     final imageRef = storageRef
@@ -42,10 +42,11 @@ class UploadViewModel {
     final newPostRef = postsRef.doc();
 
     newPostRef.set(Post(
-      id: newPostRef.id,
+      postId: newPostRef.id,
       userId: FirebaseAuth.instance.currentUser?.uid ?? '',
       title: title,
-      detail: detail,
+      content: content,
+      createdAt: DateTime.now().toString(),
       imageUrl: downloadUrl,
     ));
   }
