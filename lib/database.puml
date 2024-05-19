@@ -1,66 +1,61 @@
 @startuml Firestore_Structure
 
 class Users {
-    + userId: string
+    + userId
     --
-    + username: string
-    + email: string
-    + profile_pic: string
-    + created_at: Timestamp
-    + club_id: string
-    + club_pic: string
+    + username
+    + email
+    + profilePic
+    + createdAt
+    + clubId
+    + clubPic
 }
 
 class Clubs {
-    + clubId: string
+    + clubId
     --
-    + club_name: string
-    + description: string
-    + created_at: Timestamp
-    + club_pic: string
+    + clubName
+    + description
+    + createdAt
+    + clubPic
 }
 
 class ClubMembers {
-    + clubId_userId: string
+    + clubIdUserId
     --
-    + club_id: string
-    + user_id: string
-    + joined_at: Timestamp
+    + clubId
+    + userId
+    + joinedAt
+    + admin
 }
 
-class ClubAdmins {
-    + clubId_adminId: string
-    --
-    + club_id: string
-    + admin_id: string
-    + assigned_at: Timestamp
-}
+
 
 class Posts {
-    + postId: string
+    + postId
     --
-    + user_id: string
-    + club_id: string
-    + content: string
-    + created_at: Timestamp
-    + image_url: string
+    + userId
+    + title
+    + content
+    + createdAt
+    + imageUrl
 }
 
 class Comments {
-    + commentId: string
+    + commentId
     --
-    + post_id: string
-    + user_id: string
-    + content: string
-    + created_at: Timestamp
+    + postId
+    + userId
+    + content
+    + createdAt
 }
 
 class Likes {
-    + likeId: string
+    + likeId
     --
-    + post_id: string
-    + user_id: string
-    + created_at: Timestamp
+    + postId
+    + userId
+    + createdAt
 }
 
 Users "1" -- "*" Clubs : "belongs_to"
