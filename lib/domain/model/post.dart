@@ -7,10 +7,11 @@ part 'post.g.dart';
 @freezed
 class Post with _$Post {
   const factory Post({
-    required String id,
+    required String postId,
     required String userId,
     required String title,
-    required String detail,
+    required String content,
+    required String createdAt,
     required String imageUrl,
   }) = _Post;
 
