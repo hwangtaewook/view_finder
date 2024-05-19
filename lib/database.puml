@@ -1,0 +1,73 @@
+@startuml Firestore_Structure
+
+class Users {
+    + userId: string
+    --
+    + username: string
+    + email: string
+    + profile_pic: string
+    + created_at: Timestamp
+    + club_id: string
+    + club_pic: string
+}
+
+class Clubs {
+    + clubId: string
+    --
+    + club_name: string
+    + description: string
+    + created_at: Timestamp
+    + club_pic: string
+}
+
+class ClubMembers {
+    + clubId_userId: string
+    --
+    + club_id: string
+    + user_id: string
+    + joined_at: Timestamp
+}
+
+class ClubAdmins {
+    + clubId_adminId: string
+    --
+    + club_id: string
+    + admin_id: string
+    + assigned_at: Timestamp
+}
+
+class Posts {
+    + postId: string
+    --
+    + user_id: string
+    + club_id: string
+    + content: string
+    + created_at: Timestamp
+    + image_url: string
+}
+
+class Comments {
+    + commentId: string
+    --
+    + post_id: string
+    + user_id: string
+    + content: string
+    + created_at: Timestamp
+}
+
+class Likes {
+    + likeId: string
+    --
+    + post_id: string
+    + user_id: string
+    + created_at: Timestamp
+}
+
+Users "1" -- "*" Clubs : "belongs_to"
+Clubs "1" -- "*" ClubMembers : "has"
+Clubs "1" -- "*" ClubAdmins : "has"
+Users "1" -- "*" Posts : "creates"
+Users "1" -- "*" Comments : "writes"
+Users "1" -- "*" Likes : "likes"
+
+@enduml
