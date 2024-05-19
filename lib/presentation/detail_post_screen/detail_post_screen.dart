@@ -1,16 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:view_finder/presentation/detail_post_screen/component/detail_post_app_bar.dart';
+import '../../domain/model/post.dart';
 
 class DetailPostScreen extends StatelessWidget {
-  final String image;
-  final String userImage;
-  final String userName;
+  final Post post;
 
   const DetailPostScreen({
     super.key,
-    required this.image,
-    required this.userImage,
-    required this.userName,
+    required this.post,
   });
 
   @override
@@ -18,7 +15,19 @@ class DetailPostScreen extends StatelessWidget {
     return Scaffold(
       body: CustomScrollView(
         slivers: [
-          DetailPostAppBar(userName: userName),
+          DetailPostAppBar(userName: post.userId),
+          SliverToBoxAdapter(
+            child: Hero(
+              tag: post.postId,
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  Image.network(post.imageUrl),
+                ],
+              ),
+            ),
+          ),
         ],
       ),
     );
