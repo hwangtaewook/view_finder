@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
-import 'package:view_finder/presentation/detail_post_screen/detail_post_screen.dart';
 import '../../../../core/custom_app_bar.dart';
 import 'component/image_card.dart';
 import 'home_view_model.dart';
@@ -32,7 +32,9 @@ class _HomePageState extends State<HomePage> {
         body: CustomScrollView(
           slivers: [
             CustomAppBar(
-              userImageURL: viewModel.post[0].imageUrl,
+              userImageURL: viewModel.post.isEmpty
+                  ? 'https://cdn.pixabay.com/photo/2023/02/08/18/36/tawny-owl-7777285_640.jpg'
+                  : viewModel.post[0].imageUrl,
               screenName: 'Home',
             ),
             SliverToBoxAdapter(
@@ -105,34 +107,47 @@ class _HomePageState extends State<HomePage> {
                 ),
               ),
             ),
-            SliverList(
-              delegate: SliverChildBuilderDelegate((context, index) {
-                return GestureDetector(
-                  onTap: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => DetailPostScreen(
-                          image: viewModel.post[index].imageUrl,
-                          userImage: viewModel.post[index].imageUrl,
-                          userName: viewModel.post[index].title,
-                        ),
-                      ),
-                    );
-                  },
-                  child: ImageCard(
-                    image: viewModel.post[index].imageUrl,
-                    userImage: viewModel.post[index].imageUrl,
-                    userName: viewModel.post[index].title,
-                  ),
-                );
-              }, childCount: viewModel.post.length),
-            ),
             SliverToBoxAdapter(
-              child: SizedBox(
-                height: 0.08.sh,
+              child: Column(
+                children: [
+                  const Text('사진 게시판'),
+                  SizedBox(
+                    height: 0.01.sh,
+                  ),
+                ],
               ),
             ),
+            if (viewModel.post.isEmpty)
+              SliverToBoxAdapter(
+                child: Center(
+                  child: Padding(
+                    padding: EdgeInsets.all(16.0),
+                    child: Text(
+                      'No items available',
+                      style: TextStyle(fontSize: 16, color: Colors.grey),
+                    ),
+                  ),
+                ),
+              )
+            else
+              SliverList(
+                delegate: SliverChildBuilderDelegate((context, index) {
+                  return GestureDetector(
+                    onTap: () {
+                      final post = viewModel.post[index];
+                      context.push('/nav_bar/detail_post', extra: post);
+                    },
+                    child: Hero(
+                      tag: viewModel.post[index].postId,
+                      child: ImageCard(
+                        image: viewModel.post[index].imageUrl,
+                        userImage: viewModel.post[index].imageUrl,
+                        userName: viewModel.post[index].title,
+                      ),
+                    ),
+                  );
+                }, childCount: viewModel.post.length),
+              ),
           ],
         ),
       ),
