@@ -19,39 +19,42 @@ class ImageCard extends StatelessWidget {
       width: 1.sw,
       child: Column(
         children: [
-          Column(
-            children: [
-              ClipRRect(
-                borderRadius: BorderRadius.circular(10),
-                child: Image.network(image),
-              ),
-              Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: Row(
-                  children: [
-                    ClipOval(
-                      child: Image.network(
-                        height: 0.08.sw,
-                        width: 0.08.sw,
-                        userImage,
-                        fit: BoxFit.cover,
-                      ),
-                    ),
-                    SizedBox(
-                      width: 0.05.sw,
-                    ),
-                    Text(
-                      userName,
-                      style: TextStyle(fontSize: 18.sp),
-                    ),
-                    const Spacer(),
-                    const Icon(Icons.star_outline),
-                    const Icon(Icons.comment_outlined),
-                  ],
+          Padding(
+            padding: EdgeInsets.symmetric(horizontal: 0.02.sh),
+            child: Column(
+              children: [
+                ClipRRect(
+                  borderRadius: BorderRadius.circular(10),
+                  child: Image.network(image),
                 ),
-              ),
-              SizedBox(height: 0.03.sh)
-            ],
+                Padding(
+                  padding: EdgeInsets.symmetric(vertical: 0.02.sh),
+                  child: Row(
+                    children: [
+                      ClipOval(
+                        child: Image.network(
+                          height: 0.08.sw,
+                          width: 0.08.sw,
+                          userImage,
+                          fit: BoxFit.cover,
+                        ),
+                      ),
+                      SizedBox(
+                        width: 0.05.sw,
+                      ),
+                      Text(
+                        userName,
+                        style: TextStyle(fontSize: 18.sp),
+                      ),
+                      const Spacer(),
+                      const Icon(Icons.star_outline),
+                      const Icon(Icons.comment_outlined),
+                    ],
+                  ),
+                ),
+                SizedBox(height: 0.03.sh)
+              ],
+            ),
           ),
         ],
       ),
