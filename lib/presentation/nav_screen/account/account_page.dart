@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import '../component/image_card.dart';
+import 'package:provider/provider.dart';
 import 'account_view_model.dart';
 import 'component/account_app_bar.dart';
 
@@ -9,7 +9,7 @@ class AccountPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final viewModel = AccountViewModel();
+    final viewModel = context.watch<AccountViewModel>();
     return SafeArea(
       child: Scaffold(
         body: CustomScrollView(
@@ -24,7 +24,7 @@ class AccountPage extends StatelessWidget {
                   Column(
                     children: [
                       Image.network(
-                        viewModel.getProfileImageUrl(),
+                        'https://cdn.pixabay.com/photo/2017/02/20/18/03/cat-2083492_640.jpg',
                         height: 0.2.sh,
                         width: 1.sw,
                         fit: BoxFit.cover,
@@ -44,10 +44,10 @@ class AccountPage extends StatelessWidget {
                         height: 0.03.sh,
                       ),
                       Text(
-                        viewModel.getEmail(),
+                        'asd',
                       ),
                       Text(
-                        viewModel.getNickName(),
+                        'qwe',
                       ),
                     ],
                   ),
@@ -89,25 +89,9 @@ class AccountPage extends StatelessWidget {
               foregroundColor: Colors.black,
               scrolledUnderElevation: 0,
             ),
-            SliverPadding(
-              padding: EdgeInsets.all(0.02.sh),
-              sliver: const SliverToBoxAdapter(
-                child: Column(
-                  children: [
-                    ImageCard(
-                        image: 'assets/123.jpg',
-                        userImage: 'assets/123.jpg',
-                        userName: '1번'),
-                    ImageCard(
-                        image: 'assets/back2.jpg',
-                        userImage: 'assets/back2.jpg',
-                        userName: '2번'),
-                    ImageCard(
-                        image: 'assets/background.jpg',
-                        userImage: 'assets/background.jpg',
-                        userName: '3번'),
-                  ],
-                ),
+            SliverToBoxAdapter(
+              child: Column(
+                children: [],
               ),
             ),
             SliverToBoxAdapter(

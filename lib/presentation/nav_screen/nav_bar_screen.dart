@@ -3,9 +3,9 @@ import 'dart:ui';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:go_router/go_router.dart';
 import 'package:view_finder/presentation/nav_screen/photo/photo_page.dart';
 import 'home/home_page.dart';
-import '../upload_screen/upload_screen.dart';
 import 'account/account_page.dart';
 import 'board/board_page.dart';
 import 'component/nav_item.dart';
@@ -71,13 +71,7 @@ class _NavBarScreenState extends State<NavBarScreen> {
                           ),
                           NavItem(
                             onTap: () {
-                              setState(() {});
-                              Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                  builder: (context) => (const UploadScreen()),
-                                ),
-                              );
+                              context.push('/nav_bar/upload');
                             },
                             icon: Icons.add_box_outlined,
                             selected: false,

@@ -46,8 +46,6 @@ class MemberViewModel {
       email: FirebaseAuth.instance.currentUser?.email ?? '',
       profilePic: downloadUrl,
       createdAt: DateTime.now().toString(),
-      clubId: '뷰파인더',
-      clubPic: '',
     ));
   }
 }

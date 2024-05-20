@@ -1,20 +1,26 @@
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/material.dart';
+import 'package:view_finder/data/repository/post_repository_impl.dart';
+import '../../../domain/model/post.dart';
 
-class AccountViewModel {
+class AccountViewModel with ChangeNotifier {
+  final PostRepositoryImpl _postRepository;
+
+  AccountViewModel({
+    required PostRepositoryImpl postRepository,
+  }) : _postRepository = postRepository;
+
   void logout() async {
     await FirebaseAuth.instance.signOut();
   }
 
-  String getEmail() {
-    return FirebaseAuth.instance.currentUser?.email ?? '';
-  }
+  List<Post> _post = [];
 
-  String getNickName() {
-    return FirebaseAuth.instance.currentUser?.displayName ?? '';
-  }
+  List<Post> get post => List.unmodifiable(_post);
 
-  String getProfileImageUrl() {
-    return FirebaseAuth.instance.currentUser?.photoURL ??
-        'https://cdn.pixabay.com/photo/2024/03/08/09/47/ai-generated-8620359_640.png';
+  Future<void> setAllPost(String uid) async {
+    final post = await _postRepository.getAllPosts();
+    _post = post;
+    notifyListeners();
   }
 }

@@ -17,25 +17,28 @@ class BoardComp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SliverToBoxAdapter(
-      child: Column(
-        children: [
-          Stack(
-            children: [
-              Align(
-                alignment: Alignment.center,
-                child: Text(boardName),
-              ),
-              const Align(
-                alignment: Alignment.centerRight,
-                child: Text('더보기'),
-              ),
-            ],
-          ),
-          BoardCard(title: title, content: content),
-          SizedBox(
-            height: 0.02.sh,
-          ),
-        ],
+      child: Padding(
+        padding: EdgeInsets.symmetric(horizontal: 0.04.sw),
+        child: Column(
+          children: [
+            Stack(
+              children: [
+                Align(
+                  alignment: Alignment.center,
+                  child: Text(boardName),
+                ),
+                const Align(
+                  alignment: Alignment.centerRight,
+                  child: Text('더보기'),
+                ),
+              ],
+            ),
+            BoardCard(title: title, content: content),
+            SizedBox(
+              height: 0.02.sh,
+            ),
+          ],
+        ),
       ),
     );
   }

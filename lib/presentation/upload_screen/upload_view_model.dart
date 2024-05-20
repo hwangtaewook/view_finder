@@ -102,6 +102,7 @@ class UploadViewModel {
       content: content,
       createdAt: DateTime.now().toString(),
       imageUrl: downloadUrl,
+      likes: [],
     ));
   }
 }

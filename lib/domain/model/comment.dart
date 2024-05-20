@@ -12,6 +12,7 @@ class Comment with _$Comment {
     required String userId,
     required String content,
     required String createdAt,
+    @Default([]) List<String> likes,
   }) = _Comment;
 
   factory Comment.fromJson(Map<String, Object?> json) =>

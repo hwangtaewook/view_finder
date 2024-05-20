@@ -13,6 +13,7 @@ class Post with _$Post {
     required String content,
     required String createdAt,
     required String imageUrl,
+    @Default([]) List<String> likes,
   }) = _Post;
 
   factory Post.fromJson(Map<String, Object?> json) => _$PostFromJson(json);

@@ -20,17 +20,16 @@ class _BoardPageState extends State<BoardPage> {
   void initState() {
     super.initState();
     Future.microtask(() {
-      context.read<NavBarViewModel>().setPost(widget._uid);
+      context.read<NavBarViewModel>().setAllPost(widget._uid);
     });
   }
 
   @override
   Widget build(BuildContext context) {
     final viewModel = context.watch<NavBarViewModel>();
-    return Scaffold(
-      body: Padding(
-        padding: EdgeInsets.all(0.04.sw),
-        child: CustomScrollView(
+    return SafeArea(
+      child: Scaffold(
+        body: CustomScrollView(
           slivers: [
             const CustomAppBar(
                 userImageURL:
@@ -77,6 +76,11 @@ class _BoardPageState extends State<BoardPage> {
                   childCount: viewModel.post.length,
                 ),
               ),
+            SliverToBoxAdapter(
+              child: SizedBox(
+                height: 0.1.sh,
+              ),
+            ),
           ],
         ),
       ),

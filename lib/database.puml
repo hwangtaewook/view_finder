@@ -7,8 +7,6 @@ class Members {
     + email
     + profilePic
     + createdAt
-    + clubId
-    + clubPic
 }
 
 class Clubs {
@@ -29,8 +27,6 @@ class ClubMembers {
     + admin
 }
 
-
-
 class Posts {
     + postId
     --
@@ -39,6 +35,7 @@ class Posts {
     + content
     + createdAt
     + imageUrl
+    + likes : List<userId>
 }
 
 class Comments {
@@ -48,21 +45,18 @@ class Comments {
     + userId
     + content
     + createdAt
+    + likes : List<userId>
 }
 
-class Likes {
-    + likeId
-    --
-    + postId
-    + userId
-    + createdAt
-}
-
-Users "1" -- "*" Clubs : "belongs_to"
+Members "1" -- "*" ClubMembers : "joins"
 Clubs "1" -- "*" ClubMembers : "has"
-Clubs "1" -- "*" ClubAdmins : "has"
-Users "1" -- "*" Posts : "creates"
-Users "1" -- "*" Comments : "writes"
-Users "1" -- "*" Likes : "likes"
+ClubMembers "*" -- "1" Members : "includes"
+ClubMembers "*" -- "1" Clubs : "includes"
+
+Members "1" -- "*" Posts : "creates"
+Posts "1" -- "*" Comments : "receives"
+Comments "*" -- "1" Posts : "on"
+
+Members "1" -- "*" Comments : "writes"
 
 @enduml
