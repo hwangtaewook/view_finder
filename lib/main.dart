@@ -6,6 +6,7 @@ import 'package:provider/provider.dart';
 import 'package:view_finder/core/router.dart';
 import 'package:view_finder/data/data_source/post_data_source.dart';
 import 'package:view_finder/data/repository/post_repository_impl.dart';
+import 'package:view_finder/presentation/nav_screen/account/account_view_model.dart';
 import 'package:view_finder/presentation/nav_screen/nav_bar_view_model.dart';
 import 'firebase_options.dart';
 
@@ -24,14 +25,27 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     ScreenUtil.init(context);
-    return ChangeNotifierProvider(
-      create: (context) => NavBarViewModel(
-        postRepository: PostRepositoryImpl(
-          postDataSource: PostDataSource(
-            firebaseFirestore: FirebaseFirestore.instance,
+    return MultiProvider(
+      providers: [
+        ChangeNotifierProvider(
+          create: (context) => NavBarViewModel(
+            postRepository: PostRepositoryImpl(
+              postDataSource: PostDataSource(
+                firebaseFirestore: FirebaseFirestore.instance,
+              ),
+            ),
           ),
         ),
-      ),
+        ChangeNotifierProvider(
+          create: (context) => AccountViewModel(
+            postRepository: PostRepositoryImpl(
+              postDataSource: PostDataSource(
+                firebaseFirestore: FirebaseFirestore.instance,
+              ),
+            ),
+          ),
+        ),
+      ],
       child: MaterialApp.router(
         routerConfig: router,
         theme: ThemeData(
