@@ -6,8 +6,7 @@ import 'package:provider/provider.dart';
 import 'package:view_finder/core/router.dart';
 import 'package:view_finder/data/data_source/post_data_source.dart';
 import 'package:view_finder/data/repository/post_repository_impl.dart';
-import 'package:view_finder/presentation/auth/auth_gate.dart';
-import 'package:view_finder/presentation/nav_screen/home/home_view_model.dart';
+import 'package:view_finder/presentation/nav_screen/nav_bar_view_model.dart';
 import 'firebase_options.dart';
 
 void main() async {
@@ -26,7 +25,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     ScreenUtil.init(context);
     return ChangeNotifierProvider(
-      create: (context) => HomeViewModel(
+      create: (context) => NavBarViewModel(
         postRepository: PostRepositoryImpl(
           postDataSource: PostDataSource(
             firebaseFirestore: FirebaseFirestore.instance,

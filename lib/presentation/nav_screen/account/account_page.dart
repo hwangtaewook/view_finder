@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import '../home/component/image_card.dart';
+import '../component/image_card.dart';
 import 'account_view_model.dart';
 import 'component/account_app_bar.dart';
 

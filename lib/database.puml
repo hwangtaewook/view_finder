@@ -1,6 +1,6 @@
 @startuml Firestore_Structure
 
-class Users {
+class Members {
     + userId
     --
     + username

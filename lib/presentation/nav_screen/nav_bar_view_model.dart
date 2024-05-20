@@ -1,11 +1,11 @@
 import 'package:flutter/cupertino.dart';
 import 'package:view_finder/domain/repository/post_repository.dart';
-import '../../../domain/model/post.dart';
+import '../../domain/model/post.dart';
 
-class HomeViewModel with ChangeNotifier {
+class NavBarViewModel with ChangeNotifier {
   final PostRepository _postRepository;
 
-  HomeViewModel({
+  NavBarViewModel({
     required PostRepository postRepository,
   }) : _postRepository = postRepository;
 

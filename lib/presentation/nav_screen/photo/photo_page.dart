@@ -15,7 +15,7 @@ class PhotoPage extends StatelessWidget {
             const CustomAppBar(
               userImageURL:
                   'https://cdn.pixabay.com/photo/2014/11/30/14/11/cat-551554_1280.jpg',
-              screenName: 'Photo',
+              screenName: '사진',
             ),
             SliverPadding(
               padding: EdgeInsets.all(0.04.sw),

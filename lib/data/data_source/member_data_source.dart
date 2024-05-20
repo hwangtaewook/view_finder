@@ -7,8 +7,8 @@ class UserDataSource {
     required FirebaseFirestore firebaseFirestore,
   }) : _firebaseFirestore = firebaseFirestore;
 
-  DocumentReference<Map<String, dynamic>> getUserDocumentRef(String uid) {
-    final documentRef = _firebaseFirestore.collection('User').doc(uid);
+  DocumentReference<Map<String, dynamic>> getMemberDocumentRef(String uid) {
+    final documentRef = _firebaseFirestore.collection('Members').doc(uid);
 
     return documentRef;
   }
