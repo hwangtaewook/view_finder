@@ -1,19 +1,19 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
 
-part 'user.freezed.dart';
+part 'member.freezed.dart';
 
-part 'user.g.dart';
+part 'member.g.dart';
 
 @freezed
-class User with _$User {
-  const factory User({
+class Member with _$Member {
+  const factory Member({
     required String userId,
     required String email,
     required String profilePic,
     required String createdAt,
     required String clubId,
     required String clubPic,
-  }) = _User;
+  }) = _Member;
 
-  factory User.fromJson(Map<String, Object?> json) => _$UserFromJson(json);
+  factory Member.fromJson(Map<String, Object?> json) => _$MemberFromJson(json);
 }
