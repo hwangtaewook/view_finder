@@ -2,31 +2,30 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:provider/provider.dart';
 import 'package:view_finder/core/custom_app_bar.dart';
-import 'package:view_finder/presentation/nav_screen/component/board_comp.dart';
-import 'package:view_finder/presentation/nav_screen/component/image_card.dart';
+import '../component/board_comp.dart';
+import '../component/image_card.dart';
+import '../main_view_model.dart';
 
-import '../nav_bar_view_model.dart';
-
-class BoardPage extends StatefulWidget {
+class BoardTab extends StatefulWidget {
   final String _uid = 'post';
-  const BoardPage({super.key});
+  const BoardTab({super.key});
 
   @override
-  State<BoardPage> createState() => _BoardPageState();
+  State<BoardTab> createState() => _BoardTabState();
 }
 
-class _BoardPageState extends State<BoardPage> {
+class _BoardTabState extends State<BoardTab> {
   @override
   void initState() {
     super.initState();
     Future.microtask(() {
-      context.read<NavBarViewModel>().setAllPost(widget._uid);
+      context.read<MainViewModel>().setAllPost(widget._uid);
     });
   }
 
   @override
   Widget build(BuildContext context) {
-    final viewModel = context.watch<NavBarViewModel>();
+    final viewModel = context.watch<MainViewModel>();
     return SafeArea(
       child: Scaffold(
         body: CustomScrollView(

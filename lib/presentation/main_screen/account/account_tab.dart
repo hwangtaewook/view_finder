@@ -4,8 +4,8 @@ import 'package:provider/provider.dart';
 import 'account_view_model.dart';
 import 'component/account_app_bar.dart';
 
-class AccountPage extends StatelessWidget {
-  const AccountPage({super.key});
+class AccountTab extends StatelessWidget {
+  const AccountTab({super.key});
 
   @override
   Widget build(BuildContext context) {

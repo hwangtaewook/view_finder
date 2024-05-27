@@ -4,14 +4,14 @@ import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
 import 'package:view_finder/presentation/auth/auth_gate.dart';
 import 'package:view_finder/presentation/detail_post_screen/detail_post_screen.dart';
-import 'package:view_finder/presentation/nav_screen/account/account_page.dart';
-import 'package:view_finder/presentation/nav_screen/nav_bar_screen.dart';
 import 'package:view_finder/presentation/upload_screen/upload_screen.dart';
 import '../data/data_source/post_data_source.dart';
 import '../data/repository/post_repository_impl.dart';
 import '../domain/model/post.dart';
-import '../presentation/nav_screen/account/account_view_model.dart';
-import '../presentation/nav_screen/nav_bar_view_model.dart';
+import '../presentation/main_screen/account/account_tab.dart';
+import '../presentation/main_screen/account/account_view_model.dart';
+import '../presentation/main_screen/main_screen.dart';
+import '../presentation/main_screen/main_view_model.dart';
 
 final router = GoRouter(
   initialLocation: '/sign_in',
@@ -36,14 +36,14 @@ final router = GoRouter(
         return MultiProvider(
           providers: [
             ChangeNotifierProvider(
-              create: (context) => NavBarViewModel(
+              create: (context) => MainViewModel(
                 postRepository: PostRepositoryImpl(
                   postDataSource: PostDataSource(
                     firebaseFirestore: FirebaseFirestore.instance,
                   ),
                 ),
               ),
-              child: const NavBarScreen(),
+              child: const MainScreen(),
             ),
             ChangeNotifierProvider(
               create: (context) => AccountViewModel(
@@ -53,7 +53,7 @@ final router = GoRouter(
                   ),
                 ),
               ),
-              child: const AccountPage(),
+              child: const AccountTab(),
             ),
           ],
         );

@@ -1,32 +1,31 @@
 import 'dart:io';
 import 'dart:ui';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
-import 'package:view_finder/presentation/nav_screen/photo/photo_page.dart';
-import 'home/home_page.dart';
-import 'account/account_page.dart';
-import 'board/board_page.dart';
+import 'package:view_finder/presentation/main_screen/photo/photo_tab.dart';
+import 'home/home_tab.dart';
+import 'account/account_tab.dart';
+import 'board/board_tab.dart';
 import 'component/nav_item.dart';
 
-class NavBarScreen extends StatefulWidget {
-  const NavBarScreen({
+class MainScreen extends StatefulWidget {
+  const MainScreen({
     super.key,
   });
 
   @override
-  State<NavBarScreen> createState() => _NavBarScreenState();
+  State<MainScreen> createState() => _MainScreenState();
 }
 
-class _NavBarScreenState extends State<NavBarScreen> {
+class _MainScreenState extends State<MainScreen> {
   int _currentIndex = 0;
 
   final _pages = [
-    const HomePage(),
-    const PhotoPage(),
-    const BoardPage(),
-    const AccountPage(),
+    const HomeTab(),
+    const PhotoTab(),
+    const BoardTab(),
+    const AccountTab(),
   ];
 
   @override

@@ -4,28 +4,28 @@ import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
 import '../../../../core/custom_app_bar.dart';
 import '../component/image_card.dart';
-import '../nav_bar_view_model.dart';
+import '../main_view_model.dart';
 
-class HomePage extends StatefulWidget {
+class HomeTab extends StatefulWidget {
   final String _uid = 'post';
-  const HomePage({super.key});
+  const HomeTab({super.key});
 
   @override
-  State<HomePage> createState() => _HomePageState();
+  State<HomeTab> createState() => _HomeTabState();
 }
 
-class _HomePageState extends State<HomePage> {
+class _HomeTabState extends State<HomeTab> {
   @override
   void initState() {
     super.initState();
     Future.microtask(() {
-      context.read<NavBarViewModel>().setAllPost(widget._uid);
+      context.read<MainViewModel>().setAllPost(widget._uid);
     });
   }
 
   @override
   Widget build(BuildContext context) {
-    final viewModel = context.watch<NavBarViewModel>();
+    final viewModel = context.watch<MainViewModel>();
 
     return SafeArea(
       child: Scaffold(

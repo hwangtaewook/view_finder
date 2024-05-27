@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:view_finder/presentation/nav_screen/component/board_card.dart';
+import 'board_card.dart';
 
 class BoardComp extends StatelessWidget {
   final String boardName;
