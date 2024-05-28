@@ -1,8 +1,10 @@
+import 'package:injectable/injectable.dart';
 import 'package:view_finder/data/data_source/post_data_source.dart';
 import 'package:view_finder/domain/repository/post_repository.dart';
 
 import '../../domain/model/post.dart';
 
+@Singleton(as: PostRepository)
 class PostRepositoryImpl implements PostRepository {
   final PostDataSource _postDataSource;
 

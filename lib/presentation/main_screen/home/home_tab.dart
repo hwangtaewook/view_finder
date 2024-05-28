@@ -4,7 +4,7 @@ import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
 import '../../../../core/custom_app_bar.dart';
 import '../component/image_card.dart';
-import '../main_view_model.dart';
+import 'home_view_model.dart';
 
 class HomeTab extends StatefulWidget {
   final String _uid = 'post';
@@ -19,13 +19,13 @@ class _HomeTabState extends State<HomeTab> {
   void initState() {
     super.initState();
     Future.microtask(() {
-      context.read<MainViewModel>().setAllPost(widget._uid);
+      context.read<HomeViewModel>().setAllPost(widget._uid);
     });
   }
 
   @override
   Widget build(BuildContext context) {
-    final viewModel = context.watch<MainViewModel>();
+    final viewModel = context.watch<HomeViewModel>();
 
     return SafeArea(
       child: Scaffold(

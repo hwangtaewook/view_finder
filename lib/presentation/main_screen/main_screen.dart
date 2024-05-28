@@ -3,10 +3,6 @@ import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
-import 'package:view_finder/presentation/main_screen/photo/photo_tab.dart';
-import 'home/home_tab.dart';
-import 'account/account_tab.dart';
-import 'board/board_tab.dart';
 import 'component/nav_item.dart';
 
 class MainScreen extends StatefulWidget {

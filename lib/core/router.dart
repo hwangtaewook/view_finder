@@ -1,4 +1,3 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_ui_auth/firebase_ui_auth.dart';
 import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
@@ -8,13 +7,13 @@ import 'package:view_finder/presentation/main_screen/account/account_tab.dart';
 import 'package:view_finder/presentation/main_screen/account/account_view_model.dart';
 import 'package:view_finder/presentation/main_screen/board/board_tab.dart';
 import 'package:view_finder/presentation/main_screen/home/home_tab.dart';
+import 'package:view_finder/presentation/main_screen/home/home_view_model.dart';
 import 'package:view_finder/presentation/main_screen/main_screen.dart';
 import 'package:view_finder/presentation/main_screen/photo/photo_tab.dart';
 import 'package:view_finder/presentation/upload_screen/upload_screen.dart';
-import '../data/data_source/post_data_source.dart';
-import '../data/repository/post_repository_impl.dart';
 import '../domain/model/post.dart';
 import '../presentation/main_screen/main_view_model.dart';
+import 'di_setup.dart';
 
 final router = GoRouter(
   initialLocation: '/sign_in',
@@ -36,13 +35,7 @@ final router = GoRouter(
     ShellRoute(
       builder: (context, state, child) {
         return ChangeNotifierProvider(
-          create: (context) => MainViewModel(
-            postRepository: PostRepositoryImpl(
-              postDataSource: PostDataSource(
-                firebaseFirestore: FirebaseFirestore.instance,
-              ),
-            ),
-          ),
+          create: (context) => getIt<MainViewModel>(),
           child: MainScreen(child: child),
         );
       },
@@ -53,13 +46,7 @@ final router = GoRouter(
             return CustomTransitionPage(
               key: state.pageKey,
               child: ChangeNotifierProvider(
-                create: (context) => MainViewModel(
-                  postRepository: PostRepositoryImpl(
-                    postDataSource: PostDataSource(
-                      firebaseFirestore: FirebaseFirestore.instance,
-                    ),
-                  ),
-                ),
+                create: (context) => getIt<HomeViewModel>(),
                 child: const HomeTab(),
               ),
               transitionsBuilder:
@@ -75,13 +62,7 @@ final router = GoRouter(
             return CustomTransitionPage(
               key: state.pageKey,
               child: ChangeNotifierProvider(
-                create: (context) => MainViewModel(
-                  postRepository: PostRepositoryImpl(
-                    postDataSource: PostDataSource(
-                      firebaseFirestore: FirebaseFirestore.instance,
-                    ),
-                  ),
-                ),
+                create: (context) => getIt<MainViewModel>(),
                 child: const PhotoTab(),
               ),
               transitionsBuilder:
@@ -97,13 +78,7 @@ final router = GoRouter(
             return CustomTransitionPage(
               key: state.pageKey,
               child: ChangeNotifierProvider(
-                create: (context) => MainViewModel(
-                  postRepository: PostRepositoryImpl(
-                    postDataSource: PostDataSource(
-                      firebaseFirestore: FirebaseFirestore.instance,
-                    ),
-                  ),
-                ),
+                create: (context) => getIt<MainViewModel>(),
                 child: const BoardTab(),
               ),
               transitionsBuilder:
@@ -119,13 +94,7 @@ final router = GoRouter(
             return CustomTransitionPage(
               key: state.pageKey,
               child: ChangeNotifierProvider(
-                create: (context) => AccountViewModel(
-                  postRepository: PostRepositoryImpl(
-                    postDataSource: PostDataSource(
-                      firebaseFirestore: FirebaseFirestore.instance,
-                    ),
-                  ),
-                ),
+                create: (context) => getIt<AccountViewModel>(),
                 child: const AccountTab(),
               ),
               transitionsBuilder:

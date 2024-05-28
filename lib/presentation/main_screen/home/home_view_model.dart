@@ -1,13 +1,13 @@
 import 'package:flutter/cupertino.dart';
 import 'package:injectable/injectable.dart';
 import 'package:view_finder/domain/repository/post_repository.dart';
-import '../../domain/model/post.dart';
+import '../../../domain/model/post.dart';
 
 @injectable
-class MainViewModel with ChangeNotifier {
+class HomeViewModel with ChangeNotifier {
   final PostRepository _postRepository;
 
-  MainViewModel({
+  HomeViewModel({
     required PostRepository postRepository,
   }) : _postRepository = postRepository;
 

@@ -43,10 +43,10 @@ class AccountTab extends StatelessWidget {
                       SizedBox(
                         height: 0.03.sh,
                       ),
-                      Text(
+                      const Text(
                         'asd',
                       ),
-                      Text(
+                      const Text(
                         'qwe',
                       ),
                     ],
@@ -89,7 +89,7 @@ class AccountTab extends StatelessWidget {
               foregroundColor: Colors.black,
               scrolledUnderElevation: 0,
             ),
-            SliverToBoxAdapter(
+            const SliverToBoxAdapter(
               child: Column(
                 children: [],
               ),
