@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:view_finder/domain/repository/post_repository.dart';
 import '../../domain/model/post.dart';
 
+@injectable
 class MainViewModel with ChangeNotifier {
   final PostRepository _postRepository;
 

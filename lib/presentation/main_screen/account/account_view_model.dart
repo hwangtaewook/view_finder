@@ -1,13 +1,13 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:view_finder/data/repository/post_repository_impl.dart';
 import '../../../domain/model/post.dart';
+import '../../../domain/repository/post_repository.dart';
 
 class AccountViewModel with ChangeNotifier {
-  final PostRepositoryImpl _postRepository;
+  final PostRepository _postRepository;
 
   AccountViewModel({
-    required PostRepositoryImpl postRepository,
+    required PostRepository postRepository,
   }) : _postRepository = postRepository;
 
   void logout() async {

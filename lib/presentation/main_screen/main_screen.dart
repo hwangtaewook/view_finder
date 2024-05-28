@@ -10,8 +10,10 @@ import 'board/board_tab.dart';
 import 'component/nav_item.dart';
 
 class MainScreen extends StatefulWidget {
+  final Widget child;
   const MainScreen({
     super.key,
+    required this.child,
   });
 
   @override
@@ -21,19 +23,12 @@ class MainScreen extends StatefulWidget {
 class _MainScreenState extends State<MainScreen> {
   int _currentIndex = 0;
 
-  final _pages = [
-    const HomeTab(),
-    const PhotoTab(),
-    const BoardTab(),
-    const AccountTab(),
-  ];
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: Stack(
         children: [
-          _pages[_currentIndex],
+          widget.child,
           Positioned(
             left: 0,
             right: 0,
@@ -56,6 +51,7 @@ class _MainScreenState extends State<MainScreen> {
                             onTap: () {
                               setState(() {});
                               _currentIndex = 0;
+                              context.go('/home');
                             },
                             icon: Icons.home_outlined,
                             selected: _currentIndex == 0,
@@ -64,13 +60,14 @@ class _MainScreenState extends State<MainScreen> {
                             onTap: () {
                               setState(() {});
                               _currentIndex = 1;
+                              context.go('/photo');
                             },
                             icon: Icons.camera,
                             selected: _currentIndex == 1,
                           ),
                           NavItem(
                             onTap: () {
-                              context.push('/nav_bar/upload');
+                              context.push('/upload');
                             },
                             icon: Icons.add_box_outlined,
                             selected: false,
@@ -79,6 +76,7 @@ class _MainScreenState extends State<MainScreen> {
                             onTap: () {
                               setState(() {});
                               _currentIndex = 2;
+                              context.go('/board');
                             },
                             icon: Icons.padding,
                             selected: _currentIndex == 2,
@@ -87,6 +85,7 @@ class _MainScreenState extends State<MainScreen> {
                             onTap: () {
                               setState(() {});
                               _currentIndex = 3;
+                              context.go('/account');
                             },
                             icon: Icons.person,
                             selected: _currentIndex == 3,

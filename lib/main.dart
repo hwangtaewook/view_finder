@@ -25,32 +25,10 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     ScreenUtil.init(context);
-    return MultiProvider(
-      providers: [
-        ChangeNotifierProvider(
-          create: (context) => MainViewModel(
-            postRepository: PostRepositoryImpl(
-              postDataSource: PostDataSource(
-                firebaseFirestore: FirebaseFirestore.instance,
-              ),
-            ),
-          ),
-        ),
-        ChangeNotifierProvider(
-          create: (context) => AccountViewModel(
-            postRepository: PostRepositoryImpl(
-              postDataSource: PostDataSource(
-                firebaseFirestore: FirebaseFirestore.instance,
-              ),
-            ),
-          ),
-        ),
-      ],
-      child: MaterialApp.router(
-        routerConfig: router,
-        theme: ThemeData(
-          colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
-        ),
+    return MaterialApp.router(
+      routerConfig: router,
+      theme: ThemeData(
+        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
       ),
     );
   }
