@@ -2,6 +2,7 @@ import 'package:firebase_ui_auth/firebase_ui_auth.dart';
 import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
 import 'package:view_finder/presentation/auth/auth_gate.dart';
+import 'package:view_finder/presentation/auth/memeber_detail_screen.dart';
 import 'package:view_finder/presentation/detail_post_screen/detail_post_screen.dart';
 import 'package:view_finder/presentation/main_screen/account/account_tab.dart';
 import 'package:view_finder/presentation/main_screen/account/account_view_model.dart';
@@ -11,13 +12,13 @@ import 'package:view_finder/presentation/main_screen/home/home_view_model.dart';
 import 'package:view_finder/presentation/main_screen/main_screen.dart';
 import 'package:view_finder/presentation/main_screen/photo/photo_tab.dart';
 import 'package:view_finder/presentation/upload_screen/upload_screen.dart';
-import 'package:view_finder/presentation/user_info_screen/user_info_screen.dart';
 import '../domain/model/post.dart';
 import '../presentation/main_screen/main_view_model.dart';
+import '../presentation/user_info_screen/user_info_screen.dart';
 import 'di_setup.dart';
 
 final router = GoRouter(
-  initialLocation: '/sign_in',
+  initialLocation: '/member_detail',
   routes: [
     GoRoute(
       path: '/sign_in',
@@ -121,9 +122,15 @@ final router = GoRouter(
       },
     ),
     GoRoute(
-      path: '/user_info',
+      path: '/member_info',
       builder: (context, state) {
-        return const UserInfoScreen();
+        return const MemberInfoScreen();
+      },
+    ),
+    GoRoute(
+      path: '/member_detail',
+      builder: (context, state) {
+        return MemberDetailScreen();
       },
     ),
   ],

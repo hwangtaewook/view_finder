@@ -23,7 +23,7 @@ class CustomAppBar extends StatelessWidget {
       ),
       leading: GestureDetector(
         onTap: () {
-          context.go('/user_info');
+          context.go('/member_info');
         },
         child: Center(
           child: ClipOval(
