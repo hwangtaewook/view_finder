@@ -11,6 +11,7 @@ import 'package:view_finder/presentation/main_screen/home/home_view_model.dart';
 import 'package:view_finder/presentation/main_screen/main_screen.dart';
 import 'package:view_finder/presentation/main_screen/photo/photo_tab.dart';
 import 'package:view_finder/presentation/upload_screen/upload_screen.dart';
+import 'package:view_finder/presentation/user_info_screen/user_info_screen.dart';
 import '../domain/model/post.dart';
 import '../presentation/main_screen/main_view_model.dart';
 import 'di_setup.dart';
@@ -117,6 +118,12 @@ final router = GoRouter(
       builder: (context, state) {
         final post = state.extra as Post;
         return DetailPostScreen(post: post);
+      },
+    ),
+    GoRoute(
+      path: '/user_info',
+      builder: (context, state) {
+        return const UserInfoScreen();
       },
     ),
   ],

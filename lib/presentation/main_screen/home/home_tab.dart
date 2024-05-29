@@ -8,6 +8,7 @@ import 'home_view_model.dart';
 
 class HomeTab extends StatefulWidget {
   final String _uid = 'post';
+
   const HomeTab({super.key});
 
   @override
@@ -135,7 +136,7 @@ class _HomeTabState extends State<HomeTab> {
                   return GestureDetector(
                     onTap: () {
                       final post = viewModel.post[index];
-                      context.push('/nav_bar/detail_post', extra: post);
+                      context.push('/detail_post', extra: post);
                     },
                     child: Hero(
                       tag: viewModel.post[index].postId,
