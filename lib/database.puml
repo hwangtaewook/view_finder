@@ -4,6 +4,7 @@ class Members {
     + userId
     --
     + username
+    + nickname
     + email
     + profilePic
     + createdAt

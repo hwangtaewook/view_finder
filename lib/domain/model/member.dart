@@ -8,6 +8,7 @@ part 'member.g.dart';
 class Member with _$Member {
   const factory Member({
     required String userId,
+    required String userName,
     required String email,
     required String profilePic,
     required String createdAt,
