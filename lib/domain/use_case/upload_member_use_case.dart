@@ -1,23 +1,24 @@
 import 'dart:io';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:firebase_storage/firebase_storage.dart';
 import 'package:injectable/injectable.dart';
+import 'package:view_finder/data/services/image_upload_service.dart';
 import 'package:view_finder/domain/model/member.dart';
 
 @Singleton()
-class UploadMember {
+class UploadMemberUseCase {
+  final ImageUploadService _imageUploadService;
+
+  const UploadMemberUseCase({
+    required ImageUploadService imageUploadService,
+  }) : _imageUploadService = imageUploadService;
+
   Future<void> execute(String lastName, String firstName, String nickName,
       File imageFile) async {
     String downloadUrl = '기본이미지';
     // 이미지 업로드
-    final storageRef = FirebaseStorage.instance.ref();
-    final imageRef = storageRef
-        .child('memberImages/${DateTime.now().millisecondsSinceEpoch}.png');
 
-    // 이미지 url 얻기
-    await imageRef.putFile(imageFile);
-    downloadUrl = await imageRef.getDownloadURL();
+    downloadUrl = await _imageUploadService.uploadImage(imageFile);
 
     // 멤버 업로드
     final uid = FirebaseAuth.instance.currentUser!.uid;
