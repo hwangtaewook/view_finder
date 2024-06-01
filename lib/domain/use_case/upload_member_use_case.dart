@@ -24,16 +24,19 @@ class UploadMemberUseCase {
     final uid = FirebaseAuth.instance.currentUser!.uid;
     final membersRef =
         // Member 데이터로 변환
-        FirebaseFirestore.instance.collection(uid).withConverter<Member>(
+        FirebaseFirestore.instance
+            .collection('Members')
+            .doc(uid)
+            .withConverter<Member>(
               // 가져올 때 Post 형태로 변환
               fromFirestore: (snapshot, _) => Member.fromJson(snapshot.data()!),
               // 파이어스토어에 쓸 때는 json 형태로
               toFirestore: (member, _) => member.toJson(),
             );
 
-    final newPostRef = membersRef.doc();
+    final newMemberRef = membersRef;
 
-    newPostRef.set(Member(
+    newMemberRef.set(Member(
       userId: uid,
       userName: '$lastName$firstName',
       email: FirebaseAuth.instance.currentUser?.email ?? '',
