@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:go_router/go_router.dart';
 import '../account_view_model.dart';
 
 class AccountAppBar extends StatelessWidget {
@@ -25,6 +26,7 @@ class AccountAppBar extends StatelessWidget {
         IconButton(
           onPressed: () {
             viewModel.logout();
+            context.go('/sign_in');
           },
           icon: const Icon(Icons.exit_to_app),
         ),
