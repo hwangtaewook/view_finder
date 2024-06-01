@@ -1,6 +1,7 @@
 import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
 import 'package:view_finder/presentation/auth/component/custom_text_filed.dart';
 import 'member_detail_view_model.dart';
@@ -14,26 +15,13 @@ class MemberDetailScreen extends StatefulWidget {
 
 class _MemberDetailScreenState extends State<MemberDetailScreen> {
   File? _image;
-
   final _lastNameTextEditingController = TextEditingController();
-
   final _firstNameTextEditingController = TextEditingController();
-
   final _nickNameTextEditingController = TextEditingController();
-
   final _emailTextEditingController = TextEditingController();
 
   @override
-  void initState() {
-    super.initState();
-    Future.microtask(() {
-      context.read<MemberDetailViewModel>();
-    });
-  }
-
-  @override
   void dispose() {
-    // 추가된 부분: 컨트롤러 정리
     _lastNameTextEditingController.dispose();
     _firstNameTextEditingController.dispose();
     _nickNameTextEditingController.dispose();
@@ -108,8 +96,10 @@ class _MemberDetailScreenState extends State<MemberDetailScreen> {
               SliverToBoxAdapter(
                 child: ElevatedButton(
                   onPressed: () async {
-                    _image = await viewModel.getImage();
-                    setState(() {});
+                    if (context.mounted) {
+                      _image = await viewModel.getImage();
+                      setState(() {});
+                    }
                   },
                   child: const Text('프로필 이미지 선택'),
                 ),
@@ -118,11 +108,14 @@ class _MemberDetailScreenState extends State<MemberDetailScreen> {
               SliverToBoxAdapter(
                 child: ElevatedButton(
                   onPressed: () async {
-                    viewModel.uploadMember(
-                        _lastNameTextEditingController.text,
-                        _firstNameTextEditingController.text,
-                        _nickNameTextEditingController.text,
-                        _image!);
+                    if (context.mounted) {
+                      await viewModel.uploadMember(
+                          _lastNameTextEditingController.text,
+                          _firstNameTextEditingController.text,
+                          _nickNameTextEditingController.text,
+                          _image!);
+                      context.go('/home');
+                    }
                   },
                   child: const Text('완료'),
                 ),

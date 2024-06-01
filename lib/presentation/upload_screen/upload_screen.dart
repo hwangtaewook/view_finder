@@ -15,7 +15,6 @@ class _UploadScreenState extends State<UploadScreen> {
   final viewModel = UploadViewModel();
   final _titleTextEditingController = TextEditingController();
   final _detailTextEditingController = TextEditingController();
-
   File? _image;
 
   bool _isLoading = false;

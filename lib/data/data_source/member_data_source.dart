@@ -2,10 +2,10 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:injectable/injectable.dart';
 
 @Singleton()
-class UserDataSource {
+class MemberDataSource {
   final FirebaseFirestore _firebaseFirestore;
 
-  UserDataSource({
+  MemberDataSource({
     required FirebaseFirestore firebaseFirestore,
   }) : _firebaseFirestore = firebaseFirestore;
 

@@ -19,7 +19,7 @@ import '../presentation/user_info_screen/user_info_screen.dart';
 import 'di_setup.dart';
 
 final router = GoRouter(
-  initialLocation: '/member_detail',
+  initialLocation: '/sign_in',
   routes: [
     GoRoute(
       path: '/sign_in',

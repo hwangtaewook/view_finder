@@ -47,11 +47,11 @@ extension GetItInjectableX on _i1.GetIt {
     gh.singleton<_i5.ImageUploadService>(() => _i5.ImageUploadService());
     gh.singleton<_i6.UploadMemberUseCase>(() => _i6.UploadMemberUseCase(
         imageUploadService: gh<_i5.ImageUploadService>()));
-    gh.singleton<_i7.UserDataSource>(() =>
-        _i7.UserDataSource(firebaseFirestore: gh<_i4.FirebaseFirestore>()));
+    gh.singleton<_i7.MemberDataSource>(() =>
+        _i7.MemberDataSource(firebaseFirestore: gh<_i4.FirebaseFirestore>()));
     gh.singleton<_i8.PostDataSource>(() =>
         _i8.PostDataSource(firebaseFirestore: gh<_i4.FirebaseFirestore>()));
-    gh.singleton<_i9.MemberDetailViewModel>(() => _i9.MemberDetailViewModel(
+    gh.factory<_i9.MemberDetailViewModel>(() => _i9.MemberDetailViewModel(
         uploadMemberUseCase: gh<_i6.UploadMemberUseCase>()));
     gh.singleton<_i10.PostRepository>(() =>
         _i11.PostRepositoryImpl(postDataSource: gh<_i8.PostDataSource>()));
