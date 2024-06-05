@@ -14,7 +14,9 @@ import 'package:view_finder/presentation/main_screen/main_screen.dart';
 import 'package:view_finder/presentation/main_screen/photo/photo_tab.dart';
 import 'package:view_finder/presentation/upload_screen/upload_screen.dart';
 import '../domain/model/post.dart';
+import '../presentation/main_screen/board/board_view_model.dart';
 import '../presentation/main_screen/main_view_model.dart';
+import '../presentation/main_screen/photo/photo_tab_view_model.dart';
 import '../presentation/user_info_screen/user_info_screen.dart';
 import 'di_setup.dart';
 
@@ -65,7 +67,7 @@ final router = GoRouter(
             return CustomTransitionPage(
               key: state.pageKey,
               child: ChangeNotifierProvider(
-                create: (context) => getIt<MainViewModel>(),
+                create: (context) => getIt<PhotoViewModel>(),
                 child: const PhotoTab(),
               ),
               transitionsBuilder:
@@ -81,7 +83,7 @@ final router = GoRouter(
             return CustomTransitionPage(
               key: state.pageKey,
               child: ChangeNotifierProvider(
-                create: (context) => getIt<MainViewModel>(),
+                create: (context) => getIt<BoardViewModel>(),
                 child: const BoardTab(),
               ),
               transitionsBuilder:

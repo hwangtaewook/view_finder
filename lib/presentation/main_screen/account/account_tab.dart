@@ -1,11 +1,29 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:provider/provider.dart';
 import 'account_view_model.dart';
 import 'component/account_app_bar.dart';
 
-class AccountTab extends StatelessWidget {
+class AccountTab extends StatefulWidget {
   const AccountTab({super.key});
+
+  @override
+  State<AccountTab> createState() => _AccountTabState();
+}
+
+class _AccountTabState extends State<AccountTab> {
+  @override
+  void initState() {
+    super.initState();
+    final user = FirebaseAuth.instance.currentUser;
+    if (user != null) {
+      Future.microtask(() {
+        context.read<AccountViewModel>().setAllPost('post');
+        context.read<AccountViewModel>().setMember(user.uid);
+      });
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -61,8 +79,10 @@ class AccountTab extends StatelessWidget {
                         height: 0.3.sh,
                         child: ClipRRect(
                           borderRadius: BorderRadius.circular(0.075.sh),
-                          child: Image.asset(
-                            'assets/1.jpg',
+                          child: Image.network(
+                            viewModel.member.profilePic.isEmpty
+                                ? 'https://cdn.pixabay.com/photo/2017/02/20/18/03/cat-2083492_640.jpg'
+                                : viewModel.member.profilePic,
                             height: 0.15.sh,
                             width: 0.15.sh,
                             fit: BoxFit.cover,

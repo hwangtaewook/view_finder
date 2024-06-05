@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
@@ -7,10 +8,7 @@ import '../component/image_card.dart';
 import 'home_view_model.dart';
 
 class HomeTab extends StatefulWidget {
-  final String _uid = 'post';
-
   const HomeTab({super.key});
-
   @override
   State<HomeTab> createState() => _HomeTabState();
 }
@@ -19,9 +17,13 @@ class _HomeTabState extends State<HomeTab> {
   @override
   void initState() {
     super.initState();
-    Future.microtask(() {
-      context.read<HomeViewModel>().setAllPost(widget._uid);
-    });
+    final user = FirebaseAuth.instance.currentUser;
+    if (user != null) {
+      Future.microtask(() async {
+        await context.read<HomeViewModel>().setMember(user.uid);
+        await context.read<HomeViewModel>().setAllPost('post');
+      });
+    }
   }
 
   @override
@@ -33,9 +35,9 @@ class _HomeTabState extends State<HomeTab> {
         body: CustomScrollView(
           slivers: [
             CustomAppBar(
-              userImageURL: viewModel.post.isEmpty
+              userImageURL: viewModel.member.profilePic.isEmpty
                   ? 'https://cdn.pixabay.com/photo/2023/02/08/18/36/tawny-owl-7777285_640.jpg'
-                  : viewModel.post[0].imageUrl,
+                  : viewModel.member.profilePic,
               screenName: '홈',
             ),
             SliverToBoxAdapter(

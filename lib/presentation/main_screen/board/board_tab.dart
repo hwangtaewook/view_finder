@@ -1,13 +1,13 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:provider/provider.dart';
 import 'package:view_finder/core/custom_app_bar.dart';
 import '../component/board_comp.dart';
 import '../component/image_card.dart';
-import '../main_view_model.dart';
+import 'board_view_model.dart';
 
 class BoardTab extends StatefulWidget {
-  final String _uid = 'post';
   const BoardTab({super.key});
 
   @override
@@ -18,22 +18,28 @@ class _BoardTabState extends State<BoardTab> {
   @override
   void initState() {
     super.initState();
-    Future.microtask(() {
-      context.read<MainViewModel>().setAllPost(widget._uid);
-    });
+    final user = FirebaseAuth.instance.currentUser;
+    if (user != null) {
+      Future.microtask(() {
+        context.read<BoardViewModel>().setAllPost('post');
+        context.read<BoardViewModel>().setMember(user.uid);
+      });
+    }
   }
 
   @override
   Widget build(BuildContext context) {
-    final viewModel = context.watch<MainViewModel>();
+    final viewModel = context.watch<BoardViewModel>();
     return SafeArea(
       child: Scaffold(
         body: CustomScrollView(
           slivers: [
-            const CustomAppBar(
-                userImageURL:
-                    'https://cdn.pixabay.com/photo/2023/02/08/18/36/tawny-owl-7777285_640.jpg',
-                screenName: '게시판'),
+            CustomAppBar(
+              userImageURL: viewModel.member.profilePic.isEmpty
+                  ? 'https://cdn.pixabay.com/photo/2023/02/08/18/36/tawny-owl-7777285_640.jpg'
+                  : viewModel.member.profilePic,
+              screenName: '게시판',
+            ),
             const BoardComp(
               boardName: '공지사항 게시판',
               title: '제목',
