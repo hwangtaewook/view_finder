@@ -6,11 +6,11 @@ import '../../../domain/use_case/get_member_use_case.dart';
 import '../../../domain/use_case/get_posts_use_case.dart';
 
 @injectable
-class HomeViewModel with ChangeNotifier {
+class BoardViewModel with ChangeNotifier {
   final GetPostsUseCase _getPostsUseCase;
   final GetMemberUseCase _getMemberUseCase;
 
-  HomeViewModel({
+  BoardViewModel({
     required GetPostsUseCase getPostsUseCase,
     required GetMemberUseCase getMemberUseCase,
   })  : _getPostsUseCase = getPostsUseCase,
