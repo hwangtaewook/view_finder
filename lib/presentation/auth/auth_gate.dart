@@ -32,7 +32,7 @@ class AuthGate extends StatelessWidget {
           ).registerCheck(),
           builder: (context, registerSnapshot) {
             if (registerSnapshot.connectionState == ConnectionState.waiting) {
-              return const CircularProgressIndicator();
+              return const Center(child: CircularProgressIndicator());
             } else if (registerSnapshot.hasData &&
                 registerSnapshot.data == true) {
               return ChangeNotifierProvider(
