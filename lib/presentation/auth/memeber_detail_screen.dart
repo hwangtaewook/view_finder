@@ -114,7 +114,9 @@ class _MemberDetailScreenState extends State<MemberDetailScreen> {
                           _firstNameTextEditingController.text,
                           _nickNameTextEditingController.text,
                           _image!);
-                      context.go('/home');
+                      if (context.mounted) {
+                        context.go('/home');
+                      }
                     }
                   },
                   child: const Text('완료'),
