@@ -15,7 +15,7 @@ class DetailPostScreen extends StatelessWidget {
     return Scaffold(
       body: CustomScrollView(
         slivers: [
-          DetailPostAppBar(userName: post.userId),
+          DetailPostAppBar(userName: post.userName),
           SliverToBoxAdapter(
             child: Hero(
               tag: post.postId,

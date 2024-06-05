@@ -2,6 +2,7 @@ import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:provider/provider.dart';
 import 'package:view_finder/presentation/upload_screen/upload_view_model.dart';
 
 class UploadScreen extends StatefulWidget {
@@ -12,7 +13,6 @@ class UploadScreen extends StatefulWidget {
 }
 
 class _UploadScreenState extends State<UploadScreen> {
-  final viewModel = UploadViewModel();
   final _titleTextEditingController = TextEditingController();
   final _detailTextEditingController = TextEditingController();
   File? _image;
@@ -28,6 +28,7 @@ class _UploadScreenState extends State<UploadScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final viewModel = context.watch<UploadViewModel>();
     return Scaffold(
       body: Stack(
         children: [

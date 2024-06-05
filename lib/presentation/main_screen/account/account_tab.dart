@@ -33,7 +33,7 @@ class _AccountTabState extends State<AccountTab> {
         body: CustomScrollView(
           slivers: [
             AccountAppBar(
-              userName: 'userName',
+              userName: viewModel.member.userName,
               viewModel: viewModel,
             ),
             SliverToBoxAdapter(
@@ -96,18 +96,6 @@ class _AccountTabState extends State<AccountTab> {
                   ),
                 ],
               ),
-            ),
-            SliverAppBar(
-              toolbarHeight: 0.055.sh,
-              title: Center(
-                child: Text(
-                  'Photo',
-                  style: TextStyle(fontSize: 18.sp),
-                ),
-              ),
-              pinned: true,
-              foregroundColor: Colors.black,
-              scrolledUnderElevation: 0,
             ),
             const SliverToBoxAdapter(
               child: Column(

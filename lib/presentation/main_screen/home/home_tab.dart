@@ -144,8 +144,8 @@ class _HomeTabState extends State<HomeTab> {
                       tag: viewModel.post[index].postId,
                       child: ImageCard(
                         image: viewModel.post[index].imageUrl,
-                        userImage: viewModel.post[index].imageUrl,
-                        userName: viewModel.post[index].title,
+                        userImage: viewModel.post[index].userProfilePic,
+                        userName: viewModel.post[index].userName,
                       ),
                     ),
                   );
