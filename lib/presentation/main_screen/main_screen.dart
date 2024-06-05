@@ -17,10 +17,20 @@ class MainScreen extends StatefulWidget {
 }
 
 class _MainScreenState extends State<MainScreen> {
-  int _currentIndex = 0;
+  final Map<String, int> _pathToIndex = {
+    '/home': 0,
+    '/photo': 1,
+    '/board': 2,
+    '/account': 3,
+  };
 
   @override
   Widget build(BuildContext context) {
+    final GoRouter router = GoRouter.of(context); //
+    final RouteMatchList routerState =
+        router.routerDelegate.currentConfiguration;
+    final String currentPath = routerState.uri.toString();
+    final int currentIndex = _pathToIndex[currentPath] ?? 0;
     return Scaffold(
       body: Stack(
         children: [
@@ -45,21 +55,17 @@ class _MainScreenState extends State<MainScreen> {
                         children: [
                           NavItem(
                             onTap: () {
-                              setState(() {});
-                              _currentIndex = 0;
                               context.go('/home');
                             },
                             icon: Icons.home_outlined,
-                            selected: _currentIndex == 0,
+                            selected: currentIndex == 0,
                           ),
                           NavItem(
                             onTap: () {
-                              setState(() {});
-                              _currentIndex = 1;
                               context.go('/photo');
                             },
                             icon: Icons.camera,
-                            selected: _currentIndex == 1,
+                            selected: currentIndex == 1,
                           ),
                           NavItem(
                             onTap: () {
@@ -70,21 +76,17 @@ class _MainScreenState extends State<MainScreen> {
                           ),
                           NavItem(
                             onTap: () {
-                              setState(() {});
-                              _currentIndex = 2;
                               context.go('/board');
                             },
                             icon: Icons.padding,
-                            selected: _currentIndex == 2,
+                            selected: currentIndex == 2,
                           ),
                           NavItem(
                             onTap: () {
-                              setState(() {});
-                              _currentIndex = 3;
                               context.go('/account');
                             },
                             icon: Icons.person,
-                            selected: _currentIndex == 3,
+                            selected: currentIndex == 3,
                           ),
                         ],
                       ),
