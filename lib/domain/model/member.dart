@@ -11,8 +11,8 @@ class Member with _$Member {
     required String userName,
     required String userNickName,
     required String email,
-    String profilePic,
-    String createdAt,
+    required String profilePic,
+    required String createdAt,
   }) = _Member;
 
   factory Member.fromJson(Map<String, Object?> json) => _$MemberFromJson(json);
