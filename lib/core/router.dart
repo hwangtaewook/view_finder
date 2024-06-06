@@ -5,6 +5,7 @@ import 'package:view_finder/presentation/auth/auth_gate.dart';
 import 'package:view_finder/presentation/auth/member_detail_view_model.dart';
 import 'package:view_finder/presentation/auth/memeber_detail_screen.dart';
 import 'package:view_finder/presentation/detail_post_screen/detail_post_screen.dart';
+import 'package:view_finder/presentation/detail_post_screen/detail_post_view_model.dart';
 import 'package:view_finder/presentation/main_screen/account/account_tab.dart';
 import 'package:view_finder/presentation/main_screen/account/account_view_model.dart';
 import 'package:view_finder/presentation/main_screen/board/board_tab.dart';
@@ -13,6 +14,7 @@ import 'package:view_finder/presentation/main_screen/home/home_view_model.dart';
 import 'package:view_finder/presentation/main_screen/main_screen.dart';
 import 'package:view_finder/presentation/main_screen/photo/photo_tab.dart';
 import 'package:view_finder/presentation/upload_screen/upload_screen.dart';
+import 'package:view_finder/presentation/upload_screen/upload_view_model.dart';
 import '../domain/model/post.dart';
 import '../presentation/main_screen/board/board_view_model.dart';
 import '../presentation/main_screen/main_view_model.dart';
@@ -114,7 +116,9 @@ final router = GoRouter(
     GoRoute(
       path: '/upload',
       builder: (context, state) {
-        return const UploadScreen();
+        return ChangeNotifierProvider(
+            create: (context) => getIt<UploadViewModel>(),
+            child: const UploadScreen());
       },
     ),
     GoRoute(
