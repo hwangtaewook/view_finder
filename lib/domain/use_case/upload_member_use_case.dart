@@ -25,7 +25,7 @@ class UploadMemberUseCase {
     final membersRef =
         // Member 데이터로 변환
         FirebaseFirestore.instance
-            .collection('Members')
+            .collection('members')
             .doc(uid)
             .withConverter<Member>(
               // 가져올 때 Post 형태로 변환

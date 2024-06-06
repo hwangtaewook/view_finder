@@ -10,7 +10,7 @@ class MemberDataSource {
   }) : _firebaseFirestore = firebaseFirestore;
 
   DocumentReference<Map<String, dynamic>> getMemberDocumentRef(String uid) {
-    final documentRef = _firebaseFirestore.collection('Members').doc(uid);
+    final documentRef = _firebaseFirestore.collection('members').doc(uid);
 
     return documentRef;
   }
