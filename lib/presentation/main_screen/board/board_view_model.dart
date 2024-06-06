@@ -27,7 +27,13 @@ class BoardViewModel with ChangeNotifier {
   }
 
   Member _member = const Member(
-      userId: '', userName: '', email: '', profilePic: '', createdAt: '');
+    userId: '',
+    userName: '',
+    userNickName: '',
+    email: '',
+    profilePic: '',
+    createdAt: '',
+  );
 
   Member get member => _member;
 

@@ -39,6 +39,7 @@ class UploadMemberUseCase {
     newMemberRef.set(Member(
       userId: uid,
       userName: '$lastName$firstName',
+      userNickName: nickName,
       email: FirebaseAuth.instance.currentUser?.email ?? '',
       profilePic: downloadUrl,
       createdAt: DateTime.now().toString(),

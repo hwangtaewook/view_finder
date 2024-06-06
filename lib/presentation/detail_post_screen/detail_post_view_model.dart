@@ -12,7 +12,13 @@ class DetailPostViewModel with ChangeNotifier {
   }) : _getMemberUseCase = getMemberUseCase;
 
   Member _member = const Member(
-      userId: '', userName: '', email: '', profilePic: '', createdAt: '');
+    userId: '',
+    userName: '',
+    userNickName: '',
+    email: '',
+    profilePic: '',
+    createdAt: '',
+  );
 
   Member get member => _member;
 

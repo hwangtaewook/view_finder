@@ -9,9 +9,10 @@ class Member with _$Member {
   const factory Member({
     required String userId,
     required String userName,
+    required String userNickName,
     required String email,
-    required String profilePic,
-    required String createdAt,
+    String profilePic,
+    String createdAt,
   }) = _Member;
 
   factory Member.fromJson(Map<String, Object?> json) => _$MemberFromJson(json);
