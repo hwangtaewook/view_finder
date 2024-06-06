@@ -11,7 +11,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart' as _i3;
 import 'package:get_it/get_it.dart' as _i1;
 import 'package:injectable/injectable.dart' as _i2;
-import 'package:view_finder/core/firebase_module.dart' as _i23;
+import 'package:view_finder/core/firebase_module.dart' as _i24;
 import 'package:view_finder/data/data_source/member_data_source.dart' as _i6;
 import 'package:view_finder/data/data_source/post_data_source.dart' as _i7;
 import 'package:view_finder/data/repository/memeber_repository_impl.dart'
@@ -22,6 +22,8 @@ import 'package:view_finder/domain/repository/member_repository.dart' as _i8;
 import 'package:view_finder/domain/repository/post_repository.dart' as _i12;
 import 'package:view_finder/domain/use_case/get_member_use_case.dart' as _i11;
 import 'package:view_finder/domain/use_case/get_posts_use_case.dart' as _i16;
+import 'package:view_finder/domain/use_case/get_user_posts_use_case.dart'
+    as _i17;
 import 'package:view_finder/domain/use_case/upload_member_use_case.dart' as _i5;
 import 'package:view_finder/domain/use_case/upload_post_use_case.dart' as _i14;
 import 'package:view_finder/presentation/auth/member_detail_view_model.dart'
@@ -29,15 +31,15 @@ import 'package:view_finder/presentation/auth/member_detail_view_model.dart'
 import 'package:view_finder/presentation/detail_post_screen/detail_post_view_model.dart'
     as _i15;
 import 'package:view_finder/presentation/main_screen/account/account_view_model.dart'
-    as _i17;
-import 'package:view_finder/presentation/main_screen/board/board_view_model.dart'
-    as _i22;
-import 'package:view_finder/presentation/main_screen/home/home_view_model.dart'
-    as _i20;
-import 'package:view_finder/presentation/main_screen/main_view_model.dart'
     as _i19;
-import 'package:view_finder/presentation/main_screen/photo/photo_tab_view_model.dart'
+import 'package:view_finder/presentation/main_screen/board/board_view_model.dart'
     as _i21;
+import 'package:view_finder/presentation/main_screen/home/home_view_model.dart'
+    as _i22;
+import 'package:view_finder/presentation/main_screen/main_view_model.dart'
+    as _i20;
+import 'package:view_finder/presentation/main_screen/photo/photo_tab_view_model.dart'
+    as _i23;
 import 'package:view_finder/presentation/upload_screen/upload_view_model.dart'
     as _i18;
 
@@ -77,23 +79,26 @@ extension GetItInjectableX on _i1.GetIt {
         getMemberUseCase: gh<_i11.GetMemberUseCase>()));
     gh.singleton<_i16.GetPostsUseCase>(
         () => _i16.GetPostsUseCase(postRepository: gh<_i12.PostRepository>()));
-    gh.factory<_i17.AccountViewModel>(() => _i17.AccountViewModel(
-          getMemberUseCase: gh<_i11.GetMemberUseCase>(),
-          getPostsUseCase: gh<_i16.GetPostsUseCase>(),
-        ));
+    gh.singleton<_i17.GetUserPostsUseCase>(() =>
+        _i17.GetUserPostsUseCase(postRepository: gh<_i12.PostRepository>()));
     gh.factory<_i18.UploadViewModel>(() =>
         _i18.UploadViewModel(uploadPostUseCase: gh<_i14.UploadPostUseCase>()));
-    gh.factory<_i19.MainViewModel>(
-        () => _i19.MainViewModel(getPostsUseCase: gh<_i16.GetPostsUseCase>()));
-    gh.factory<_i20.HomeViewModel>(() => _i20.HomeViewModel(
+    gh.factory<_i19.AccountViewModel>(() => _i19.AccountViewModel(
+          getMemberUseCase: gh<_i11.GetMemberUseCase>(),
+          getPostsUseCase: gh<_i16.GetPostsUseCase>(),
+          getUserPostsUseCase: gh<_i17.GetUserPostsUseCase>(),
+        ));
+    gh.factory<_i20.MainViewModel>(
+        () => _i20.MainViewModel(getPostsUseCase: gh<_i16.GetPostsUseCase>()));
+    gh.factory<_i21.BoardViewModel>(() => _i21.BoardViewModel(
           getPostsUseCase: gh<_i16.GetPostsUseCase>(),
           getMemberUseCase: gh<_i11.GetMemberUseCase>(),
         ));
-    gh.factory<_i21.PhotoViewModel>(() => _i21.PhotoViewModel(
+    gh.factory<_i22.HomeViewModel>(() => _i22.HomeViewModel(
           getPostsUseCase: gh<_i16.GetPostsUseCase>(),
           getMemberUseCase: gh<_i11.GetMemberUseCase>(),
         ));
-    gh.factory<_i22.BoardViewModel>(() => _i22.BoardViewModel(
+    gh.factory<_i23.PhotoViewModel>(() => _i23.PhotoViewModel(
           getPostsUseCase: gh<_i16.GetPostsUseCase>(),
           getMemberUseCase: gh<_i11.GetMemberUseCase>(),
         ));
@@ -101,4 +106,4 @@ extension GetItInjectableX on _i1.GetIt {
   }
 }
 
-class _$FirebaseModule extends _i23.FirebaseModule {}
+class _$FirebaseModule extends _i24.FirebaseModule {}
