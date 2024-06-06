@@ -5,17 +5,21 @@ import 'package:view_finder/domain/use_case/get_member_use_case.dart';
 import 'package:view_finder/domain/use_case/get_posts_use_case.dart';
 import '../../../domain/model/member.dart';
 import '../../../domain/model/post.dart';
+import '../../../domain/use_case/get_user_posts_use_case.dart';
 
 @injectable
 class AccountViewModel with ChangeNotifier {
   final GetMemberUseCase _getMemberUseCase;
   final GetPostsUseCase _getPostsUseCase;
+  final GetUserPostsUseCase _getUserPostsUseCase;
 
   AccountViewModel({
     required GetMemberUseCase getMemberUseCase,
     required GetPostsUseCase getPostsUseCase,
+    required GetUserPostsUseCase getUserPostsUseCase,
   })  : _getMemberUseCase = getMemberUseCase,
-        _getPostsUseCase = getPostsUseCase;
+        _getPostsUseCase = getPostsUseCase,
+        _getUserPostsUseCase = getUserPostsUseCase;
 
   void logout() async {
     await FirebaseAuth.instance.signOut();
@@ -31,8 +35,24 @@ class AccountViewModel with ChangeNotifier {
     notifyListeners();
   }
 
+  List<Post> _userPost = [];
+
+  List<Post> get userPost => List.unmodifiable(_userPost);
+
+  Future<void> setUserPost(String uid) async {
+    final userPost = await _getUserPostsUseCase.execute(uid);
+    _userPost = userPost;
+    notifyListeners();
+  }
+
   Member _member = const Member(
-      userId: '', userName: '', email: '', profilePic: '', createdAt: '');
+    userId: '',
+    userName: '',
+    userNickName: '',
+    email: '',
+    profilePic: '',
+    createdAt: '',
+  );
 
   Member get member => _member;
 

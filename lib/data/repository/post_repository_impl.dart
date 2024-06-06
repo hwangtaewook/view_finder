@@ -13,20 +13,14 @@ class PostRepositoryImpl implements PostRepository {
   }) : _postDataSource = postDataSource;
 
   @override
-  Future<List<Post>> getPost(String uid) async {
-    final documentRef = _postDataSource.getPostDocumentRef(uid);
-    final postSnapshot = await documentRef.collection('posts').get();
-
-    if (postSnapshot.docs.isEmpty) {
-      throw Exception('존재하지 않는 게시물 입니다.');
-    }
-    return postSnapshot.docs.map((e) => Post.fromJson(e.data())).toList();
+  Future<List<Post>> getUserPosts() async {
+    final postDocs = await _postDataSource.getUserPostsDocument();
+    return postDocs.map((e) => Post.fromJson(e.data() ?? {})).toList();
   }
 
   @override
   Future<List<Post>> getAllPosts() async {
     final postDocs = await _postDataSource.getAllPostDocuments();
-    final posts = postDocs.map((e) => Post.fromJson(e.data() ?? {})).toList();
-    return posts;
+    return postDocs.map((e) => Post.fromJson(e.data() ?? {})).toList();
   }
 }

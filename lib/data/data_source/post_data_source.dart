@@ -1,4 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:injectable/injectable.dart';
 
 @Singleton()
@@ -9,10 +10,14 @@ class PostDataSource {
     required FirebaseFirestore firebaseFirestore,
   }) : _firebaseFirestore = firebaseFirestore;
 
-  DocumentReference<Map<String, dynamic>> getPostDocumentRef(String uid) {
-    final documentRef = _firebaseFirestore.collection('posts').doc(uid);
+  Future<List<DocumentSnapshot<Map<String, dynamic>>>>
+      getUserPostsDocument() async {
+    final querySnapshot = await _firebaseFirestore
+        .collection('posts')
+        .where('userId', isEqualTo: FirebaseAuth.instance.currentUser?.uid)
+        .get();
 
-    return documentRef;
+    return querySnapshot.docs;
   }
 
   Future<List<DocumentSnapshot<Map<String, dynamic>>>>

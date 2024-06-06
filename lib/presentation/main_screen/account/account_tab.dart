@@ -20,6 +20,7 @@ class _AccountTabState extends State<AccountTab> {
     if (user != null) {
       Future.microtask(() {
         context.read<AccountViewModel>().setAllPost('post');
+        context.read<AccountViewModel>().setUserPost('post');
         context.read<AccountViewModel>().setMember(user.uid);
       });
     }
@@ -33,7 +34,7 @@ class _AccountTabState extends State<AccountTab> {
         body: CustomScrollView(
           slivers: [
             AccountAppBar(
-              userName: viewModel.member.userName,
+              userName: viewModel.member.userNickName,
               viewModel: viewModel,
             ),
             SliverToBoxAdapter(
@@ -62,10 +63,10 @@ class _AccountTabState extends State<AccountTab> {
                         height: 0.03.sh,
                       ),
                       const Text(
-                        'asd',
+                        '뷰파인더',
                       ),
-                      const Text(
-                        'qwe',
+                      Text(
+                        viewModel.member.userName,
                       ),
                     ],
                   ),
@@ -97,9 +98,25 @@ class _AccountTabState extends State<AccountTab> {
                 ],
               ),
             ),
-            const SliverToBoxAdapter(
-              child: Column(
-                children: [],
+            SliverPadding(
+              padding:
+                  EdgeInsets.symmetric(horizontal: 0.04.sw, vertical: 0.02.sw),
+              sliver: SliverGrid(
+                gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                  crossAxisCount: 3, // 3열 그리드
+                  crossAxisSpacing: 0.005.sw, // 열 간격
+                  mainAxisSpacing: 0.005.sw, // 행 간격
+                  childAspectRatio: 1.0, // 너비와 높이 비율
+                ),
+                delegate: SliverChildBuilderDelegate(
+                  (BuildContext context, int index) {
+                    return Image.network(
+                      viewModel.userPost[index].imageUrl,
+                      fit: BoxFit.cover,
+                    );
+                  },
+                  childCount: viewModel.userPost.length, // 아이템 수
+                ),
               ),
             ),
             SliverToBoxAdapter(
