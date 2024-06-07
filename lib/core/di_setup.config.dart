@@ -33,9 +33,9 @@ import 'package:view_finder/presentation/detail_post_screen/detail_post_view_mod
 import 'package:view_finder/presentation/main_screen/account/account_view_model.dart'
     as _i19;
 import 'package:view_finder/presentation/main_screen/board/board_view_model.dart'
-    as _i21;
-import 'package:view_finder/presentation/main_screen/home/home_view_model.dart'
     as _i22;
+import 'package:view_finder/presentation/main_screen/home/home_view_model.dart'
+    as _i21;
 import 'package:view_finder/presentation/main_screen/main_view_model.dart'
     as _i20;
 import 'package:view_finder/presentation/main_screen/photo/photo_tab_view_model.dart'
@@ -90,11 +90,11 @@ extension GetItInjectableX on _i1.GetIt {
         ));
     gh.factory<_i20.MainViewModel>(
         () => _i20.MainViewModel(getPostsUseCase: gh<_i16.GetPostsUseCase>()));
-    gh.factory<_i21.BoardViewModel>(() => _i21.BoardViewModel(
+    gh.factory<_i21.HomeViewModel>(() => _i21.HomeViewModel(
           getPostsUseCase: gh<_i16.GetPostsUseCase>(),
           getMemberUseCase: gh<_i11.GetMemberUseCase>(),
         ));
-    gh.factory<_i22.HomeViewModel>(() => _i22.HomeViewModel(
+    gh.factory<_i22.BoardViewModel>(() => _i22.BoardViewModel(
           getPostsUseCase: gh<_i16.GetPostsUseCase>(),
           getMemberUseCase: gh<_i11.GetMemberUseCase>(),
         ));
