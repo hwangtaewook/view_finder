@@ -16,22 +16,26 @@ class CustomAppBar extends StatelessWidget {
   Widget build(BuildContext context) {
     return SliverAppBar(
       centerTitle: true,
-      toolbarHeight: 0.055.sh,
+      toolbarHeight: 1.sh > 1.sw ? 0.055.sh : 0.1.sh,
       title: Text(
         screenName,
         style: TextStyle(fontSize: 18.sp),
       ),
+      leadingWidth: 0.15.sw,
       leading: GestureDetector(
         onTap: () {
           context.go('/member_info');
         },
-        child: Center(
-          child: ClipOval(
-            child: Image.network(
-              height: 0.08.sw,
-              width: 0.08.sw,
-              userImageURL,
-              fit: BoxFit.cover,
+        child: Padding(
+          padding: EdgeInsets.fromLTRB(0.04.sw, 0, 0, 0),
+          child: Center(
+            child: ClipOval(
+              child: Image.network(
+                height: 0.08.sw,
+                width: 0.08.sw,
+                userImageURL,
+                fit: BoxFit.cover,
+              ),
             ),
           ),
         ),
