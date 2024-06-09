@@ -35,9 +35,7 @@ class _DetailPostScreenState extends State<DetailPostScreen> {
   }
 
   void _handleDraggableSheetScroll() {
-    setState(() {
-      // Listener to detect changes
-    });
+    setState(() {});
   }
 
   @override
@@ -100,14 +98,78 @@ class _DetailPostScreenState extends State<DetailPostScreen> {
                     ),
                   ],
                 ),
-                child: ListView.builder(
-                  controller: scrollController,
-                  itemCount: 25,
-                  itemBuilder: (BuildContext context, int index) {
-                    return ListTile(
-                      title: Text('Bottom Sheet Item $index'),
-                    );
-                  },
+                child: Column(
+                  children: [
+                    Container(
+                      width: 0.2.sw,
+                      height: 0.007.sh,
+                      margin: const EdgeInsets.symmetric(vertical: 10),
+                      decoration: BoxDecoration(
+                        color: Colors.grey[300],
+                        borderRadius: BorderRadius.circular(3),
+                      ),
+                    ),
+                    Expanded(
+                      child: SingleChildScrollView(
+                        controller: scrollController,
+                        child: Padding(
+                          padding: EdgeInsets.symmetric(horizontal: 0.04.sw),
+                          child: Column(
+                            children: [
+                              SizedBox(
+                                height: 0.06.sh,
+                                child: Row(
+                                  children: [
+                                    ClipOval(
+                                      child: Image.network(
+                                        widget.post.userProfilePic,
+                                        height: 0.06.sh,
+                                        width: 0.06.sh,
+                                        fit: BoxFit.cover,
+                                      ),
+                                    ),
+                                    SizedBox(width: 0.05.sw),
+                                    Column(
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.start,
+                                      children: [
+                                        SizedBox(
+                                          height: 0.02.sh,
+                                          child: Text(
+                                            ' ${widget.post.userName}',
+                                            style: TextStyle(
+                                                fontSize: 14.sp,
+                                                color: Colors.grey),
+                                          ),
+                                        ),
+                                        SizedBox(
+                                          height: 0.04.sh,
+                                          child: Text(
+                                            widget.post.title,
+                                            style: TextStyle(fontSize: 22.sp),
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                    const Spacer(),
+                                    Row(
+                                      children: [
+                                        const Icon(Icons.favorite_border),
+                                        SizedBox(
+                                          width: 0.02.sw,
+                                        ),
+                                        const Icon(Icons.comment),
+                                      ],
+                                    )
+                                  ],
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                      ),
+                    ),
+                  ],
                 ),
               );
             },
