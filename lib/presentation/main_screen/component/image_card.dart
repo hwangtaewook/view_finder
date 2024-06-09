@@ -4,13 +4,13 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 class ImageCard extends StatelessWidget {
   final String image;
   final String userImage;
-  final String userName;
+  final String userNickName;
 
   const ImageCard({
     super.key,
     required this.image,
     required this.userImage,
-    required this.userName,
+    required this.userNickName,
   });
 
   @override
@@ -43,7 +43,7 @@ class ImageCard extends StatelessWidget {
                         width: 0.05.sw,
                       ),
                       Text(
-                        userName,
+                        userNickName,
                         style: TextStyle(fontSize: 18.sp),
                       ),
                       const Spacer(),

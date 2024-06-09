@@ -16,12 +16,13 @@ class UploadViewModel with ChangeNotifier {
   final Post _post = const Post(
     postId: '',
     userId: '',
-    userName: '',
+    userNickName: '',
     userProfilePic: '',
     title: '',
     content: '',
     createdAt: '',
     imageUrl: '',
+    metaData: {},
   );
 
   Post get post => _post;

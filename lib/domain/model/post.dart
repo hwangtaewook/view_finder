@@ -9,12 +9,13 @@ class Post with _$Post {
   const factory Post({
     required String postId,
     required String userId,
-    required String userName,
+    required String userNickName,
     required String userProfilePic,
     required String title,
     required String content,
     required String createdAt,
     required String imageUrl,
+    required Map<String, dynamic> metaData,
     @Default([]) List<String> likes,
   }) = _Post;
 
