@@ -52,6 +52,7 @@ dependencies:
   image: ^4.1.7
   get_it: ^7.7.0
   injectable: ^2.4.2
+  exif: ^3.3.0
 
 dev_dependencies:
   flutter_test:
