@@ -21,7 +21,7 @@ class _HomeTabState extends State<HomeTab> {
     if (user != null) {
       Future.microtask(() async {
         await context.read<HomeViewModel>().setMember(user.uid);
-        await context.read<HomeViewModel>().setAllPost('post');
+        await context.read<HomeViewModel>().setAllPost();
       });
     }
   }
@@ -145,7 +145,7 @@ class _HomeTabState extends State<HomeTab> {
                       child: ImageCard(
                         image: viewModel.post[index].imageUrl,
                         userImage: viewModel.post[index].userProfilePic,
-                        userName: viewModel.post[index].userName,
+                        userNickName: viewModel.post[index].userNickName,
                       ),
                     ),
                   );

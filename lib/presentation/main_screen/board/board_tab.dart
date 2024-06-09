@@ -21,7 +21,7 @@ class _BoardTabState extends State<BoardTab> {
     final user = FirebaseAuth.instance.currentUser;
     if (user != null) {
       Future.microtask(() {
-        context.read<BoardViewModel>().setAllPost('post');
+        context.read<BoardViewModel>().setAllPost();
         context.read<BoardViewModel>().setMember(user.uid);
       });
     }
@@ -75,7 +75,7 @@ class _BoardTabState extends State<BoardTab> {
                     return ImageCard(
                       image: viewModel.post[index].imageUrl,
                       userImage: viewModel.post[index].imageUrl,
-                      userName: viewModel.post[index].userId,
+                      userNickName: viewModel.post[index].userId,
                     );
                   },
                   childCount: viewModel.post.length,

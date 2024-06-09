@@ -20,8 +20,8 @@ class HomeViewModel with ChangeNotifier {
 
   List<Post> get post => List.unmodifiable(_post);
 
-  Future<void> setAllPost(String uid) async {
-    final post = await _getPostsUseCase.execute(uid);
+  Future<void> setAllPost() async {
+    final post = await _getPostsUseCase.execute();
     _post = post;
     notifyListeners();
   }

@@ -10,7 +10,7 @@ class GetPostsUseCase {
     required PostRepository postRepository,
   }) : _postRepository = postRepository;
 
-  Future<List<Post>> execute(String uid) async {
+  Future<List<Post>> execute() async {
     return await _postRepository.getAllPosts();
   }
 }

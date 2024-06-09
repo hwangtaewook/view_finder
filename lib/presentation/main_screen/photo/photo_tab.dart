@@ -20,7 +20,7 @@ class _PhotoTabState extends State<PhotoTab> {
     final user = FirebaseAuth.instance.currentUser;
     if (user != null) {
       Future.microtask(() {
-        context.read<PhotoViewModel>().setAllPost('post');
+        context.read<PhotoViewModel>().setAllPost();
         context.read<PhotoViewModel>().setMember(user.uid);
       });
     }

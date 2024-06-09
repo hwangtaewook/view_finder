@@ -19,7 +19,7 @@ class _AccountTabState extends State<AccountTab> {
     final user = FirebaseAuth.instance.currentUser;
     if (user != null) {
       Future.microtask(() {
-        context.read<AccountViewModel>().setAllPost('post');
+        context.read<AccountViewModel>().setAllPost();
         context.read<AccountViewModel>().setUserPost('post');
         context.read<AccountViewModel>().setMember(user.uid);
       });
