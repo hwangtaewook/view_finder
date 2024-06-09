@@ -15,8 +15,8 @@ import 'package:view_finder/presentation/main_screen/photo/photo_tab.dart';
 import 'package:view_finder/presentation/upload_screen/upload_screen.dart';
 import 'package:view_finder/presentation/upload_screen/upload_view_model.dart';
 import '../domain/model/post.dart';
+import '../presentation/detail_post_screen/detail_post_view_model.dart';
 import '../presentation/main_screen/board/board_view_model.dart';
-import '../presentation/main_screen/main_view_model.dart';
 import '../presentation/main_screen/photo/photo_tab_view_model.dart';
 import '../presentation/user_info_screen/user_info_screen.dart';
 import 'di_setup.dart';
@@ -40,10 +40,7 @@ final router = GoRouter(
     ),
     ShellRoute(
       builder: (context, state, child) {
-        return ChangeNotifierProvider(
-          create: (context) => getIt<MainViewModel>(),
-          child: MainScreen(child: child),
-        );
+        return MainScreen(child: child);
       },
       routes: [
         GoRoute(
@@ -124,7 +121,9 @@ final router = GoRouter(
       path: '/detail_post',
       builder: (context, state) {
         final post = state.extra as Post;
-        return DetailPostScreen(post: post);
+        return ChangeNotifierProvider(
+            create: (context) => getIt<DetailPostViewModel>(),
+            child: DetailPostScreen(post: post));
       },
     ),
     GoRoute(
