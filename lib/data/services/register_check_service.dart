@@ -1,6 +1,8 @@
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:injectable/injectable.dart';
 import 'package:view_finder/data/data_source/member_data_source.dart';
 
+@Singleton()
 class RegisterCheckService {
   final MemberDataSource _memberDataSource;
 
