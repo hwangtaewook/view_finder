@@ -1,12 +1,10 @@
 import 'package:firebase_ui_auth/firebase_ui_auth.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
 import 'package:view_finder/presentation/auth/auth_gate.dart';
 import 'package:view_finder/presentation/auth/member_detail_view_model.dart';
 import 'package:view_finder/presentation/auth/memeber_detail_screen.dart';
 import 'package:view_finder/presentation/detail_post_screen/detail_post_screen.dart';
-import 'package:view_finder/presentation/detail_post_screen/detail_post_view_model.dart';
 import 'package:view_finder/presentation/main_screen/account/account_tab.dart';
 import 'package:view_finder/presentation/main_screen/account/account_view_model.dart';
 import 'package:view_finder/presentation/main_screen/board/board_tab.dart';
