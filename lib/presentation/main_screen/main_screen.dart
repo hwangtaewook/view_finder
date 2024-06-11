@@ -50,14 +50,14 @@ class _MainScreenState extends State<MainScreen> {
                     filter: ImageFilter.blur(sigmaX: 20, sigmaY: 20),
                     child: Container(
                       // color: const Color(0xff323232).withOpacity(0.8),
-                      color: const Color(0xffD3D3D3).withOpacity(0.8),
+                      color: const Color(0xffEfEfEf).withOpacity(0.8),
                       child: Row(
                         children: [
                           NavItem(
                             onTap: () {
                               context.go('/home');
                             },
-                            icon: Icons.home_outlined,
+                            icon: Icons.home,
                             selected: currentIndex == 0,
                           ),
                           NavItem(
@@ -71,14 +71,14 @@ class _MainScreenState extends State<MainScreen> {
                             onTap: () {
                               context.push('/upload');
                             },
-                            icon: Icons.add_box_outlined,
+                            icon: Icons.add_box,
                             selected: false,
                           ),
                           NavItem(
                             onTap: () {
                               context.go('/board');
                             },
-                            icon: Icons.padding,
+                            icon: Icons.auto_awesome_mosaic,
                             selected: currentIndex == 2,
                           ),
                           NavItem(
