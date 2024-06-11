@@ -231,7 +231,7 @@ class _DetailPostScreenState extends State<DetailPostScreen> {
                                 check: widget.post.metaData['EXIF FocalLength'],
                                 label: '초점    ',
                                 value:
-                                    '${viewModel.convert(widget.post.metaData['EXIF FNumber']).toString()}mm',
+                                    '${widget.post.metaData['EXIF FocalLength']}mm',
                               ),
                             ],
                           ),
