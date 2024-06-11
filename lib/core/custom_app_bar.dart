@@ -15,6 +15,7 @@ class CustomAppBar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SliverAppBar(
+      backgroundColor: Colors.white,
       centerTitle: true,
       toolbarHeight: 1.sh > 1.sw ? 0.055.sh : 0.1.sh,
       title: Text(
