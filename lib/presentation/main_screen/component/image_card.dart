@@ -47,7 +47,7 @@ class ImageCard extends StatelessWidget {
                         style: TextStyle(fontSize: 18.sp),
                       ),
                       const Spacer(),
-                      const Icon(Icons.star_outline),
+                      const Icon(Icons.favorite_outline),
                       const Icon(Icons.comment_outlined),
                     ],
                   ),
