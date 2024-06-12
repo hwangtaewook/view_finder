@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:intl/date_symbol_data_local.dart';
 import 'package:view_finder/core/router.dart';
 import 'core/di_setup.dart';
 import 'firebase_options.dart';
@@ -12,7 +13,9 @@ void main() async {
   );
   configureDependencies();
 
-  runApp(const MyApp());
+  initializeDateFormatting('ko_KR', null).then((_) {
+    runApp(const MyApp());
+  });
 }
 
 class MyApp extends StatelessWidget {
@@ -25,7 +28,8 @@ class MyApp extends StatelessWidget {
       routerConfig: router,
       theme: ThemeData(
           colorScheme: ColorScheme.fromSeed(seedColor: Colors.white),
-          scaffoldBackgroundColor: Colors.white),
+          scaffoldBackgroundColor: Colors.white,
+          appBarTheme: const AppBarTheme(backgroundColor: Colors.white)),
     );
   }
 }
