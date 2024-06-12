@@ -53,6 +53,7 @@ dependencies:
   get_it: ^7.7.0
   injectable: ^2.4.2
   exif: ^3.3.0
+  syncfusion_flutter_calendar: ^26.1.35
 
 dev_dependencies:
   flutter_test:
