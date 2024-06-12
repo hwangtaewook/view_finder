@@ -3,12 +3,14 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
+import 'package:view_finder/presentation/main_screen/home/component/schedule_calender.dart';
 import '../../../../core/custom_app_bar.dart';
 import '../component/image_card.dart';
 import 'home_view_model.dart';
 
 class HomeTab extends StatefulWidget {
   const HomeTab({super.key});
+
   @override
   State<HomeTab> createState() => _HomeTabState();
 }
@@ -44,6 +46,9 @@ class _HomeTabState extends State<HomeTab> {
               child: SizedBox(
                 height: 0.03.sh,
               ),
+            ),
+            const SliverToBoxAdapter(
+              child: SizedBox(height: 600, child: ScheduleCalendar()),
             ),
             SliverToBoxAdapter(
               child: Padding(
