@@ -2,16 +2,16 @@ import 'package:flutter/cupertino.dart';
 import 'package:injectable/injectable.dart';
 import '../../../domain/model/member.dart';
 import '../../../domain/use_case/get_member_use_case.dart';
-import '../../data/services/fraction_conversion_service.dart';
+import '../../domain/utils/fraction_conversion_util.dart';
 
 @injectable
 class DetailPostViewModel with ChangeNotifier {
   final GetMemberUseCase _getMemberUseCase;
-  final FractionConversionService _fractionConversionService;
+  final FractionConversionUtil _fractionConversionService;
 
   DetailPostViewModel({
     required GetMemberUseCase getMemberUseCase,
-    required FractionConversionService fractionConversionService,
+    required FractionConversionUtil fractionConversionService,
   })  : _getMemberUseCase = getMemberUseCase,
         _fractionConversionService = fractionConversionService;
 
