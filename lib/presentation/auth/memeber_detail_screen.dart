@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
-import 'package:view_finder/presentation/auth/component/custom_text_filed.dart';
+import 'package:view_finder/presentation/component/custom_text_field.dart';
 import 'member_detail_view_model.dart';
 
 class MemberDetailScreen extends StatefulWidget {
@@ -43,25 +43,29 @@ class _MemberDetailScreenState extends State<MemberDetailScreen> {
               SliverToBoxAdapter(
                 child: Row(
                   children: [
-                    CustomTextFiled(
-                      controller: _lastNameTextEditingController,
-                      fieldName: '성',
-                      hintText: '성을 입력하세요',
+                    Expanded(
+                      child: CustomTextField(
+                        controller: _lastNameTextEditingController,
+                        fieldName: '성',
+                        hintText: '성을 입력하세요',
+                      ),
                     ),
                     SizedBox(
                       width: 0.02.sw,
                     ),
-                    CustomTextFiled(
-                      controller: _firstNameTextEditingController,
-                      fieldName: '이름',
-                      hintText: '이름을 입력하세요',
+                    Expanded(
+                      child: CustomTextField(
+                        controller: _firstNameTextEditingController,
+                        fieldName: '이름',
+                        hintText: '이름을 입력하세요',
+                      ),
                     ),
                   ],
                 ),
               ),
               SliverToBoxAdapter(child: SizedBox(height: 0.06.sw)),
               SliverToBoxAdapter(
-                child: CustomTextFiled(
+                child: CustomTextField(
                   controller: _nickNameTextEditingController,
                   fieldName: '닉네임',
                   hintText: '닉네임을 입력하세요',
@@ -69,7 +73,7 @@ class _MemberDetailScreenState extends State<MemberDetailScreen> {
               ),
               SliverToBoxAdapter(child: SizedBox(height: 0.06.sw)),
               SliverToBoxAdapter(
-                child: CustomTextFiled(
+                child: CustomTextField(
                   controller: _emailTextEditingController,
                   fieldName: '이메일',
                   hintText: '이메일을 입력하세요',
