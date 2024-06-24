@@ -1,5 +1,4 @@
 import 'dart:io';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:provider/provider.dart';
@@ -36,7 +35,6 @@ class _UploadScreenState extends State<UploadScreen> {
             slivers: [
               SliverAppBar(
                 centerTitle: true,
-                // navpush로 생긴 back 버튼에 밀림 없이 센터로 정렬
                 toolbarHeight: 0.055.sh,
                 title: Text(
                   'Upload',
@@ -71,8 +69,11 @@ class _UploadScreenState extends State<UploadScreen> {
                           }
                         }
                       },
-                      child: const Icon(
-                        Icons.send,
+                      child: const Padding(
+                        padding: EdgeInsets.all(8),
+                        child: Icon(
+                          Icons.send,
+                        ),
                       ),
                     ),
                   ),
