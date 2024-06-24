@@ -24,6 +24,7 @@ class _HomeTabState extends State<HomeTab> {
       Future.microtask(() async {
         await context.read<HomeViewModel>().setMember(user.uid);
         await context.read<HomeViewModel>().setAllPost();
+        await context.read<HomeViewModel>().setCalendarPost();
       });
     }
   }
@@ -44,11 +45,16 @@ class _HomeTabState extends State<HomeTab> {
             ),
             SliverToBoxAdapter(
               child: SizedBox(
-                height: 0.03.sh,
+                height: 0.01.sh,
               ),
             ),
-            const SliverToBoxAdapter(
-              child: SizedBox(height: 600, child: ScheduleCalendar()),
+            SliverToBoxAdapter(
+              child: SizedBox(
+                height: 600,
+                child: ScheduleCalendar(
+                  calendarPosts: viewModel.calendarPost,
+                ),
+              ),
             ),
             SliverToBoxAdapter(
               child: Padding(
