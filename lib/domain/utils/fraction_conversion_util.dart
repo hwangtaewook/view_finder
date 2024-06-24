@@ -1,7 +1,7 @@
 import 'package:injectable/injectable.dart';
 
 @Singleton()
-class FractionConversionService {
+class FractionConversionUtil {
   num convert(String? fractionString) {
     if (fractionString == null) {
       return 1;
