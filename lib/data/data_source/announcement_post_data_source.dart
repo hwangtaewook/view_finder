@@ -2,10 +2,10 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:injectable/injectable.dart';
 
 @Singleton()
-class AnnouncementPost {
+class AnnouncementPostDataSource {
   final FirebaseFirestore _firebaseFirestore;
 
-  const AnnouncementPost({
+  const AnnouncementPostDataSource({
     required FirebaseFirestore firebaseFirestore,
   }) : _firebaseFirestore = firebaseFirestore;
 
