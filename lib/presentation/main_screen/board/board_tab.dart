@@ -1,6 +1,8 @@
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
 import 'package:view_finder/core/custom_app_bar.dart';
 import '../component/board_comp.dart';
@@ -23,6 +25,7 @@ class _BoardTabState extends State<BoardTab> {
       Future.microtask(() {
         context.read<BoardViewModel>().setAllPost();
         context.read<BoardViewModel>().setMember(user.uid);
+        context.read<BoardViewModel>().setAllAnnouncementPost();
       });
     }
   }
@@ -40,9 +43,9 @@ class _BoardTabState extends State<BoardTab> {
                   : viewModel.member.profilePic,
               screenName: '게시판',
             ),
-            const BoardComp(
+            BoardComp(
               boardName: '공지사항 게시판',
-              title: '제목',
+              title: viewModel.announcementPost[0].title,
               content: '내용내용내용내용내용내용내용내용내용',
             ),
             const BoardComp(
@@ -50,18 +53,22 @@ class _BoardTabState extends State<BoardTab> {
               title: '제목',
               content: '내용내용내용내용내용내용내용내용내용',
             ),
-            const SliverToBoxAdapter(
+            SliverToBoxAdapter(
               child: Column(
                 children: [
                   Stack(
                     children: [
-                      Align(
+                      const Align(
                         alignment: Alignment.center,
                         child: Text('사진 게시판'),
                       ),
                       Align(
                         alignment: Alignment.centerRight,
-                        child: Text('더보기'),
+                        child: GestureDetector(
+                            onTap: () {
+                              context.push('/upload_announcement_post');
+                            },
+                            child: Text('더보기')),
                       ),
                     ],
                   ),
