@@ -18,6 +18,8 @@ import '../domain/model/post.dart';
 import '../presentation/detail_post_screen/detail_post_view_model.dart';
 import '../presentation/main_screen/board/board_view_model.dart';
 import '../presentation/main_screen/photo/photo_tab_view_model.dart';
+import '../presentation/upload_announcement_post_screen/upload_announcement_post_screen.dart';
+import '../presentation/upload_announcement_post_screen/upload_announcement_post_view_model.dart';
 import '../presentation/upload_calendar_post_screen/upload_calendar_post_screen.dart';
 import '../presentation/upload_calendar_post_screen/upload_calendar_post_view_model.dart';
 import '../presentation/user_info_screen/user_info_screen.dart';
@@ -148,6 +150,14 @@ final router = GoRouter(
         return ChangeNotifierProvider(
             create: (context) => getIt<UploadCalendarPostViewModel>(),
             child: const UploadCalendarPostScreen());
+      },
+    ),
+    GoRoute(
+      path: '/upload_announcement_post',
+      builder: (context, state) {
+        return ChangeNotifierProvider(
+            create: (context) => getIt<UploadAnnouncementPostViewModel>(),
+            child: const UploadAnnouncementPostScreen());
       },
     ),
   ],
