@@ -74,11 +74,12 @@ class _BoardTabState extends State<BoardTab> {
                   (context, index) {
                     return ImageCard(
                       image: viewModel.post[index].imageUrl,
-                      userImage: viewModel.post[index].imageUrl,
-                      userNickName: viewModel.post[index].userId,
+                      userImage: viewModel.post[index].userProfilePic,
+                      userNickName: viewModel.post[index].userNickName,
                     );
                   },
-                  childCount: viewModel.post.length,
+                  childCount:
+                      viewModel.post.length > 3 ? 3 : viewModel.post.length,
                 ),
               ),
             SliverToBoxAdapter(
