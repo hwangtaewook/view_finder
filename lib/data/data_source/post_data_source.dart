@@ -22,7 +22,10 @@ class PostDataSource {
 
   Future<List<DocumentSnapshot<Map<String, dynamic>>>>
       getAllPostDocuments() async {
-    final querySnapshot = await _firebaseFirestore.collection('posts').get();
+    final querySnapshot = await _firebaseFirestore
+        .collection('posts')
+        .orderBy('createdAt', descending: true)
+        .get();
     return querySnapshot.docs;
   }
 }
