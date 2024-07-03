@@ -12,14 +12,14 @@ import 'package:view_finder/presentation/main_screen/home/home_tab.dart';
 import 'package:view_finder/presentation/main_screen/home/home_view_model.dart';
 import 'package:view_finder/presentation/main_screen/main_screen.dart';
 import 'package:view_finder/presentation/main_screen/photo/photo_tab.dart';
-import 'package:view_finder/presentation/upload_%20calendar_post_screen/upload_calendar_post_screen.dart';
-import 'package:view_finder/presentation/upload_%20calendar_post_screen/upload_calendar_post_view_model.dart';
 import 'package:view_finder/presentation/upload_screen/upload_screen.dart';
 import 'package:view_finder/presentation/upload_screen/upload_view_model.dart';
 import '../domain/model/post.dart';
 import '../presentation/detail_post_screen/detail_post_view_model.dart';
 import '../presentation/main_screen/board/board_view_model.dart';
 import '../presentation/main_screen/photo/photo_tab_view_model.dart';
+import '../presentation/upload_calendar_post_screen/upload_calendar_post_screen.dart';
+import '../presentation/upload_calendar_post_screen/upload_calendar_post_view_model.dart';
 import '../presentation/user_info_screen/user_info_screen.dart';
 import 'di_setup.dart';
 

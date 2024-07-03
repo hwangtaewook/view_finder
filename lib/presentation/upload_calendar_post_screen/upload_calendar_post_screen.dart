@@ -3,7 +3,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:provider/provider.dart';
 import 'package:view_finder/domain/utils/date_conversion_util.dart';
 import 'package:view_finder/presentation/component/custom_text_field.dart';
-import 'package:view_finder/presentation/upload_%20calendar_post_screen/upload_calendar_post_view_model.dart';
+import 'package:view_finder/presentation/upload_calendar_post_screen/upload_calendar_post_view_model.dart';
 
 import 'component/date_picker_bottom_sheet.dart';
 import 'component/select_color.dart';

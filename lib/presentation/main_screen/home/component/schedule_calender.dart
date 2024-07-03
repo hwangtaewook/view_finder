@@ -33,12 +33,6 @@ class _ScheduleCalendarState extends State<ScheduleCalendar> {
                       MonthAppointmentDisplayMode.appointment),
             ),
           ),
-          FloatingActionButton(
-            onPressed: () {
-              context.push('/upload_calendar_post');
-            },
-            child: const Icon(Icons.add),
-          ),
         ],
       ),
     );

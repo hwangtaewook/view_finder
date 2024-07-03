@@ -51,7 +51,7 @@ import 'package:view_finder/presentation/main_screen/home/home_view_model.dart'
     as _i29;
 import 'package:view_finder/presentation/main_screen/photo/photo_tab_view_model.dart'
     as _i31;
-import 'package:view_finder/presentation/upload_%20calendar_post_screen/upload_calendar_post_view_model.dart'
+import 'package:view_finder/presentation/upload_calendar_post_screen/upload_calendar_post_view_model.dart'
     as _i25;
 import 'package:view_finder/presentation/upload_screen/upload_view_model.dart'
     as _i27;

@@ -48,120 +48,52 @@ class _HomeTabState extends State<HomeTab> {
                 height: 0.01.sh,
               ),
             ),
+            const SliverToBoxAdapter(
+              child: Column(
+                children: [
+                  Text('공지사항'),
+                ],
+              ),
+            ),
             SliverToBoxAdapter(
               child: SizedBox(
-                height: 600,
+                height: 550,
                 child: ScheduleCalendar(
                   calendarPosts: viewModel.calendarPost,
                 ),
               ),
             ),
-            SliverToBoxAdapter(
-              child: Padding(
-                padding: EdgeInsets.symmetric(horizontal: 0.04.sw),
-                child: Column(
-                  children: [
-                    Column(
-                      children: [
-                        const Text('공지사항 게시판'),
-                        SizedBox(
-                          height: 0.01.sh,
-                        ),
-                        ClipRRect(
-                          borderRadius: BorderRadius.circular(10),
-                          child: Container(
-                            height: 0.3.sh,
-                            width: 1.sw,
-                            color: Colors.grey[200],
-                            child: const Column(
-                              children: [
-                                Text('게시글'),
-                                Text('게시글'),
-                                Text('게시글'),
-                                Text('게시글'),
-                                Text('게시글'),
-                              ],
-                            ),
-                          ),
-                        ),
-                        SizedBox(
-                          height: 0.03.sh,
-                        ),
-                      ],
-                    ),
-                    Column(
-                      children: [
-                        const Text('출사 게시판'),
-                        SizedBox(
-                          height: 0.01.sh,
-                        ),
-                        ClipRRect(
-                          borderRadius: BorderRadius.circular(10),
-                          child: Container(
-                            height: 0.3.sh,
-                            width: 1.sw,
-                            color: Colors.grey[200],
-                            child: const Column(
-                              children: [
-                                Text('게시글'),
-                                Text('게시글'),
-                                Text('게시글'),
-                                Text('게시글'),
-                                Text('게시글'),
-                              ],
-                            ),
-                          ),
-                        ),
-                        SizedBox(
-                          height: 0.03.sh,
-                        ),
-                      ],
-                    ),
-                  ],
-                ),
-              ),
-            ),
-            SliverToBoxAdapter(
-              child: Column(
-                children: [
-                  const Text('사진 게시판'),
-                  SizedBox(
-                    height: 0.01.sh,
-                  ),
-                ],
-              ),
-            ),
-            if (viewModel.post.isEmpty)
-              SliverToBoxAdapter(
-                child: Center(
-                  child: Padding(
-                    padding: EdgeInsets.all(0.05.sw),
-                    child: const Text(
-                      'No items available',
-                      style: TextStyle(fontSize: 16, color: Colors.grey),
-                    ),
-                  ),
-                ),
-              )
-            else
-              SliverList(
-                delegate: SliverChildBuilderDelegate((context, index) {
-                  return GestureDetector(
-                    onTap: () {
-                      final post = viewModel.post[index];
-                      context.push('/detail_post', extra: post);
-                    },
-                    child: Hero(
-                      tag: viewModel.post[index].postId,
-                      child: ImageCard(
-                        image: viewModel.post[index].imageUrl,
-                        userImage: viewModel.post[index].userProfilePic,
-                        userNickName: viewModel.post[index].userNickName,
-                      ),
-                    ),
-                  );
-                }, childCount: viewModel.post.length),
-              ),
+            // if (viewModel.post.isEmpty)
+            //   SliverToBoxAdapter(
+            //     child: Center(
+            //       child: Padding(
+            //         padding: EdgeInsets.all(0.05.sw),
+            //         child: const Text(
+            //           'No items available',
+            //           style: TextStyle(fontSize: 16, color: Colors.grey),
+            //         ),
+            //       ),
+            //     ),
+            //   )
+            // else
+            //   SliverList(
+            //     delegate: SliverChildBuilderDelegate((context, index) {
+            //       return GestureDetector(
+            //         onTap: () {
+            //           final post = viewModel.post[index];
+            //           context.push('/detail_post', extra: post);
+            //         },
+            //         child: Hero(
+            //           tag: viewModel.post[index].postId,
+            //           child: ImageCard(
+            //             image: viewModel.post[index].imageUrl,
+            //             userImage: viewModel.post[index].userProfilePic,
+            //             userNickName: viewModel.post[index].userNickName,
+            //           ),
+            //         ),
+            //       );
+            //     }, childCount: viewModel.post.length),
+            //   ),
             SliverToBoxAdapter(
               child: SizedBox(
                 height: 0.1.sh,
