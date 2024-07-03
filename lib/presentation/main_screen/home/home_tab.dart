@@ -57,6 +57,71 @@ class _HomeTabState extends State<HomeTab> {
               ),
             ),
             SliverToBoxAdapter(
+              child: Padding(
+                padding: EdgeInsets.symmetric(horizontal: 0.04.sw),
+                child: Column(
+                  children: [
+                    Column(
+                      children: [
+                        const Text('공지사항 게시판'),
+                        SizedBox(
+                          height: 0.01.sh,
+                        ),
+                        ClipRRect(
+                          borderRadius: BorderRadius.circular(10),
+                          child: Container(
+                            height: 0.3.sh,
+                            width: 1.sw,
+                            color: Colors.grey[200],
+                            child: const Column(
+                              children: [
+                                Text('게시글'),
+                                Text('게시글'),
+                                Text('게시글'),
+                                Text('게시글'),
+                                Text('게시글'),
+                              ],
+                            ),
+                          ),
+                        ),
+                        SizedBox(
+                          height: 0.03.sh,
+                        ),
+                      ],
+                    ),
+                    Column(
+                      children: [
+                        const Text('출사 게시판'),
+                        SizedBox(
+                          height: 0.01.sh,
+                        ),
+                        ClipRRect(
+                          borderRadius: BorderRadius.circular(10),
+                          child: Container(
+                            height: 0.3.sh,
+                            width: 1.sw,
+                            color: Colors.grey[200],
+                            child: const Column(
+                              children: [
+                                Text('게시글'),
+                                Text('게시글'),
+                                Text('게시글'),
+                                Text('게시글'),
+                                Text('게시글'),
+                              ],
+                            ),
+                          ),
+                        ),
+                        SizedBox(
+                          height: 0.03.sh,
+                        ),
+                      ],
+                    ),
+                  ],
+                ),
+              ),
+            ),
+            SliverToBoxAdapter(
               child: Column(
                 children: [
                   const Text('사진 게시판'),
