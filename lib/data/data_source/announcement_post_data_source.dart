@@ -11,8 +11,10 @@ class AnnouncementPostDataSource {
 
   Future<List<DocumentSnapshot<Map<String, dynamic>>>>
       getAllPostDocuments() async {
-    final querySnapshot =
-        await _firebaseFirestore.collection('announcementPosts').get();
+    final querySnapshot = await _firebaseFirestore
+        .collection('announcementPosts')
+        .orderBy('createdAt', descending: true)
+        .get();
     return querySnapshot.docs;
   }
 }
