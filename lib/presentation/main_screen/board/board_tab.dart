@@ -2,10 +2,10 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
 import 'package:view_finder/core/custom_app_bar.dart';
-import '../component/board_comp.dart';
+import '../component/board_card.dart';
+import '../component/board_title.dart';
 import '../component/image_card.dart';
 import 'board_view_model.dart';
 
@@ -26,6 +26,7 @@ class _BoardTabState extends State<BoardTab> {
         context.read<BoardViewModel>().setAllPost();
         context.read<BoardViewModel>().setMember(user.uid);
         context.read<BoardViewModel>().setAllAnnouncementPost();
+        context.read<BoardViewModel>().setAllCalendarPost();
       });
     }
   }
@@ -43,46 +44,34 @@ class _BoardTabState extends State<BoardTab> {
                   : viewModel.member.profilePic,
               screenName: '게시판',
             ),
-            BoardComp(
-              boardName: '공지사항 게시판',
-              title: viewModel.announcementPost[0].title,
-              content: '내용내용내용내용내용내용내용내용내용',
-            ),
-            const BoardComp(
-              boardName: '출사일정 게시판',
-              title: '제목',
-              content: '내용내용내용내용내용내용내용내용내용',
-            ),
-            SliverToBoxAdapter(
-              child: Column(
-                children: [
-                  Stack(
-                    children: [
-                      const Align(
-                        alignment: Alignment.center,
-                        child: Text('사진 게시판'),
-                      ),
-                      Align(
-                        alignment: Alignment.centerRight,
-                        child: GestureDetector(
-                            onTap: () {
-                              context.push('/upload_announcement_post');
-                            },
-                            child: Text('더보기')),
-                      ),
-                    ],
-                  ),
-                ],
+            const BoardTitle(boardName: '공지사항'),
+            if (viewModel.announcementPost.isNotEmpty)
+              SliverList(
+                delegate: SliverChildBuilderDelegate((context, index) {
+                  return BoardCard(
+                    title: viewModel.announcementPost[index].title,
+                    content: viewModel.announcementPost[index].content,
+                  );
+                }, childCount: viewModel.announcementPost.length),
               ),
-            ),
+            const BoardTitle(boardName: '일정 게시판'),
+            if (viewModel.calendarPost.isNotEmpty)
+              SliverList(
+                delegate: SliverChildBuilderDelegate((context, index) {
+                  return BoardCard(
+                    title: viewModel.calendarPost[index].title,
+                    content: viewModel.calendarPost[index].content,
+                  );
+                }, childCount: viewModel.calendarPost.length),
+              ),
+            const BoardTitle(boardName: '사진 게시판'),
             if (viewModel.post.isNotEmpty)
               SliverList(
                 delegate: SliverChildBuilderDelegate(
                   (context, index) {
-                    return ImageCard(
-                      image: viewModel.post[index].imageUrl,
-                      userImage: viewModel.post[index].userProfilePic,
-                      userNickName: viewModel.post[index].userNickName,
+                    return BoardCard(
+                      title: viewModel.post[index].title,
+                      content: viewModel.post[index].content,
                     );
                   },
                   childCount:
