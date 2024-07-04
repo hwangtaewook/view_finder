@@ -104,15 +104,6 @@ class _DetailPostScreenState extends State<DetailPostScreen> {
                 ),
                 child: Column(
                   children: [
-                    Container(
-                      width: 0.2.sw,
-                      height: 0.007.sh,
-                      margin: const EdgeInsets.symmetric(vertical: 10),
-                      decoration: BoxDecoration(
-                        color: Colors.grey[300],
-                        borderRadius: BorderRadius.circular(3),
-                      ),
-                    ),
                     Expanded(
                       child: SingleChildScrollView(
                         controller: scrollController,
@@ -121,6 +112,18 @@ class _DetailPostScreenState extends State<DetailPostScreen> {
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
+                              Center(
+                                child: Container(
+                                  width: 0.2.sw,
+                                  height: 0.007.sh,
+                                  margin:
+                                      const EdgeInsets.symmetric(vertical: 10),
+                                  decoration: BoxDecoration(
+                                    color: Colors.grey[300],
+                                    borderRadius: BorderRadius.circular(3),
+                                  ),
+                                ),
+                              ),
                               SizedBox(
                                 height: 0.06.sh,
                                 child: Row(
