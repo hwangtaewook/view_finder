@@ -15,6 +15,7 @@ class BoardCard extends StatelessWidget {
     return Padding(
       padding: EdgeInsets.symmetric(
         vertical: 0.01.sw,
+        horizontal: 0.04.sw,
       ),
       child: ClipRRect(
         borderRadius: BorderRadius.circular(10),
