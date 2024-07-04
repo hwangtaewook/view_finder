@@ -1,17 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'board_card.dart';
 
-class BoardComp extends StatelessWidget {
+class BoardTitle extends StatelessWidget {
   final String boardName;
-  final String title;
-  final String content;
 
-  const BoardComp({
+  const BoardTitle({
     super.key,
     required this.boardName,
-    required this.title,
-    required this.content,
   });
 
   @override
@@ -33,7 +28,6 @@ class BoardComp extends StatelessWidget {
                 ),
               ],
             ),
-            BoardCard(title: title, content: content),
             SizedBox(
               height: 0.02.sh,
             ),
