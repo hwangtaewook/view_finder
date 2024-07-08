@@ -11,8 +11,10 @@ class CalendarPostDataSource {
 
   Future<List<DocumentSnapshot<Map<String, dynamic>>>>
       getAllPostDocuments() async {
-    final querySnapshot =
-        await _firebaseFirestore.collection('calendarPosts').get();
+    final querySnapshot = await _firebaseFirestore
+        .collection('calendarPosts')
+        .orderBy('createdAt', descending: true)
+        .get();
     return querySnapshot.docs;
   }
 }
