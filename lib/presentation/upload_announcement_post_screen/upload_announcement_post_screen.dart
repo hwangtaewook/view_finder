@@ -43,34 +43,6 @@ class _UploadAnnouncementPostScreenState
             ),
             pinned: true,
             scrolledUnderElevation: 0,
-            actions: [
-              GestureDetector(
-                onTap: () async {
-                  if (_titleTextEditingController.text.isNotEmpty &&
-                      _contentTextEditingController.text.isNotEmpty) {
-                    setState(() {
-                      isLoading = true;
-                    });
-                    await viewModel.uploadPost(_titleTextEditingController.text,
-                        _contentTextEditingController.text);
-
-                    setState(() {
-                      isLoading = false;
-                    });
-
-                    if (context.mounted) {
-                      Navigator.pop(context);
-                    }
-                  }
-                },
-                child: const Padding(
-                  padding: EdgeInsets.all(8),
-                  child: Icon(
-                    Icons.send,
-                  ),
-                ),
-              ),
-            ],
           ),
           SliverToBoxAdapter(child: SizedBox(height: 0.1.sw)),
           SliverPadding(
@@ -83,7 +55,7 @@ class _UploadAnnouncementPostScreenState
               ),
             ),
           ),
-          SliverToBoxAdapter(child: SizedBox(height: 0.06.sw)),
+          SliverToBoxAdapter(child: SizedBox(height: 0.05.sw)),
           SliverPadding(
             padding: EdgeInsets.symmetric(horizontal: 0.04.sw),
             sliver: SliverToBoxAdapter(
@@ -95,8 +67,45 @@ class _UploadAnnouncementPostScreenState
               ),
             ),
           ),
-          SliverToBoxAdapter(child: SizedBox(height: 0.06.sw)),
-          SliverToBoxAdapter(child: SizedBox(height: 0.06.sw)),
+          SliverToBoxAdapter(child: SizedBox(height: 0.05.sw)),
+          SliverToBoxAdapter(
+            child: GestureDetector(
+              onTap: () async {
+                if (_titleTextEditingController.text.isNotEmpty &&
+                    _contentTextEditingController.text.isNotEmpty) {
+                  setState(() {
+                    isLoading = true;
+                  });
+                  await viewModel.uploadPost(_titleTextEditingController.text,
+                      _contentTextEditingController.text);
+
+                  setState(() {
+                    isLoading = false;
+                  });
+
+                  if (context.mounted) {
+                    Navigator.pop(context);
+                  }
+                }
+              },
+              child: Padding(
+                padding: EdgeInsets.symmetric(horizontal: 0.04.sw),
+                child: Container(
+                  height: 0.07.sh,
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(8),
+                    color: const Color(0xff355E3B),
+                  ),
+                  child: Center(
+                    child: Text(
+                      '등록하기',
+                      style: TextStyle(color: Colors.white, fontSize: 14.sp),
+                    ),
+                  ),
+                ),
+              ),
+            ),
+          ),
         ],
       ),
     );
