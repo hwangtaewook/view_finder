@@ -2,9 +2,8 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:provider/provider.dart';
-import 'package:view_finder/presentation/main_screen/component/board_card.dart';
+import 'package:view_finder/core/custom_app_bar.dart';
 import 'package:view_finder/presentation/main_screen/home/component/schedule_calender.dart';
-import '../../../../core/custom_app_bar.dart';
 import 'home_view_model.dart';
 
 class HomeTab extends StatefulWidget {
@@ -37,10 +36,7 @@ class _HomeTabState extends State<HomeTab> {
       child: Scaffold(
         body: CustomScrollView(
           slivers: [
-            CustomAppBar(
-              userImageURL: viewModel.member.profilePic.isEmpty
-                  ? 'https://cdn.pixabay.com/photo/2023/02/08/18/36/tawny-owl-7777285_640.jpg'
-                  : viewModel.member.profilePic,
+            const CustomAppBar(
               screenName: '홈',
             ),
             SliverToBoxAdapter(
@@ -48,17 +44,56 @@ class _HomeTabState extends State<HomeTab> {
                 height: 0.01.sh,
               ),
             ),
-            const SliverToBoxAdapter(
-              child: Column(
-                children: [
-                  Text('공지사항'),
-                ],
+            viewModel.announcementPost.isNotEmpty
+                ? SliverToBoxAdapter(
+                    child: Padding(
+                      padding: EdgeInsets.symmetric(horizontal: 0.04.sw),
+                      child: ClipRRect(
+                        borderRadius: BorderRadius.circular(8),
+                        child: Container(
+                          color: const Color(0xff355E3B),
+                          width: 1.sw,
+                          height: 0.05.sh,
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Padding(
+                                padding: EdgeInsets.symmetric(
+                                    horizontal: 0.03.sw, vertical: 0.01.sw),
+                                child: Row(
+                                  children: [
+                                    const Padding(
+                                      padding:
+                                          EdgeInsets.symmetric(horizontal: 8),
+                                      child: Icon(
+                                        Icons.campaign_rounded,
+                                        color: Colors.white,
+                                      ),
+                                    ),
+                                    Text(
+                                      viewModel.announcementPost[0].content,
+                                      style: TextStyle(
+                                          fontSize: 12.sp, color: Colors.white),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                      ),
+                    ),
+                  )
+                : SliverToBoxAdapter(
+                    child: SizedBox(
+                      height: 0.05.sh,
+                    ),
+                  ),
+            SliverToBoxAdapter(
+              child: SizedBox(
+                height: 0.01.sh,
               ),
             ),
-            if (viewModel.announcementPost.isNotEmpty)
-              BoardCard(
-                  title: viewModel.announcementPost[0].title,
-                  content: viewModel.announcementPost[0].content),
             SliverToBoxAdapter(
               child: SizedBox(
                 height: 550,
@@ -98,11 +133,6 @@ class _HomeTabState extends State<HomeTab> {
             //       );
             //     }, childCount: viewModel.post.length),
             //   ),
-            SliverToBoxAdapter(
-              child: SizedBox(
-                height: 0.1.sh,
-              ),
-            ),
           ],
         ),
       ),
