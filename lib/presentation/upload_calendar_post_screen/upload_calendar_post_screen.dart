@@ -120,9 +120,17 @@ class _UploadCalendarPostScreenState extends State<UploadCalendarPostScreen> {
                               initialDate: DateConversionUtil().convertToDate(
                                   _startDayTextEditingController.text),
                               onDateSelected: (DateTime selectedDate) {
-                                setState(() {});
-                                _startDayTextEditingController.text =
-                                    '${selectedDate.year}-${selectedDate.month}-${selectedDate.day}';
+                                setState(() {
+                                  _startDayTextEditingController.text =
+                                      '${selectedDate.year}-${selectedDate.month}-${selectedDate.day}';
+                                });
+                                if (DateConversionUtil()
+                                    .convertToDate(
+                                        _endDayTextEditingController.text)
+                                    .isBefore(selectedDate)) {
+                                  _endDayTextEditingController.text =
+                                      '${selectedDate.year}-${selectedDate.month}-${selectedDate.day}';
+                                }
                               },
                             );
                           },
@@ -150,9 +158,17 @@ class _UploadCalendarPostScreenState extends State<UploadCalendarPostScreen> {
                               initialDate: DateConversionUtil().convertToDate(
                                   _endDayTextEditingController.text),
                               onDateSelected: (DateTime selectedDate) {
-                                setState(() {});
-                                _endDayTextEditingController.text =
-                                    '${selectedDate.year}-${selectedDate.month}-${selectedDate.day}';
+                                setState(() {
+                                  _endDayTextEditingController.text =
+                                      '${selectedDate.year}-${selectedDate.month}-${selectedDate.day}';
+                                });
+                                if (DateConversionUtil()
+                                    .convertToDate(
+                                        _startDayTextEditingController.text)
+                                    .isAfter(selectedDate)) {
+                                  _startDayTextEditingController.text =
+                                      '${selectedDate.year}-${selectedDate.month}-${selectedDate.day}';
+                                }
                               },
                             );
                           },
