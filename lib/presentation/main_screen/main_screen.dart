@@ -7,6 +7,7 @@ import 'component/nav_item.dart';
 
 class MainScreen extends StatefulWidget {
   final Widget child;
+
   const MainScreen({
     super.key,
     required this.child,
@@ -69,7 +70,108 @@ class _MainScreenState extends State<MainScreen> {
                           ),
                           NavItem(
                             onTap: () {
-                              context.push('/upload');
+                              showModalBottomSheet(
+                                  context: context,
+                                  backgroundColor: Colors.transparent,
+                                  builder: (context) {
+                                    return SizedBox(
+                                      height: 0.25.sh,
+                                      child: Column(
+                                        children: [
+                                          SizedBox(
+                                            width: 0.92.sw,
+                                            child: TextButton(
+                                              style: ButtonStyle(
+                                                splashFactory:
+                                                    NoSplash.splashFactory,
+                                                overlayColor:
+                                                    const WidgetStatePropertyAll(
+                                                        Colors.transparent),
+                                                backgroundColor:
+                                                    const WidgetStatePropertyAll(
+                                                        Colors.white),
+                                                shape: WidgetStatePropertyAll(
+                                                    RoundedRectangleBorder(
+                                                        borderRadius:
+                                                            BorderRadius
+                                                                .circular(12))),
+                                              ),
+                                              onPressed: () {
+                                                context.push(
+                                                    '/upload_announcement_post');
+                                                context.pop();
+                                              },
+                                              child: const Text(
+                                                '공지 업로드',
+                                                style: TextStyle(
+                                                    color: Colors.black),
+                                              ),
+                                            ),
+                                          ),
+                                          SizedBox(
+                                            width: 0.92.sw,
+                                            child: TextButton(
+                                              style: ButtonStyle(
+                                                splashFactory:
+                                                    NoSplash.splashFactory,
+                                                overlayColor:
+                                                    const WidgetStatePropertyAll(
+                                                        Colors.transparent),
+                                                backgroundColor:
+                                                    const WidgetStatePropertyAll(
+                                                        Colors.white),
+                                                shape: WidgetStatePropertyAll(
+                                                    RoundedRectangleBorder(
+                                                        borderRadius:
+                                                            BorderRadius
+                                                                .circular(12))),
+                                              ),
+                                              onPressed: () {
+                                                context.push(
+                                                    '/upload_calendar_post');
+                                                context.pop();
+                                              },
+                                              child: const Text(
+                                                '일정 업로드',
+                                                style: TextStyle(
+                                                    color: Colors.black),
+                                              ),
+                                            ),
+                                          ),
+                                          SizedBox(
+                                            width: 0.92.sw,
+                                            child: TextButton(
+                                              style: ButtonStyle(
+                                                splashFactory:
+                                                    NoSplash.splashFactory,
+                                                overlayColor:
+                                                    const WidgetStatePropertyAll(
+                                                        Colors.transparent),
+                                                backgroundColor:
+                                                    const WidgetStatePropertyAll(
+                                                        Colors.white),
+                                                shape: WidgetStatePropertyAll(
+                                                    RoundedRectangleBorder(
+                                                        borderRadius:
+                                                            BorderRadius
+                                                                .circular(12))),
+                                              ),
+                                              onPressed: () {
+                                                context.push('/upload');
+                                                context.pop();
+                                              },
+                                              child: const Text(
+                                                '사진 업로드',
+                                                style: TextStyle(
+                                                    color: Colors.black),
+                                              ),
+                                            ),
+                                          ),
+                                        ],
+                                      ),
+                                    );
+                                  });
+                              // context.push('/upload');
                             },
                             icon: Icons.add_box,
                             selected: false,
