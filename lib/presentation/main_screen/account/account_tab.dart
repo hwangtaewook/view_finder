@@ -49,21 +49,20 @@ class _AccountTabState extends State<AccountTab> {
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.start,
                           children: [
-                            Container(
-                              alignment: Alignment.center,
-                              height: 0.10.sh,
-                              child: ClipRRect(
-                                borderRadius: BorderRadius.circular(0.075.sh),
-                                child: Image.network(
-                                  viewModel.member.profilePic.isEmpty
-                                      ? 'https://cdn.pixabay.com/photo/2017/02/20/18/03/cat-2083492_640.jpg'
-                                      : viewModel.member.profilePic,
-                                  height: 0.10.sh,
-                                  width: 0.10.sh,
-                                  fit: BoxFit.cover,
+                            if (viewModel.member.profilePic.isNotEmpty)
+                              Container(
+                                alignment: Alignment.center,
+                                height: 0.10.sh,
+                                child: ClipRRect(
+                                  borderRadius: BorderRadius.circular(0.075.sh),
+                                  child: Image.network(
+                                    viewModel.member.profilePic,
+                                    height: 0.10.sh,
+                                    width: 0.10.sh,
+                                    fit: BoxFit.cover,
+                                  ),
                                 ),
                               ),
-                            ),
                             // SizedBox(width: 0.1.sw),
                             Padding(
                               padding: const EdgeInsets.symmetric(
@@ -74,7 +73,7 @@ class _AccountTabState extends State<AccountTab> {
                                   ClipRRect(
                                     borderRadius: BorderRadius.circular(50),
                                     child: Container(
-                                      color: Colors.grey[200],
+                                      color: const Color(0xff355E3B),
                                       child: const Padding(
                                         padding: EdgeInsets.only(
                                             right: 8,
@@ -85,7 +84,8 @@ class _AccountTabState extends State<AccountTab> {
                                           '뷰파인더',
                                           style: TextStyle(
                                               fontSize: 10,
-                                              fontWeight: FontWeight.w400),
+                                              fontWeight: FontWeight.w400,
+                                              color: Colors.white),
                                         ),
                                       ),
                                     ),
