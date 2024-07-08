@@ -2,6 +2,7 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:provider/provider.dart';
+import 'package:view_finder/presentation/component/custom_text_field.dart';
 import 'package:view_finder/presentation/upload_screen/upload_view_model.dart';
 
 class UploadScreen extends StatefulWidget {
@@ -37,47 +38,12 @@ class _UploadScreenState extends State<UploadScreen> {
                 centerTitle: true,
                 toolbarHeight: 0.055.sh,
                 title: Text(
-                  'Upload',
+                  '사진 등록',
                   textAlign: TextAlign.center,
                   style: TextStyle(fontSize: 18.sp),
                 ),
                 pinned: true,
                 scrolledUnderElevation: 0,
-                actions: [
-                  Padding(
-                    padding: EdgeInsets.symmetric(horizontal: 0.01.sh),
-                    child: GestureDetector(
-                      onTap: () async {
-                        if (_image != null &&
-                            _titleTextEditingController.text.isNotEmpty &&
-                            _detailTextEditingController.text.isNotEmpty) {
-                          setState(() {
-                            _isLoading = true;
-                          });
-                          await viewModel.uploadPost(
-                            _titleTextEditingController.text,
-                            _detailTextEditingController.text,
-                            _image!,
-                          );
-
-                          setState(() {
-                            _isLoading = false;
-                          });
-
-                          if (context.mounted) {
-                            Navigator.pop(context);
-                          }
-                        }
-                      },
-                      child: const Padding(
-                        padding: EdgeInsets.all(8),
-                        child: Icon(
-                          Icons.send,
-                        ),
-                      ),
-                    ),
-                  ),
-                ],
               ),
               if (_image == null)
                 SliverToBoxAdapter(
@@ -90,54 +56,102 @@ class _UploadScreenState extends State<UploadScreen> {
                 SliverToBoxAdapter(
                   child: Image.file(_image!),
                 ),
+              SliverToBoxAdapter(child: SizedBox(height: 0.05.sw)),
               SliverToBoxAdapter(
-                child: ElevatedButton(
-                  onPressed: () async {
+                child: GestureDetector(
+                  onTap: () async {
                     _image = await viewModel.getImage();
                     setState(() {});
                   },
-                  child: const Text('이미지 선택'),
-                ),
-              ),
-              SliverToBoxAdapter(
-                child: Padding(
-                  padding: const EdgeInsets.all(16.0),
-                  child: Column(
-                    children: [
-                      TextField(
-                        controller: _titleTextEditingController,
-                        onTapOutside: (event) =>
-                            FocusManager.instance.primaryFocus?.unfocus(),
-                        decoration: InputDecoration(
-                            border: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(10),
-                            ),
-                            filled: true,
-                            hintText: '제목을 입력하세요',
-                            fillColor: Colors.white70),
+                  child: Padding(
+                    padding: EdgeInsets.symmetric(horizontal: 0.04.sw),
+                    child: Container(
+                      height: 0.07.sh,
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(8),
+                        color: const Color(0xff355E3B),
                       ),
-                      SizedBox(
-                        height: 0.1.sh,
+                      child: Center(
+                        child: Text(
+                          '이미지 선택',
+                          style:
+                              TextStyle(color: Colors.white, fontSize: 14.sp),
+                        ),
                       ),
-                      TextField(
-                        controller: _detailTextEditingController,
-                        onTapOutside: (event) =>
-                            FocusManager.instance.primaryFocus?.unfocus(),
-                        decoration: InputDecoration(
-                            border: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(10),
-                            ),
-                            filled: true,
-                            hintText: '내용을 입력하세요',
-                            fillColor: Colors.white70),
-                      ),
-                    ],
+                    ),
                   ),
                 ),
-              )
+              ),
+              SliverToBoxAdapter(child: SizedBox(height: 0.05.sw)),
+              SliverPadding(
+                padding: EdgeInsets.symmetric(horizontal: 0.04.sw),
+                sliver: SliverToBoxAdapter(
+                  child: CustomTextField(
+                    controller: _titleTextEditingController,
+                    fieldName: '제목',
+                    hintText: '제목을 입력하세요',
+                  ),
+                ),
+              ),
+              SliverToBoxAdapter(child: SizedBox(height: 0.05.sw)),
+              SliverPadding(
+                padding: EdgeInsets.symmetric(horizontal: 0.04.sw),
+                sliver: SliverToBoxAdapter(
+                  child: CustomTextField(
+                    controller: _detailTextEditingController,
+                    fieldName: '내용',
+                    hintText: '내용을 입력하세요',
+                    height: 0.2.sh,
+                  ),
+                ),
+              ),
+              SliverToBoxAdapter(child: SizedBox(height: 0.05.sw)),
+              SliverToBoxAdapter(
+                child: GestureDetector(
+                  onTap: () async {
+                    if (_image != null &&
+                        _titleTextEditingController.text.isNotEmpty &&
+                        _detailTextEditingController.text.isNotEmpty) {
+                      setState(() {
+                        _isLoading = true;
+                      });
+                      await viewModel.uploadPost(
+                        _titleTextEditingController.text,
+                        _detailTextEditingController.text,
+                        _image!,
+                      );
+
+                      setState(() {
+                        _isLoading = false;
+                      });
+
+                      if (context.mounted) {
+                        Navigator.pop(context);
+                      }
+                    }
+                  },
+                  child: Padding(
+                    padding: EdgeInsets.symmetric(horizontal: 0.04.sw),
+                    child: Container(
+                      height: 0.07.sh,
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(8),
+                        color: const Color(0xff355E3B),
+                      ),
+                      child: Center(
+                        child: Text(
+                          '등록하기',
+                          style:
+                              TextStyle(color: Colors.white, fontSize: 14.sp),
+                        ),
+                      ),
+                    ),
+                  ),
+                ),
+              ),
             ],
           ),
-          if (_isLoading) // 이미지 업로드 중에는 잠금 상태 UI를 표시합니다.
+          if (_isLoading)
             Container(
               color: Colors.black.withOpacity(0.5),
               child: const Center(
