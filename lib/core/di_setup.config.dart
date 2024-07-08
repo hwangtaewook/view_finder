@@ -154,6 +154,7 @@ extension GetItInjectableX on _i1.GetIt {
           getPostsUseCase: gh<_i28.GetPostsUseCase>(),
           getMemberUseCase: gh<_i18.GetMemberUseCase>(),
           getCalendarPostUseCase: gh<_i32.GetCalendarPostUseCase>(),
+          getAnnouncementPostUseCase: gh<_i27.GetAnnouncementPostUseCase>(),
         ));
     gh.factory<_i36.PhotoViewModel>(() => _i36.PhotoViewModel(
           getPostsUseCase: gh<_i28.GetPostsUseCase>(),
