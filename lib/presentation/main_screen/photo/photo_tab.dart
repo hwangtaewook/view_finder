@@ -34,10 +34,7 @@ class _PhotoTabState extends State<PhotoTab> {
       child: Scaffold(
         body: CustomScrollView(
           slivers: [
-            CustomAppBar(
-              userImageURL: viewModel.member.profilePic.isEmpty
-                  ? 'https://cdn.pixabay.com/photo/2014/11/30/14/11/cat-551554_1280.jpg'
-                  : viewModel.member.profilePic,
+            const CustomAppBar(
               screenName: '사진',
             ),
             SliverPadding(
@@ -47,20 +44,6 @@ class _PhotoTabState extends State<PhotoTab> {
                 mainAxisSpacing: 10,
                 crossAxisSpacing: 10,
                 itemBuilder: (BuildContext context, int index) {
-                  final List<String> catPics = [
-                    'assets/1.jpg',
-                    'assets/2.jpg',
-                    'assets/3.jpg',
-                    'assets/4.jpg',
-                    'assets/5.jpg',
-                    'assets/6.jpg',
-                    'assets/7.jpg',
-                    'assets/8.jpg',
-                    'assets/9.jpg',
-                    'assets/10.jpg',
-                    'assets/11.jpg',
-                  ];
-
                   return GestureDetector(
                     onTap: () {
                       final post = viewModel.post[index];
