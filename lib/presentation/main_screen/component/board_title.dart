@@ -3,10 +3,12 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class BoardTitle extends StatelessWidget {
   final String boardName;
+  final Function() function;
 
   const BoardTitle({
     super.key,
     required this.boardName,
+    required this.function,
   });
 
   @override
@@ -22,9 +24,12 @@ class BoardTitle extends StatelessWidget {
                   alignment: Alignment.center,
                   child: Text(boardName),
                 ),
-                const Align(
-                  alignment: Alignment.centerRight,
-                  child: Text('더보기'),
+                GestureDetector(
+                  onTap: function,
+                  child: const Align(
+                    alignment: Alignment.centerRight,
+                    child: Text('더보기'),
+                  ),
                 ),
               ],
             ),
