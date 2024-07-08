@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:flutter/cupertino.dart';
 import 'package:injectable/injectable.dart';
 import '../../../domain/model/member.dart';
@@ -23,6 +25,7 @@ class PhotoViewModel with ChangeNotifier {
   Future<void> setAllPost() async {
     final post = await _getPostsUseCase.execute();
     _post = post;
+    _post.shuffle(Random());
     notifyListeners();
   }
 
