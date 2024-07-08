@@ -20,12 +20,14 @@ class _SelectColorState extends State<SelectColor> {
     return Padding(
       padding: const EdgeInsets.all(8.0),
       child: Container(
-        height: 45,
-        width: 45,
+        height: 40,
+        width: 40,
         decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(8),
           color: widget.color,
-          border:
-              widget.check ? Border.all(color: Colors.black, width: 3.0) : null,
+          border: widget.check
+              ? Border.all(color: Colors.black.withOpacity(0.5), width: 3.0)
+              : null,
         ),
       ),
     );
