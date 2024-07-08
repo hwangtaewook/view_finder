@@ -47,13 +47,16 @@ class CustomTextField extends StatelessWidget {
                   cursorColor: Colors.black,
                   decoration: InputDecoration(
                     hintText: hintText,
+                    hintStyle: const TextStyle(color: Color(0xffbababa)),
                     contentPadding:
                         const EdgeInsets.symmetric(vertical: 4, horizontal: 12),
                     border: const OutlineInputBorder(
                       borderSide: BorderSide.none,
                     ),
                   ),
-                  style: TextStyle(fontSize: 12.sp),
+                  style: TextStyle(
+                    fontSize: 12.sp,
+                  ),
                 ),
               ),
             ),
