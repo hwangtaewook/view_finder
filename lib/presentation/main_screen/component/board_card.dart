@@ -20,7 +20,7 @@ class BoardCard extends StatelessWidget {
       child: ClipRRect(
         borderRadius: BorderRadius.circular(10),
         child: Container(
-          color: Colors.grey[300],
+          color: const Color(0xffF2F2F2),
           height: 0.1.sh,
           width: 1.sw,
           child: Column(
