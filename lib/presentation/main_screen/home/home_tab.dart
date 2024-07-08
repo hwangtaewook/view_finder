@@ -1,11 +1,10 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
+import 'package:view_finder/presentation/main_screen/component/board_card.dart';
 import 'package:view_finder/presentation/main_screen/home/component/schedule_calender.dart';
 import '../../../../core/custom_app_bar.dart';
-import '../component/image_card.dart';
 import 'home_view_model.dart';
 
 class HomeTab extends StatefulWidget {
@@ -25,6 +24,7 @@ class _HomeTabState extends State<HomeTab> {
         await context.read<HomeViewModel>().setMember(user.uid);
         await context.read<HomeViewModel>().setAllPost();
         await context.read<HomeViewModel>().setCalendarPost();
+        await context.read<HomeViewModel>().setAllAnnouncementPost();
       });
     }
   }
@@ -55,6 +55,10 @@ class _HomeTabState extends State<HomeTab> {
                 ],
               ),
             ),
+            if (viewModel.announcementPost.isNotEmpty)
+              BoardCard(
+                  title: viewModel.announcementPost[0].title,
+                  content: viewModel.announcementPost[0].content),
             SliverToBoxAdapter(
               child: SizedBox(
                 height: 550,
