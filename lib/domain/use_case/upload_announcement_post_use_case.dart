@@ -26,6 +26,7 @@ class UploadAnnouncementPostUseCase {
     final userId = FirebaseAuth.instance.currentUser?.uid ?? '';
     final getMember = await _getMemberUseCase.execute(userId);
     final userNickName = getMember.userNickName;
+    final userProfilePic = getMember.profilePic;
 
     await newPostRef.set(AnnouncementPost(
       postId: newPostRef.id,
@@ -34,6 +35,7 @@ class UploadAnnouncementPostUseCase {
       title: title,
       content: content,
       createdAt: DateTime.now().toString(),
+      userProfilePic: userProfilePic,
     ));
   }
 }

@@ -10,6 +10,7 @@ class AnnouncementPost with _$AnnouncementPost {
     required String postId,
     required String userId,
     required String userNickName,
+    required String userProfilePic,
     required String title,
     required String content,
     required String createdAt,

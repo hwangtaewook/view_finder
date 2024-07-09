@@ -15,6 +15,7 @@ class UploadAnnouncementPostViewModel with ChangeNotifier {
     postId: '',
     userId: '',
     userNickName: '',
+    userProfilePic: '',
     title: '',
     content: '',
     createdAt: '',
