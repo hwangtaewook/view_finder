@@ -71,7 +71,7 @@ class _HomeTabState extends State<HomeTab> {
                                       ),
                                     ),
                                     Text(
-                                      viewModel.announcementPost[0].content,
+                                      viewModel.announcementPost[0].title,
                                       style: TextStyle(
                                           fontSize: 12.sp, color: Colors.white),
                                     ),
