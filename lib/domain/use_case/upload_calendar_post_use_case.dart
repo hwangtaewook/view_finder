@@ -27,6 +27,7 @@ class UploadCalendarPostUseCase {
     final userId = FirebaseAuth.instance.currentUser?.uid ?? '';
     final getMember = await _getMemberUseCase.execute(userId);
     final userNickName = getMember.userNickName;
+    final userProfilePic = getMember.profilePic;
 
     await newPostRef.set(CalendarPost(
       postId: newPostRef.id,
@@ -38,6 +39,7 @@ class UploadCalendarPostUseCase {
       content: content,
       color: color,
       createdAt: DateTime.now().toString(),
+      userProfilePic: userProfilePic,
     ));
   }
 }

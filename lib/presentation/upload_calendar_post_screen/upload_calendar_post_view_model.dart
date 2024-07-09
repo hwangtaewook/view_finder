@@ -15,6 +15,7 @@ class UploadCalendarPostViewModel with ChangeNotifier {
     postId: '',
     userId: '',
     userNickName: '',
+    userProfilePic: '',
     title: '',
     startDay: '',
     endDay: '',

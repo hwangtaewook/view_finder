@@ -10,6 +10,7 @@ class CalendarPost with _$CalendarPost {
     required String postId,
     required String userId,
     required String userNickName,
+    required String userProfilePic,
     required String title,
     required String startDay,
     required String endDay,
