@@ -3,8 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
-import '../component/board_card.dart';
-import '../component/image_card.dart';
+import 'package:view_finder/presentation/main_screen/board/component/board_card.dart';
+import 'component/image_card.dart';
 import 'board_view_model.dart';
 
 class BoardTab extends StatefulWidget {
@@ -76,6 +76,12 @@ class _BoardTabState extends State<BoardTab> {
                                       viewModel.announcementPost[index].title,
                                   content:
                                       viewModel.announcementPost[index].content,
+                                  userProfilePic: viewModel
+                                      .announcementPost[index].userProfilePic,
+                                  userNickName: viewModel
+                                      .announcementPost[index].userNickName,
+                                  createdAt: viewModel
+                                      .announcementPost[index].createdAt,
                                 );
                               },
                               childCount: viewModel.announcementPost.length,
@@ -103,6 +109,15 @@ class _BoardTabState extends State<BoardTab> {
                                   title: viewModel.calendarPost[index].title,
                                   content:
                                       viewModel.calendarPost[index].content,
+                                  userProfilePic: viewModel
+                                      .calendarPost[index].userProfilePic,
+                                  userNickName: viewModel
+                                      .calendarPost[index].userNickName,
+                                  createdAt:
+                                      viewModel.calendarPost[index].createdAt,
+                                  startDay:
+                                      viewModel.calendarPost[index].startDay,
+                                  endDay: viewModel.calendarPost[index].endDay,
                                 );
                               },
                               childCount: viewModel.calendarPost.length,
