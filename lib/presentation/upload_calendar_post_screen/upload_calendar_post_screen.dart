@@ -202,56 +202,56 @@ class _UploadCalendarPostScreenState extends State<UploadCalendarPostScreen> {
                                 GestureDetector(
                                   onTap: () {
                                     setState(() {});
-                                    _selectedColor = const Color(0xffff6666);
+                                    _selectedColor = const Color(0xff141e61);
                                   },
                                   child: SelectColor(
-                                    color: const Color(0xFFff6666),
+                                    color: const Color(0xff141e61),
                                     check: _selectedColor ==
-                                        const Color(0xFFff6666),
+                                        const Color(0xff141e61),
                                   ),
                                 ),
                                 GestureDetector(
                                   onTap: () {
                                     setState(() {});
-                                    _selectedColor = const Color(0xffffbd55);
+                                    _selectedColor = const Color(0xff5b4b8a);
                                   },
                                   child: SelectColor(
-                                    color: const Color(0xFFffbd55),
+                                    color: const Color(0xff5b4b8a),
                                     check: _selectedColor ==
-                                        const Color(0xFFffbd55),
+                                        const Color(0xff5b4b8a),
                                   ),
                                 ),
                                 GestureDetector(
                                   onTap: () {
                                     setState(() {});
-                                    _selectedColor = const Color(0xffffff66);
+                                    _selectedColor = const Color(0xff787a91);
                                   },
                                   child: SelectColor(
-                                    color: const Color(0xffffff66),
+                                    color: const Color(0xff787a91),
                                     check: _selectedColor ==
-                                        const Color(0xffffff66),
+                                        const Color(0xff787a91),
                                   ),
                                 ),
                                 GestureDetector(
                                   onTap: () {
                                     setState(() {});
-                                    _selectedColor = const Color(0xff9de24f);
+                                    _selectedColor = const Color(0xffd89216);
                                   },
                                   child: SelectColor(
-                                    color: const Color(0xff9de24f),
+                                    color: const Color(0xffd89216),
                                     check: _selectedColor ==
-                                        const Color(0xff9de24f),
+                                        const Color(0xffd89216),
                                   ),
                                 ),
                                 GestureDetector(
                                   onTap: () {
                                     setState(() {});
-                                    _selectedColor = const Color(0xff87cefa);
+                                    _selectedColor = const Color(0xffc84b31);
                                   },
                                   child: SelectColor(
-                                    color: const Color(0xff87cefa),
+                                    color: const Color(0xffc84b31),
                                     check: _selectedColor ==
-                                        const Color(0xff87cefa),
+                                        const Color(0xffc84b31),
                                   ),
                                 ),
                               ],
@@ -262,56 +262,56 @@ class _UploadCalendarPostScreenState extends State<UploadCalendarPostScreen> {
                                 GestureDetector(
                                   onTap: () {
                                     setState(() {});
-                                    _selectedColor = const Color(0xfffbc0c0);
+                                    _selectedColor = const Color(0xff2c3639);
                                   },
                                   child: SelectColor(
-                                    color: const Color(0xfffbc0c0),
+                                    color: const Color(0xff2c3639),
                                     check: _selectedColor ==
-                                        const Color(0xfffbc0c0),
+                                        const Color(0xff2c3639),
                                   ),
                                 ),
                                 GestureDetector(
                                   onTap: () {
                                     setState(() {});
-                                    _selectedColor = const Color(0xffffdaa1);
+                                    _selectedColor = const Color(0xff3f4e4f);
                                   },
                                   child: SelectColor(
-                                    color: const Color(0xffffdaa1),
+                                    color: const Color(0xff3f4e4f),
                                     check: _selectedColor ==
-                                        const Color(0xffffdaa1),
+                                        const Color(0xff3f4e4f),
                                   ),
                                 ),
                                 GestureDetector(
                                   onTap: () {
                                     setState(() {});
-                                    _selectedColor = const Color(0xfff9ffc9);
+                                    _selectedColor = const Color(0xff355E3B);
                                   },
                                   child: SelectColor(
-                                    color: const Color(0xfff9ffc9),
+                                    color: const Color(0xff355E3B),
                                     check: _selectedColor ==
-                                        const Color(0xfff9ffc9),
+                                        const Color(0xff355E3B),
                                   ),
                                 ),
                                 GestureDetector(
                                   onTap: () {
                                     setState(() {});
-                                    _selectedColor = const Color(0xffbaffe5);
+                                    _selectedColor = const Color(0xffa27b5c);
                                   },
                                   child: SelectColor(
-                                    color: const Color(0xffbaffe5),
+                                    color: const Color(0xffa27b5c),
                                     check: _selectedColor ==
-                                        const Color(0xffbaffe5),
+                                        const Color(0xffa27b5c),
                                   ),
                                 ),
                                 GestureDetector(
                                   onTap: () {
                                     setState(() {});
-                                    _selectedColor = const Color(0xffb9dcff);
+                                    _selectedColor = const Color(0xff553939);
                                   },
                                   child: SelectColor(
-                                    color: const Color(0xffb9dcff),
+                                    color: const Color(0xff553939),
                                     check: _selectedColor ==
-                                        const Color(0xffb9dcff),
+                                        const Color(0xff553939),
                                   ),
                                 ),
                               ],
