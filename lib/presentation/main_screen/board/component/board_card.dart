@@ -9,16 +9,19 @@ class BoardCard extends StatelessWidget {
   final String content;
   final String? startDay;
   final String? endDay;
+  final String? imageUrl;
 
-  const BoardCard(
-      {super.key,
-      required this.userProfilePic,
-      required this.userNickName,
-      required this.createdAt,
-      required this.title,
-      required this.content,
-      this.startDay,
-      this.endDay});
+  const BoardCard({
+    super.key,
+    required this.userProfilePic,
+    required this.userNickName,
+    required this.createdAt,
+    required this.title,
+    required this.content,
+    this.startDay,
+    this.endDay,
+    this.imageUrl,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -38,7 +41,7 @@ class BoardCard extends StatelessWidget {
                 ),
               ),
               SizedBox(
-                width: 0.025.sw,
+                width: 0.04.sw,
               ),
               Flexible(
                 fit: FlexFit.loose,
@@ -49,13 +52,17 @@ class BoardCard extends StatelessWidget {
                       children: [
                         Text(
                           userNickName,
-                          style: const TextStyle(fontWeight: FontWeight.bold),
+                          style: const TextStyle(fontWeight: FontWeight.w400),
                         ),
                         const Spacer(),
-                        Text(
-                          createdAt.substring(2, 10),
+                        const Icon(
+                          Icons.more_horiz,
+                          size: 20,
                         ),
                       ],
+                    ),
+                    SizedBox(
+                      height: 0.01.sh,
                     ),
                     Text(
                       title,
@@ -77,6 +84,18 @@ class BoardCard extends StatelessWidget {
                       SizedBox(
                         height: 0.01.sh,
                       ),
+                    if (imageUrl != null)
+                      Column(
+                        children: [
+                          ClipRRect(
+                            borderRadius: BorderRadius.circular(10),
+                            child: Image.network(imageUrl!),
+                          ),
+                          SizedBox(
+                            height: 0.01.sh,
+                          )
+                        ],
+                      ),
                     Text(content),
                     SizedBox(
                       height: 0.01.sh,
@@ -94,9 +113,9 @@ class BoardCard extends StatelessWidget {
                           size: 20,
                         ),
                         const Spacer(),
-                        const Icon(
-                          Icons.more_horiz,
-                          size: 20,
+                        Text(
+                          createdAt.substring(2, 10),
+                          style: const TextStyle(fontSize: 12),
                         ),
                         SizedBox(width: 0.03.sw),
                       ],
@@ -108,7 +127,7 @@ class BoardCard extends StatelessWidget {
             ],
           ),
           Divider(
-            color: const Color(0xff355E3B).withOpacity(0.5),
+            color: const Color(0xff355E3B).withOpacity(0.2),
           ),
           SizedBox(height: 0.01.sh),
         ],
