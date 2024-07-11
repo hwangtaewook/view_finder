@@ -26,7 +26,7 @@ class _SelectColorState extends State<SelectColor> {
           borderRadius: BorderRadius.circular(8),
           color: widget.color,
           border: widget.check
-              ? Border.all(color: Colors.black.withOpacity(0.5), width: 3.0)
+              ? Border.all(color: Colors.white.withOpacity(0.5), width: 4.0)
               : null,
         ),
       ),
