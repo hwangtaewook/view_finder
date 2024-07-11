@@ -4,7 +4,6 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
 import 'package:view_finder/presentation/main_screen/board/component/board_card.dart';
-import 'component/image_card.dart';
 import 'board_view_model.dart';
 
 class BoardTab extends StatefulWidget {
@@ -39,23 +38,35 @@ class _BoardTabState extends State<BoardTab> {
           length: 3,
           child: Column(
             children: [
-              TabBar(
-                indicatorColor: const Color(0xff355E3B),
-                unselectedLabelColor: Colors.grey,
-                labelColor: Colors.black,
-                splashFactory: NoSplash.splashFactory,
-                overlayColor: WidgetStateProperty.all(Colors.transparent),
-                tabs: const [
-                  Tab(
-                    text: '공지 게시판',
-                  ),
-                  Tab(
-                    text: '일정 게시판',
-                  ),
-                  Tab(
-                    text: '사진 게시판',
-                  ),
-                ],
+              AppBar(
+                toolbarHeight: 0.055.sh,
+                centerTitle: true,
+                title: Text(
+                  '게시판',
+                  style: TextStyle(fontSize: 18.sp),
+                ),
+              ),
+              SizedBox(
+                height: 0.05.sh,
+                child: TabBar(
+                  indicatorSize: TabBarIndicatorSize.tab,
+                  indicatorColor: const Color(0xff355E3B),
+                  unselectedLabelColor: Colors.grey,
+                  labelColor: Colors.black,
+                  splashFactory: NoSplash.splashFactory,
+                  overlayColor: WidgetStateProperty.all(Colors.transparent),
+                  tabs: const [
+                    Tab(
+                      text: '공지',
+                    ),
+                    Tab(
+                      text: '일정',
+                    ),
+                    Tab(
+                      text: '사진',
+                    ),
+                  ],
+                ),
               ),
               Expanded(
                 child: TabBarView(
@@ -146,16 +157,15 @@ class _BoardTabState extends State<BoardTab> {
                                     final post = viewModel.post[index];
                                     context.push('/detail_post', extra: post);
                                   },
-                                  child: ImageCard(
-                                    image: viewModel.post[index].imageUrl,
-                                    userImage:
+                                  child: BoardCard(
+                                    userProfilePic:
                                         viewModel.post[index].userProfilePic,
                                     userNickName:
                                         viewModel.post[index].userNickName,
-                                    function: () {
-                                      final post = viewModel.post[index];
-                                      context.push('/detail_post', extra: post);
-                                    },
+                                    createdAt: viewModel.post[index].createdAt,
+                                    title: viewModel.post[index].title,
+                                    content: viewModel.post[index].content,
+                                    imageUrl: viewModel.post[index].imageUrl,
                                   ),
                                 );
                               },
