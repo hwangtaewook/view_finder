@@ -51,7 +51,7 @@ class _HomeTabState extends State<HomeTab> {
                       child: ClipRRect(
                         borderRadius: BorderRadius.circular(8),
                         child: Container(
-                          color: const Color(0xff355E3B),
+                          color: const Color(0xff355E3B).withOpacity(0.1),
                           width: 1.sw,
                           height: 0.05.sh,
                           child: Column(
@@ -67,13 +67,15 @@ class _HomeTabState extends State<HomeTab> {
                                           EdgeInsets.symmetric(horizontal: 8),
                                       child: Icon(
                                         Icons.campaign_rounded,
-                                        color: Colors.white,
+                                        color: Color(0xff355E3B),
                                       ),
                                     ),
                                     Text(
                                       viewModel.announcementPost[0].title,
                                       style: TextStyle(
-                                          fontSize: 12.sp, color: Colors.white),
+                                          fontSize: 12.sp,
+                                          color: Colors.black,
+                                          fontWeight: FontWeight.w400),
                                     ),
                                   ],
                                 ),
