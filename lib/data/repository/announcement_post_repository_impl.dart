@@ -5,15 +5,15 @@ import '../data_source/announcement_post_data_source.dart';
 
 @Singleton(as: AnnouncementPostRepository)
 class AnnouncementPostRepositoryImpl implements AnnouncementPostRepository {
-  final AnnouncementPostDataSource _announcementPostDatSoucre;
+  final AnnouncementPostDataSource _announcementPostDataSource;
 
   const AnnouncementPostRepositoryImpl({
-    required AnnouncementPostDataSource announcementPostDatSoucre,
-  }) : _announcementPostDatSoucre = announcementPostDatSoucre;
+    required AnnouncementPostDataSource announcementPostDataSource,
+  }) : _announcementPostDataSource = announcementPostDataSource;
 
   @override
   Future<List<AnnouncementPost>> getAllPosts() async {
-    final postDocs = await _announcementPostDatSoucre.getAllPostDocuments();
+    final postDocs = await _announcementPostDataSource.getAllPostDocuments();
     return postDocs
         .map((e) => AnnouncementPost.fromJson(e.data() ?? {}))
         .toList();
