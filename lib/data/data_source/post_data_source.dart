@@ -15,8 +15,8 @@ class PostDataSource {
     final querySnapshot = await _firebaseFirestore
         .collection('posts')
         .where('userId', isEqualTo: FirebaseAuth.instance.currentUser?.uid)
+        .orderBy('createdAt', descending: true)
         .get();
-
     return querySnapshot.docs;
   }
 
