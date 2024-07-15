@@ -68,42 +68,53 @@ class _UploadAnnouncementPostScreenState
             ),
           ),
           SliverToBoxAdapter(child: SizedBox(height: 0.05.sw)),
-          SliverToBoxAdapter(
-            child: GestureDetector(
-              onTap: () async {
-                if (_titleTextEditingController.text.isNotEmpty &&
-                    _contentTextEditingController.text.isNotEmpty) {
-                  setState(() {
-                    isLoading = true;
-                  });
-                  await viewModel.uploadPost(_titleTextEditingController.text,
-                      _contentTextEditingController.text);
+          SliverFillRemaining(
+            hasScrollBody: false,
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.end,
+              children: [
+                GestureDetector(
+                  onTap: () async {
+                    if (_titleTextEditingController.text.isNotEmpty &&
+                        _contentTextEditingController.text.isNotEmpty) {
+                      setState(() {
+                        isLoading = true;
+                      });
+                      await viewModel.uploadPost(
+                          _titleTextEditingController.text,
+                          _contentTextEditingController.text);
 
-                  setState(() {
-                    isLoading = false;
-                  });
+                      setState(() {
+                        isLoading = false;
+                      });
 
-                  if (context.mounted) {
-                    Navigator.pop(context);
-                  }
-                }
-              },
-              child: Padding(
-                padding: EdgeInsets.symmetric(horizontal: 0.04.sw),
-                child: Container(
-                  height: 0.07.sh,
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(8),
-                    color: const Color(0xff355E3B),
-                  ),
-                  child: Center(
-                    child: Text(
-                      '등록하기',
-                      style: TextStyle(color: Colors.white, fontSize: 14.sp),
+                      if (context.mounted) {
+                        Navigator.pop(context);
+                      }
+                    }
+                  },
+                  child: Padding(
+                    padding: EdgeInsets.symmetric(
+                      vertical: 0.03.sh,
+                      horizontal: 0.04.sw,
+                    ),
+                    child: Container(
+                      height: 0.07.sh,
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(8),
+                        color: const Color(0xff355E3B),
+                      ),
+                      child: Center(
+                        child: Text(
+                          '등록하기',
+                          style:
+                              TextStyle(color: Colors.white, fontSize: 14.sp),
+                        ),
+                      ),
                     ),
                   ),
                 ),
-              ),
+              ],
             ),
           ),
         ],
