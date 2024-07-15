@@ -20,6 +20,8 @@ class _MemberDetailScreenState extends State<MemberDetailScreen> {
   final _nickNameTextEditingController = TextEditingController();
   final _emailTextEditingController = TextEditingController();
 
+  bool _isLoading = false;
+
   @override
   void dispose() {
     _lastNameTextEditingController.dispose();
@@ -35,99 +37,181 @@ class _MemberDetailScreenState extends State<MemberDetailScreen> {
 
     return SafeArea(
       child: Scaffold(
-        body: Padding(
-          padding: EdgeInsets.all(0.04.sw),
-          child: CustomScrollView(
-            slivers: [
-              SliverToBoxAdapter(child: SizedBox(height: 0.1.sw)),
-              SliverToBoxAdapter(
-                child: Row(
-                  children: [
-                    Expanded(
-                      child: CustomTextField(
-                        controller: _lastNameTextEditingController,
-                        fieldName: '성',
-                        hintText: '성을 입력하세요',
-                      ),
-                    ),
-                    SizedBox(
-                      width: 0.02.sw,
-                    ),
-                    Expanded(
-                      child: CustomTextField(
-                        controller: _firstNameTextEditingController,
-                        fieldName: '이름',
-                        hintText: '이름을 입력하세요',
-                      ),
-                    ),
-                  ],
+        body: Stack(
+          children: [
+            CustomScrollView(
+              slivers: [
+                SliverAppBar(
+                  centerTitle: true,
+                  toolbarHeight: 0.055.sh,
+                  title: Text(
+                    '계정 등록',
+                    textAlign: TextAlign.center,
+                    style: TextStyle(fontSize: 18.sp),
+                  ),
+                  pinned: true,
+                  scrolledUnderElevation: 0,
                 ),
-              ),
-              SliverToBoxAdapter(child: SizedBox(height: 0.06.sw)),
-              SliverToBoxAdapter(
-                child: CustomTextField(
-                  controller: _nickNameTextEditingController,
-                  fieldName: '닉네임',
-                  hintText: '닉네임을 입력하세요',
-                ),
-              ),
-              SliverToBoxAdapter(child: SizedBox(height: 0.06.sw)),
-              SliverToBoxAdapter(
-                child: CustomTextField(
-                  controller: _emailTextEditingController,
-                  fieldName: '이메일',
-                  hintText: '이메일을 입력하세요',
-                ),
-              ),
-              SliverToBoxAdapter(child: SizedBox(height: 0.06.sw)),
-              SliverToBoxAdapter(
-                child: Center(
-                  child: SizedBox(
-                    height: 0.3.sh,
-                    width: 0.3.sh,
-                    child: _image == null
-                        ? Icon(
-                            Icons.add_photo_alternate_outlined,
-                            size: 0.3.sh,
-                          )
-                        : Image.file(
-                            _image!,
-                            fit: BoxFit.cover,
-                          ),
+                SliverPadding(
+                  padding: EdgeInsets.symmetric(horizontal: 0.04.sw),
+                  sliver: SliverToBoxAdapter(
+                    child: SizedBox(
+                      height: 0.01.sh,
+                    ),
                   ),
                 ),
-              ),
-              SliverToBoxAdapter(
-                child: ElevatedButton(
-                  onPressed: () async {
-                    if (context.mounted) {
-                      _image = await viewModel.getImage();
-                      setState(() {});
-                    }
-                  },
-                  child: const Text('프로필 이미지 선택'),
+                SliverPadding(
+                  padding: EdgeInsets.symmetric(horizontal: 0.04.sw),
+                  sliver: SliverToBoxAdapter(
+                    child: Row(
+                      children: [
+                        Expanded(
+                          child: CustomTextField(
+                            controller: _lastNameTextEditingController,
+                            fieldName: '성',
+                            hintText: '성을 입력하세요',
+                          ),
+                        ),
+                        SizedBox(
+                          width: 0.02.sw,
+                        ),
+                        Expanded(
+                          child: CustomTextField(
+                            controller: _firstNameTextEditingController,
+                            fieldName: '이름',
+                            hintText: '이름을 입력하세요',
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
                 ),
-              ),
-              SliverToBoxAdapter(child: SizedBox(height: 0.06.sw)),
-              SliverToBoxAdapter(
-                child: ElevatedButton(
-                  onPressed: () async {
-                    if (context.mounted) {
-                      await viewModel.uploadMember(
-                          _lastNameTextEditingController.text,
-                          _firstNameTextEditingController.text,
-                          _nickNameTextEditingController.text,
-                          _image!);
+                SliverToBoxAdapter(child: SizedBox(height: 0.06.sw)),
+                SliverPadding(
+                  padding: EdgeInsets.symmetric(horizontal: 0.04.sw),
+                  sliver: SliverToBoxAdapter(
+                    child: CustomTextField(
+                      controller: _nickNameTextEditingController,
+                      fieldName: '닉네임',
+                      hintText: '닉네임을 입력하세요',
+                    ),
+                  ),
+                ),
+                SliverToBoxAdapter(child: SizedBox(height: 0.06.sw)),
+                SliverPadding(
+                  padding: EdgeInsets.symmetric(horizontal: 0.04.sw),
+                  sliver: SliverToBoxAdapter(
+                    child: CustomTextField(
+                      controller: _emailTextEditingController,
+                      fieldName: '이메일',
+                      hintText: '이메일을 입력하세요',
+                    ),
+                  ),
+                ),
+                SliverToBoxAdapter(child: SizedBox(height: 0.06.sw)),
+                SliverToBoxAdapter(
+                  child: Center(
+                    child: SizedBox(
+                      height: 0.3.sh,
+                      width: 0.3.sh,
+                      child: _image == null
+                          ? Icon(
+                              Icons.add_photo_alternate_outlined,
+                              size: 0.3.sh,
+                            )
+                          : Image.file(
+                              _image!,
+                              fit: BoxFit.cover,
+                            ),
+                    ),
+                  ),
+                ),
+                SliverToBoxAdapter(child: SizedBox(height: 0.05.sh)),
+                SliverToBoxAdapter(
+                  child: GestureDetector(
+                    onTap: () async {
                       if (context.mounted) {
-                        context.go('/home');
+                        _image = await viewModel.getImage();
+                        setState(() {});
                       }
-                    }
-                  },
-                  child: const Text('완료'),
+                    },
+                    child: Padding(
+                      padding: EdgeInsets.symmetric(
+                        horizontal: 0.04.sw,
+                      ),
+                      child: Container(
+                        height: 0.07.sh,
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(8),
+                          color: const Color(0xff355E3B),
+                        ),
+                        child: Center(
+                          child: Text(
+                            '프로필 이미지 선택',
+                            style:
+                                TextStyle(color: Colors.white, fontSize: 14.sp),
+                          ),
+                        ),
+                      ),
+                    ),
+                  ),
+                ),
+                SliverFillRemaining(
+                  hasScrollBody: false,
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.end,
+                    children: [
+                      GestureDetector(
+                        onTap: () async {
+                          if (context.mounted) {
+                            setState(() {
+                              _isLoading = true;
+                            });
+                            await viewModel.uploadMember(
+                                _lastNameTextEditingController.text,
+                                _firstNameTextEditingController.text,
+                                _nickNameTextEditingController.text,
+                                _image!);
+                            setState(() {
+                              _isLoading = false;
+                            });
+                            if (context.mounted) {
+                              context.go('/home');
+                            }
+                          }
+                        },
+                        child: Padding(
+                          padding: EdgeInsets.symmetric(
+                              horizontal: 0.04.sw, vertical: 0.03.sh),
+                          child: Container(
+                            height: 0.07.sh,
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(8),
+                              color: const Color(0xff355E3B),
+                            ),
+                            child: Center(
+                              child: Text(
+                                '등록하기',
+                                style: TextStyle(
+                                    color: Colors.white, fontSize: 14.sp),
+                              ),
+                            ),
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+              ],
+            ),
+            if (_isLoading)
+              Container(
+                color: Colors.black.withOpacity(0.5),
+                child: const Center(
+                  child: CircularProgressIndicator(),
                 ),
               ),
-            ],
-          ),
+          ],
         ),
       ),
     );
