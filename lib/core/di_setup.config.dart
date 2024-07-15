@@ -19,20 +19,20 @@ import 'package:view_finder/data/data_source/calendar_post_data_source.dart'
 import 'package:view_finder/data/data_source/member_data_source.dart' as _i10;
 import 'package:view_finder/data/data_source/post_data_source.dart' as _i11;
 import 'package:view_finder/data/repository/announcement_post_repository_impl.dart'
-    as _i14;
+    as _i17;
 import 'package:view_finder/data/repository/calendar_post_repository_impl.dart'
     as _i23;
 import 'package:view_finder/data/repository/memeber_repository_impl.dart'
-    as _i16;
+    as _i14;
 import 'package:view_finder/data/repository/post_repository_impl.dart' as _i20;
 import 'package:view_finder/data/services/image_meta_data_service.dart' as _i4;
 import 'package:view_finder/data/services/image_upload_service.dart' as _i5;
 import 'package:view_finder/data/services/register_check_service.dart' as _i12;
 import 'package:view_finder/domain/repository/announcement_post_repository.dart'
-    as _i13;
+    as _i16;
 import 'package:view_finder/domain/repository/calendar_post_repository.dart'
     as _i22;
-import 'package:view_finder/domain/repository/member_repository.dart' as _i15;
+import 'package:view_finder/domain/repository/member_repository.dart' as _i13;
 import 'package:view_finder/domain/repository/post_repository.dart' as _i19;
 import 'package:view_finder/domain/use_case/get_announcement_post_use_case.dart'
     as _i27;
@@ -50,7 +50,7 @@ import 'package:view_finder/domain/use_case/upload_member_use_case.dart' as _i7;
 import 'package:view_finder/domain/use_case/upload_post_use_case.dart' as _i21;
 import 'package:view_finder/domain/utils/fraction_conversion_util.dart' as _i6;
 import 'package:view_finder/presentation/auth/member_detail_view_model.dart'
-    as _i17;
+    as _i15;
 import 'package:view_finder/presentation/detail_post_screen/detail_post_view_model.dart'
     as _i26;
 import 'package:view_finder/presentation/main_screen/account/account_view_model.dart'
@@ -98,15 +98,15 @@ extension GetItInjectableX on _i1.GetIt {
         _i11.PostDataSource(firebaseFirestore: gh<_i3.FirebaseFirestore>()));
     gh.singleton<_i12.RegisterCheckService>(() => _i12.RegisterCheckService(
         memberDataSource: gh<_i10.MemberDataSource>()));
-    gh.singleton<_i13.AnnouncementPostRepository>(() =>
-        _i14.AnnouncementPostRepositoryImpl(
-            announcementPostDatSoucre: gh<_i8.AnnouncementPostDataSource>()));
-    gh.singleton<_i15.MemberRepository>(() => _i16.MemberRepositoryImpl(
+    gh.singleton<_i13.MemberRepository>(() => _i14.MemberRepositoryImpl(
         memberDataSource: gh<_i10.MemberDataSource>()));
-    gh.factory<_i17.MemberDetailViewModel>(() => _i17.MemberDetailViewModel(
+    gh.factory<_i15.MemberDetailViewModel>(() => _i15.MemberDetailViewModel(
         uploadMemberUseCase: gh<_i7.UploadMemberUseCase>()));
+    gh.singleton<_i16.AnnouncementPostRepository>(() =>
+        _i17.AnnouncementPostRepositoryImpl(
+            announcementPostDataSource: gh<_i8.AnnouncementPostDataSource>()));
     gh.singleton<_i18.GetMemberUseCase>(() =>
-        _i18.GetMemberUseCase(memberRepository: gh<_i15.MemberRepository>()));
+        _i18.GetMemberUseCase(memberRepository: gh<_i13.MemberRepository>()));
     gh.singleton<_i19.PostRepository>(() =>
         _i20.PostRepositoryImpl(postDataSource: gh<_i11.PostDataSource>()));
     gh.singleton<_i21.UploadPostUseCase>(() => _i21.UploadPostUseCase(
@@ -129,7 +129,7 @@ extension GetItInjectableX on _i1.GetIt {
         ));
     gh.singleton<_i27.GetAnnouncementPostUseCase>(() =>
         _i27.GetAnnouncementPostUseCase(
-            announcementPostRepository: gh<_i13.AnnouncementPostRepository>()));
+            announcementPostRepository: gh<_i16.AnnouncementPostRepository>()));
     gh.singleton<_i28.GetPostsUseCase>(
         () => _i28.GetPostsUseCase(postRepository: gh<_i19.PostRepository>()));
     gh.singleton<_i29.GetUserPostsUseCase>(() =>
