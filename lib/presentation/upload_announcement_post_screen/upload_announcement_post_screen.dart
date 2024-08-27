@@ -80,13 +80,15 @@ class _UploadAnnouncementPostScreenState
                       setState(() {
                         isLoading = true;
                       });
-                      await viewModel.uploadPost(
-                          _titleTextEditingController.text,
-                          _contentTextEditingController.text);
-
-                      setState(() {
-                        isLoading = false;
-                      });
+                      try {
+                        await viewModel.uploadPost(
+                            _titleTextEditingController.text,
+                            _contentTextEditingController.text);
+                      } finally {
+                        setState(() {
+                          isLoading = false;
+                        });
+                      }
 
                       if (context.mounted) {
                         Navigator.pop(context);

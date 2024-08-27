@@ -121,15 +121,17 @@ class _UploadScreenState extends State<UploadScreen> {
                           setState(() {
                             _isLoading = true;
                           });
-                          await viewModel.uploadPost(
-                            _titleTextEditingController.text,
-                            _detailTextEditingController.text,
-                            _image!,
-                          );
-
-                          setState(() {
-                            _isLoading = false;
-                          });
+                          try {
+                            await viewModel.uploadPost(
+                              _titleTextEditingController.text,
+                              _detailTextEditingController.text,
+                              _image!,
+                            );
+                          } finally {
+                            setState(() {
+                              _isLoading = false;
+                            });
+                          }
 
                           if (context.mounted) {
                             Navigator.pop(context);
