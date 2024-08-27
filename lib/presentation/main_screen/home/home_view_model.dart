@@ -4,36 +4,21 @@ import 'package:view_finder/domain/use_case/get_announcement_post_use_case.dart'
 import '../../../domain/model/announcement_post.dart';
 import '../../../domain/model/calendar_post.dart';
 import '../../../domain/model/member.dart';
-import '../../../domain/model/post.dart';
 import '../../../domain/use_case/get_calendar_post_use_case.dart';
 import '../../../domain/use_case/get_member_use_case.dart';
-import '../../../domain/use_case/get_posts_use_case.dart';
 
 @injectable
 class HomeViewModel with ChangeNotifier {
-  final GetPostsUseCase _getPostsUseCase;
   final GetMemberUseCase _getMemberUseCase;
   final GetCalendarPostUseCase _getCalendarPostUseCase;
   final GetAnnouncementPostUseCase _getAnnouncementPostUseCase;
   HomeViewModel({
-    required GetPostsUseCase getPostsUseCase,
     required GetMemberUseCase getMemberUseCase,
     required GetCalendarPostUseCase getCalendarPostUseCase,
     required GetAnnouncementPostUseCase getAnnouncementPostUseCase,
-  })  : _getPostsUseCase = getPostsUseCase,
-        _getMemberUseCase = getMemberUseCase,
+  })  : _getMemberUseCase = getMemberUseCase,
         _getCalendarPostUseCase = getCalendarPostUseCase,
         _getAnnouncementPostUseCase = getAnnouncementPostUseCase;
-
-  List<Post> _post = [];
-
-  List<Post> get post => List.unmodifiable(_post);
-
-  Future<void> setAllPost() async {
-    final post = await _getPostsUseCase.execute();
-    _post = post;
-    notifyListeners();
-  }
 
   List<CalendarPost> _calendarPost = [];
 
