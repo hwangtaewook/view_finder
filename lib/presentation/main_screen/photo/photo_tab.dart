@@ -21,13 +21,8 @@ class _PhotoTabState extends State<PhotoTab> {
     final user = FirebaseAuth.instance.currentUser;
     if (user != null) {
       context.read<PhotoViewModel>().setMember(user.uid);
+      context.read<PhotoViewModel>().setAllPost();
     }
-  }
-
-  @override
-  void didChangeDependencies() {
-    super.didChangeDependencies();
-    context.read<PhotoViewModel>().setAllPost();
   }
 
   @override
