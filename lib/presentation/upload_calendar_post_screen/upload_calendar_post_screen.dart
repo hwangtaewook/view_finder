@@ -22,7 +22,7 @@ class _UploadCalendarPostScreenState extends State<UploadCalendarPostScreen> {
   final _endDayTextEditingController = TextEditingController();
   final _contentTextEditingController = TextEditingController();
   final _emailTextEditingController = TextEditingController();
-  Color _selectedColor = const Color(0xffff6666);
+  Color _selectedColor = const Color(0xff355E3B);
 
   bool isLoading = false;
 
@@ -339,16 +339,18 @@ class _UploadCalendarPostScreenState extends State<UploadCalendarPostScreen> {
                     setState(() {
                       isLoading = true;
                     });
-                    await viewModel.uploadPost(
-                        _titleTextEditingController.text,
-                        _startDayTextEditingController.text,
-                        _endDayTextEditingController.text,
-                        _selectedColor.toString(),
-                        _contentTextEditingController.text);
-
-                    setState(() {
-                      isLoading = false;
-                    });
+                    try {
+                      await viewModel.uploadPost(
+                          _titleTextEditingController.text,
+                          _startDayTextEditingController.text,
+                          _endDayTextEditingController.text,
+                          _selectedColor.toString(),
+                          _contentTextEditingController.text);
+                    } finally {
+                      setState(() {
+                        isLoading = false;
+                      });
+                    }
 
                     if (context.mounted) {
                       Navigator.pop(context);
