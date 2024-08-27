@@ -22,10 +22,16 @@ class PhotoViewModel with ChangeNotifier {
 
   List<Post> get post => List.unmodifiable(_post);
 
+  bool _isShuffled = false;
+
   Future<void> setAllPost() async {
     final post = await _getPostsUseCase.execute();
+
     _post = post;
-    _post.shuffle(Random());
+    if (!_isShuffled) {
+      _post.shuffle(Random());
+      _isShuffled = true;
+    }
     notifyListeners();
   }
 
