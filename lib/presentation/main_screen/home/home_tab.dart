@@ -19,13 +19,17 @@ class _HomeTabState extends State<HomeTab> {
     super.initState();
     final user = FirebaseAuth.instance.currentUser;
     if (user != null) {
-      Future.microtask(() async {
-        await context.read<HomeViewModel>().setMember(user.uid);
-        await context.read<HomeViewModel>().setAllPost();
-        await context.read<HomeViewModel>().setCalendarPost();
-        await context.read<HomeViewModel>().setAllAnnouncementPost();
-      });
+      context.read<HomeViewModel>().setMember(user.uid);
+      context.read<HomeViewModel>().setCalendarPost();
+      context.read<HomeViewModel>().setAllAnnouncementPost();
     }
+  }
+
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    context.read<HomeViewModel>().setCalendarPost();
+    context.read<HomeViewModel>().setAllAnnouncementPost();
   }
 
   @override

@@ -20,16 +20,20 @@ class _PhotoTabState extends State<PhotoTab> {
     super.initState();
     final user = FirebaseAuth.instance.currentUser;
     if (user != null) {
-      Future.microtask(() {
-        context.read<PhotoViewModel>().setAllPost();
-        context.read<PhotoViewModel>().setMember(user.uid);
-      });
+      context.read<PhotoViewModel>().setMember(user.uid);
     }
+  }
+
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    context.read<PhotoViewModel>().setAllPost();
   }
 
   @override
   Widget build(BuildContext context) {
     final viewModel = context.watch<PhotoViewModel>();
+
     return SafeArea(
       child: Scaffold(
         body: CustomScrollView(
@@ -44,22 +48,26 @@ class _PhotoTabState extends State<PhotoTab> {
                 mainAxisSpacing: 10,
                 crossAxisSpacing: 10,
                 itemBuilder: (BuildContext context, int index) {
-                  return GestureDetector(
-                    onTap: () {
-                      final post = viewModel.post[index];
-                      context.push('/detail_post', extra: post);
-                    },
-                    child: Hero(
-                      tag: viewModel.post[index].postId,
-                      child: ClipRRect(
-                        borderRadius: BorderRadius.circular(10),
-                        child: Image.network(
-                          viewModel.post[index].imageUrl,
-                          fit: BoxFit.contain,
-                        ),
-                      ),
-                    ),
-                  );
+                  return ListenableBuilder(
+                      listenable: viewModel,
+                      builder: (context, child) {
+                        return GestureDetector(
+                          onTap: () {
+                            final post = viewModel.post[index];
+                            context.push('/detail_post', extra: post);
+                          },
+                          child: Hero(
+                            tag: viewModel.post[index].postId,
+                            child: ClipRRect(
+                              borderRadius: BorderRadius.circular(10),
+                              child: Image.network(
+                                viewModel.post[index].imageUrl,
+                                fit: BoxFit.contain,
+                              ),
+                            ),
+                          ),
+                        );
+                      });
                 },
                 childCount: viewModel.post.length,
               ),

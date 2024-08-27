@@ -20,12 +20,17 @@ class _BoardTabState extends State<BoardTab> {
     final user = FirebaseAuth.instance.currentUser;
     if (user != null) {
       Future.microtask(() {
-        context.read<BoardViewModel>().setAllPost();
         context.read<BoardViewModel>().setMember(user.uid);
-        context.read<BoardViewModel>().setAllAnnouncementPost();
-        context.read<BoardViewModel>().setAllCalendarPost();
       });
     }
+  }
+
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    context.read<BoardViewModel>().setAllPost();
+    context.read<BoardViewModel>().setAllAnnouncementPost();
+    context.read<BoardViewModel>().setAllCalendarPost();
   }
 
   @override
