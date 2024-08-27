@@ -56,11 +56,11 @@ import 'package:view_finder/presentation/detail_post_screen/detail_post_view_mod
 import 'package:view_finder/presentation/main_screen/account/account_view_model.dart'
     as _i34;
 import 'package:view_finder/presentation/main_screen/board/board_view_model.dart'
-    as _i37;
-import 'package:view_finder/presentation/main_screen/home/home_view_model.dart'
-    as _i35;
-import 'package:view_finder/presentation/main_screen/photo/photo_tab_view_model.dart'
     as _i36;
+import 'package:view_finder/presentation/main_screen/home/home_view_model.dart'
+    as _i37;
+import 'package:view_finder/presentation/main_screen/photo/photo_tab_view_model.dart'
+    as _i35;
 import 'package:view_finder/presentation/upload_announcement_post_screen/upload_announcement_post_view_model.dart'
     as _i30;
 import 'package:view_finder/presentation/upload_calendar_post_screen/upload_calendar_post_view_model.dart'
@@ -150,21 +150,20 @@ extension GetItInjectableX on _i1.GetIt {
           getPostsUseCase: gh<_i28.GetPostsUseCase>(),
           getUserPostsUseCase: gh<_i29.GetUserPostsUseCase>(),
         ));
-    gh.factory<_i35.HomeViewModel>(() => _i35.HomeViewModel(
-          getPostsUseCase: gh<_i28.GetPostsUseCase>(),
-          getMemberUseCase: gh<_i18.GetMemberUseCase>(),
-          getCalendarPostUseCase: gh<_i32.GetCalendarPostUseCase>(),
-          getAnnouncementPostUseCase: gh<_i27.GetAnnouncementPostUseCase>(),
-        ));
-    gh.factory<_i36.PhotoViewModel>(() => _i36.PhotoViewModel(
+    gh.factory<_i35.PhotoViewModel>(() => _i35.PhotoViewModel(
           getPostsUseCase: gh<_i28.GetPostsUseCase>(),
           getMemberUseCase: gh<_i18.GetMemberUseCase>(),
         ));
-    gh.factory<_i37.BoardViewModel>(() => _i37.BoardViewModel(
+    gh.factory<_i36.BoardViewModel>(() => _i36.BoardViewModel(
           getPostsUseCase: gh<_i28.GetPostsUseCase>(),
           getMemberUseCase: gh<_i18.GetMemberUseCase>(),
           getAnnouncementPostUseCase: gh<_i27.GetAnnouncementPostUseCase>(),
           getCalendarPostUseCase: gh<_i32.GetCalendarPostUseCase>(),
+        ));
+    gh.factory<_i37.HomeViewModel>(() => _i37.HomeViewModel(
+          getMemberUseCase: gh<_i18.GetMemberUseCase>(),
+          getCalendarPostUseCase: gh<_i32.GetCalendarPostUseCase>(),
+          getAnnouncementPostUseCase: gh<_i27.GetAnnouncementPostUseCase>(),
         ));
     return this;
   }
