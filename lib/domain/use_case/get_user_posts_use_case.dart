@@ -1,5 +1,4 @@
 import 'package:injectable/injectable.dart';
-
 import '../model/post.dart';
 import '../repository/post_repository.dart';
 

@@ -10,6 +10,8 @@ class BoardCard extends StatelessWidget {
   final String? startDay;
   final String? endDay;
   final String? imageUrl;
+  final Function? onTapPic;
+  final Function? onTapMenu;
 
   const BoardCard({
     super.key,
@@ -21,6 +23,8 @@ class BoardCard extends StatelessWidget {
     this.startDay,
     this.endDay,
     this.imageUrl,
+    this.onTapPic,
+    this.onTapMenu,
   });
 
   @override
@@ -55,9 +59,14 @@ class BoardCard extends StatelessWidget {
                           style: const TextStyle(fontWeight: FontWeight.w400),
                         ),
                         const Spacer(),
-                        const Icon(
-                          Icons.more_horiz,
-                          size: 20,
+                        GestureDetector(
+                          onTap: () {
+                            onTapMenu!();
+                          },
+                          child: const Icon(
+                            Icons.more_horiz,
+                            size: 20,
+                          ),
                         ),
                       ],
                     ),
@@ -87,9 +96,14 @@ class BoardCard extends StatelessWidget {
                     if (imageUrl != null)
                       Column(
                         children: [
-                          ClipRRect(
-                            borderRadius: BorderRadius.circular(10),
-                            child: Image.network(imageUrl!),
+                          GestureDetector(
+                            onTap: () {
+                              onTapPic!();
+                            },
+                            child: ClipRRect(
+                              borderRadius: BorderRadius.circular(10),
+                              child: Image.network(imageUrl!),
+                            ),
                           ),
                           SizedBox(
                             height: 0.01.sh,

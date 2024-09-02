@@ -98,6 +98,10 @@ class _BoardTabState extends State<BoardTab> {
                                       .announcementPost[index].userNickName,
                                   createdAt: viewModel
                                       .announcementPost[index].createdAt,
+                                  onTapMenu: () {
+                                    viewModel.deleteAnnouncementPost(viewModel
+                                        .announcementPost[index].postId);
+                                  },
                                 );
                               },
                               childCount: viewModel.announcementPost.length,
@@ -134,6 +138,10 @@ class _BoardTabState extends State<BoardTab> {
                                   startDay:
                                       viewModel.calendarPost[index].startDay,
                                   endDay: viewModel.calendarPost[index].endDay,
+                                  onTapMenu: () {
+                                    viewModel.deleteCalendarPost(
+                                        viewModel.calendarPost[index].postId);
+                                  },
                                 );
                               },
                               childCount: viewModel.calendarPost.length,
@@ -157,12 +165,7 @@ class _BoardTabState extends State<BoardTab> {
                           SliverList(
                             delegate: SliverChildBuilderDelegate(
                               (context, index) {
-                                return GestureDetector(
-                                  onTap: () {
-                                    final post = viewModel.post[index];
-                                    context.push('/detail_post', extra: post);
-                                  },
-                                  child: BoardCard(
+                                return BoardCard(
                                     userProfilePic:
                                         viewModel.post[index].userProfilePic,
                                     userNickName:
@@ -171,8 +174,14 @@ class _BoardTabState extends State<BoardTab> {
                                     title: viewModel.post[index].title,
                                     content: viewModel.post[index].content,
                                     imageUrl: viewModel.post[index].imageUrl,
-                                  ),
-                                );
+                                    onTapPic: () {
+                                      final post = viewModel.post[index];
+                                      context.push('/detail_post', extra: post);
+                                    },
+                                    onTapMenu: () {
+                                      viewModel.deletePost(
+                                          viewModel.post[index].postId);
+                                    });
                               },
                               childCount: viewModel.post.length,
                             ),
