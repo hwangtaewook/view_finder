@@ -1,4 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_storage/firebase_storage.dart';
 import 'package:injectable/injectable.dart';
 import '../model/post.dart';
 
@@ -14,6 +15,14 @@ class DeletePostUseCase {
             );
 
     final postDocRef = postsRef.doc(postId);
+
+    final postSnapshot = await postDocRef.get();
+    final post = postSnapshot.data();
+    if (post != null && post.imageUrl.isNotEmpty) {
+      final photoUrl = post.imageUrl;
+      final storageRef = FirebaseStorage.instance.refFromURL(photoUrl);
+      await storageRef.delete();
+    }
     await postDocRef.delete();
   }
 }
