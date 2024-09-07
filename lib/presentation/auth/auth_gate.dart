@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:view_finder/data/data_source/member_data_source.dart';
 import 'package:view_finder/data/services/register_check_service.dart';
+import 'package:view_finder/presentation/auth/login_screen.dart';
 import 'package:view_finder/presentation/auth/memeber_detail_screen.dart';
 import 'package:view_finder/presentation/main_screen/home/home_tab.dart';
 import 'package:view_finder/presentation/main_screen/home/home_view_model.dart';
@@ -19,11 +20,12 @@ class AuthGate extends StatelessWidget {
       stream: FirebaseAuth.instance.authStateChanges(),
       builder: (context, snapshot) {
         if (!snapshot.hasData) {
-          return SignInScreen(
-            providers: [
-              EmailAuthProvider(),
-            ],
-          );
+          return const LoginScreen();
+          //     SignInScreen(
+          //   providers: [
+          //     EmailAuthProvider(),
+          //   ],
+          // );
         }
 
         return FutureBuilder<bool>(
