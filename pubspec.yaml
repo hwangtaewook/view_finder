@@ -58,6 +58,7 @@ dependencies:
   flutter_localizations:
     sdk: flutter
   google_sign_in: ^6.2.1
+  in_app_purchase: ^3.2.0
 
 dev_dependencies:
   flutter_test:
